@@ -3,14 +3,16 @@
           <div class="row">
 
             <div class="col-md-5">
+              <div class = "confirm-div"></div>
+              
               <!-- general form elements disabled -->
               <div class="box box-info">
                 <div class="box-header">
                   <h3 class="box-title">Information Details</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <?php echo form_open_multipart('form/add_job_request');?>  
-                        <div class = "confirm-div"></div>
+                 <?php echo form_open_multipart('form/add_job_request');?>  
+             
                     <div class="form-group">
                       <label>Contact Person (Full name)</label>
                       <input type="text" name = "full_name" class="form-control" placeholder="Enter ..."/>
