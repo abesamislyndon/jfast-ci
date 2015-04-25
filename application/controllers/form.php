@@ -39,8 +39,10 @@ class Form extends CI_Controller {
                 $address_from  =  $this->input->post('address_from');
                 $address_to    =  $this->input->post('address_to');
                 $job_details   =  $this->input->post('job_details');
-                     
-                $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time,$address_from, $address_to, $job_details);        
+                $sender   =  $this->input->post('sender'); 
+                $id   =  $this->input->post('id'); 
+
+                $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time,$address_from, $address_to, $job_details, $sender, $id);        
         }
 
       }else

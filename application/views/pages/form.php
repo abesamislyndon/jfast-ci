@@ -12,8 +12,11 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                  <?php echo form_open_multipart('form/add_job_request');?>  
-             
-                    <div class="form-group">
+                 
+                  <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
+                  <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
+                           
+                  <div class="form-group">
                       <label>Contact Person (Full name)</label>
                       <input type="text" name = "full_name" class="form-control" placeholder="Enter ..."/>
                     </div>

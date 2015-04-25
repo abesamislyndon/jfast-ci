@@ -7,81 +7,39 @@
           
         <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Bordered Table</h3>
+                  <h3 class="box-title">JOB DELIVERY REQUEST</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table class="table table-bordered">
+
+
+                  <table class="table table-bordered table-custom">
                     <tr>
-                      <th style="width: 10px">id</th>
-                      <th>fullname</th>
-                      <th>address</th>
-                      <th>fullname</th>
-                      <th>address</th>
-                      <th>fullname</th>
-                      <th>address</th>
-                      <th style="width: 40px">Label</th>
+                      <th style="width:100px">Job Bank id</th>
+                       <th>Date Request</th>
+                      <th>Client name</th>
+                      <th>Tel no.</th>
+                      <th>Email</th>
+                      <th>Time</th>
+                      <th>Address form</th>
+                      <th>Address to</th>
+                      <th>Sender</th>
+                      <th>Action</th>
                     </tr>
-
+                   <?php foreach ($job_list_incoming as $value):?>
                     <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
+                      <td><?php echo $value->job_request_id?></td>
+                      <td><?php echo $value->date_request?></td>
+                      <td><?php echo $value->full_name?></td>
+                      <td><?php echo $value->tel_no?></td>
+                      <td><?php echo $value->email?></td>
+                      <td><?php echo $value->time?></td>
+                      <td><?php echo $value->address_from?></td>
+                      <td><?php echo $value->address_to?></td>
+                      <td><?php echo $value->sender?></td>
                       <td><span class="badge bg-red">55%</span></td>
                     </tr>
-
-                         <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-red">55%</span></td>
-                    </tr>
-
-                         <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-red">55%</span></td>
-                    </tr>
-
-                         <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>Update software</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-red">55%</span></td>
-                    </tr>
-                   
+                    <?php endforeach; ?>
+                                   
                   </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
