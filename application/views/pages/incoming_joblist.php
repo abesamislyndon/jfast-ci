@@ -23,8 +23,10 @@
                       <th>Address form</th>
                       <th>Address to</th>
                       <th>Sender</th>
+                      <th>Cost</th>
                       <th>Action</th>
                     </tr>
+                      <?php if (isset($job_list_incoming) & ($job_list_incoming <> NULL)) {?>  
                    <?php foreach ($job_list_incoming as $value):?>
                     <tr>
                       <td><?php echo $value->job_request_id?></td>
@@ -36,20 +38,15 @@
                       <td><?php echo $value->address_from?></td>
                       <td><?php echo $value->address_to?></td>
                       <td><?php echo $value->sender?></td>
-                      <td><span class="badge bg-red">55%</span></td>
+                      <td><?php echo $value->price?></td>
+                      <td><a href="<?php echo base_url();?>joblist_bank/individual/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom">view</span></a></td>
                     </tr>
                     <?php endforeach; ?>
-                                   
+                      <?php }?>               
                   </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
-                  <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                  </ul>
+                   <?php echo $links; ?>
                 </div>
               </div><!-- /.box -->
 

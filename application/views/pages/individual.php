@@ -11,26 +11,28 @@
                   <h3 class="box-title">Information Details</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                 <?php echo form_open_multipart('form/add_job_request');?>  
+                <?php foreach ($individual as  $value): ?>
+                 <?php echo form_open_multipart('form/process_job_request');?>  
                  
                   <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
                   <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
-                  <input type="hidden" name = "status" class="form-control" value = "1" />       
-                  
+                  <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
+                  <input type="hidden" name = "status" class="form-control" value = "2" />       
+                
                   <div class="form-group">
                       <label>Contact Person (Full name)</label>
-                      <input type="text" name = "full_name" class="form-control" placeholder="Enter ..."/>
+                      <input type="text" name = "full_name" class="form-control" value = "<?php echo $value->full_name ?>"/>
                     </div>
             
                         
                      <div class="form-group">
                       <label>Tel no.</label>
-                      <input type="text" name = "tel_no" class="form-control" placeholder="Enter ..."/>
+                      <input type="text" name = "tel_no" class="form-control" value = "<?php echo $value->tel_no ?>"/>
                     </div>
             
                    <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name = "email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <input type="email" name = "email" class="form-control" id="exampleInputEmail1" value = "<?php echo $value->email ?>">
                     </div>
 
                 </div><!-- /.box-body -->
@@ -54,7 +56,7 @@
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                      <input type="text" name = "date_request" class="form-control pull-right" id="datepicker"/>
+                      <input type="text" name = "date_request" class="form-control pull-right" id="datepicker" value = "<?php echo $value->date_request ?>"/>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
 
@@ -63,7 +65,7 @@
                     <div class="form-group">
                       <label>Time</label>
                       <div class="input-group">
-                        <input type="text" name = "time" class="form-control timepicker"/>
+                        <input type="text" name = "time" class="form-control timepicker" value = "<?php echo $value->time ?>"/>
                         <div class="input-group-addon">
                           <i class="fa fa-clock-o"></i>
                         </div>
@@ -74,22 +76,23 @@
               
                    <div class="form-group">
                       <label>From: Address</label>
-                      <input type="text" name = "address_from" class="form-control" placeholder="Enter ..."/>
+                      <input type="text" name = "address_from" class="form-control" value = "<?php echo $value->address_from ?>"/>
+                    </div>
+
+                    <div class="form-group">
+                      <label>To: Address</label>
+                      <input type="text" name = "address_to" class="form-control" value = "<?php echo $value->address_to ?>"/>
                     </div>
 
 
                     <div class="form-group">
-                      <label>To: Address</label>
-                      <input type="text" name = "address_to" class="form-control" placeholder="Enter ..."/>
+                      <label>Estimate Cost</label>
+                      <input type="text" name = "price" class="form-control" value = "<?php echo $value->price ?>"/>
                     </div>
             
-
-                  <div class="form-group">
-                      <label>Estimate Cost</label>
-                      <input type="text" name = "price" class="form-control" placeholder="Enter ..."/>
-                    </div>
+            
                         
-                  <div class='box'>
+                   <div class='box'>
                     <div class='box-header'>
                     <label>Complete Job Details</label>
                       <div class="pull-right box-tools">
@@ -98,12 +101,21 @@
                       </div><!-- /. tools -->
                     </div><!-- /.box-header -->
                     <div class='box-body pad'>
-                        <textarea class="textarea" name = "job_details" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <textarea class="textarea" name = "job_details" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" value = ""><?php echo $value->job_details ?></textarea>
                     </div>
                   </div>
-                  <input type = "submit" name = "submit" class="btn btn-block btn-success btn-lg" value = "submit">
-                  
-                  </form>
+                <?php endforeach; ?>
+                  <div class="col-sm-7">
+                  </div>
+                  <div class="col-sm-5">
+                  <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "update">
+                    &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "approve">
+                    &nbsp;&nbsp;<input type = "submit" name = "submit_reject" class="btn btn-danger btn-lg" value = "reject">
+                  </p>
+                 
+                  </div>
+
+                </form>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!--/.col (right) -->
