@@ -1,6 +1,5 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-
 class  Job_delivery_model extends CI_Model
 {
     function do_add_job_request($full_name, $tel_no, $email, $date_request, $time,$address_from, $address_to, $job_details, $sender, $id, $price, $status){
@@ -30,6 +29,24 @@ class  Job_delivery_model extends CI_Model
         
         $this->db->from('job_delivery');
         $this->db->where('status', 1);
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+     }
+
+
+       function show_allocate_job_list($limit, $start)
+    {
+        
+        $this->db->from('job_delivery');
+        $this->db->where('status', 2);
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         
@@ -73,7 +90,7 @@ class  Job_delivery_model extends CI_Model
           'sender'=>$sender,
           'sender_id'=>$id,
           'price'=>$price,
-          'status'=>$status
+          //'status'=>$status
           );
 
          $this->db->select('*');
@@ -92,18 +109,38 @@ class  Job_delivery_model extends CI_Model
           'status'=>2
         );
 
-
-
       $this->db->select('*');
       $this->db->from('job_delivery');
       $this->db->where('job_request_id', $job_request_id);
       $this->db->update('job_delivery', $row); 
 
       $this->session->set_flashdata('msg', 'INFORMATION UPDATED');
-      redirect('joblist_bank/individuaL/' .$job_request_id);
+      redirect('success/job_bank_success');
    
     }
  
+
+      function count_incoming_jobbank(){
+        
+        $this->db->select('status, COUNT(status) as total');
+        $this->db->where('status', 1);
+        $this->db->from('job_delivery');
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
+    function count_allocate_jobbank(){
+      
+        $this->db->select('status, COUNT(status) as total');
+        $this->db->where('status', 2);
+        $this->db->from('job_delivery');
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
+
         
 }
 /* End of file category_model.php */

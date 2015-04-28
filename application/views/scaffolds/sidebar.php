@@ -25,31 +25,22 @@
             </li>
                <li>
               <a href="<?php echo base_url(); ?>joblist_bank/incoming_joblist">
-                  <i class="fa fa-files-o"></i><span>Incoming Job Delivery</span> <small class="label pull-right bg-green">new</small>
+                  <i class="fa fa-files-o"></i><span>Incoming Job Bank</span> <?php foreach($count_jobbank as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li> 
-         
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span>Pending Job Delivery </span>
-                <span class="label label-primary pull-right">4</span>
+            <li>
+              <a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist">
+                  <i class="fa fa-files-o"></i><span>Allocate Job Bank</span>  <?php foreach($count_allocate as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-              </ul>
-            </li>
+            </li> 
             <li>
               <a href="#">
-                <i class="fa fa-th"></i> <span>Ongoing Job Delivery</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Ongoing Job Bank</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li>
               <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Job Delivery Invoice</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Job Bank Invoice</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
            
