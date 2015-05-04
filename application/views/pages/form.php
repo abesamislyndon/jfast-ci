@@ -46,8 +46,6 @@
                   <h3 class="box-title">Job Delivery Decription</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-
-
                   <div class="form-group">
                     <label>Date</label>
                     <div class="input-group">
@@ -70,25 +68,75 @@
                       </div><!-- /.input group -->
                     </div><!-- /.form group -->
                   </div>
+             
+                   <div class="panel  panel-info">
+                        <div class="panel-heading">
+                            Destination
+                        </div>
+                        <div class="panel-body">
+                           <div class="col-md-10">
+                            <div class="form-group">
+                          <label>From</label>
+                          <select class="form-control" name="destination" id="destination" >
+                            <option value="none">-</option>
+                            <?php foreach ($from as $value) { ?>
+                               <option  value = "<?php echo $value->id ?>"><?php echo $value->from ?>&nbsp;-&nbsp;<?php echo $value->to ?></option>
+                               <?php  } ?>    
+                          </select>
 
-              
-                   <div class="form-group">
-                      <label>From: Address</label>
-                      <input type="text" name = "address_from" class="form-control" placeholder="Enter ..."/>
+                      </div>
                     </div>
+                  
+                   <div class="col-md-2">
+                     <div class="form-group">
+                          <label>Cost</label>
+                        <select class="form-control" id="dropDown2" name = "destination_cost">
+                               <option value="none">-</option>
+                            <?php foreach ($from as $value) { ?>
+                                 <option  value = "<?php echo $value->id ?>"><?php echo $value->estimated_cost ?></option>
+                         
+                               <?php  } ?>   
+                         </select>
+                      </div>
+                  </div>
+                      </div><!--end of panel body-->
+                  </div><!--end of panel info-->
 
 
-                    <div class="form-group">
-                      <label>To: Address</label>
-                      <input type="text" name = "address_to" class="form-control" placeholder="Enter ..."/>
+                   <div class="panel  panel-info">
+                        <div class="panel-heading">
+                            Weight
+                        </div>
+                        <div class="panel-body">
+                           <div class="col-md-10">
+                            <div class="form-group">
+                          <label>From</label>
+                          <select class="form-control" name="weight" id="weight">
+                            <option value="none">-</option>
+                            <?php foreach ($weight as $value) { ?>
+                               <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->weight ?></option>
+                               <?php  } ?>    
+                          </select>
+
+                      </div>
                     </div>
-            
+                  
+                   <div class="col-md-2">
+                     <div class="form-group">
+                          <label>Cost</label>
+                        <select class="form-control" name = "weight_cost" id="cost">
+                               <option value="none">-</option>
+                            <?php foreach ($weight  as $value) { ?>
+                               <option  value = "<?php echo $value->id ?>"><?php echo $value->cost ?></option>
+                               <?php  } ?>   
+                         </select>
+                      </div>
+                  </div>
+                      </div><!--end of panel body-->
+                  </div><!--end of panel info-->
 
-                  <div class="form-group">
-                      <label>Estimate Cost</label>
-                      <input type="text" name = "price" class="form-control" placeholder="Enter ..."/>
-                    </div>
-                        
+
+                               
                   <div class='box'>
                     <div class='box-header'>
                     <label>Complete Job Details</label>

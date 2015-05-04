@@ -1,4 +1,5 @@
       </div><!-- ./wrapper -->
+   
     <script src="<?php echo base_url();?>asset/plugins/jQuery/jQuery-2.1.3.min.js"></script>
     <script src="<?php echo base_url();?>asset/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src='<?php echo base_url();?>asset/plugins/fastclick/fastclick.min.js'></script>
@@ -24,5 +25,6 @@
       });
     </script>
 
+ 
   </body>
 </html>

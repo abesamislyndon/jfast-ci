@@ -13,10 +13,12 @@ class Form extends CI_Controller {
       
       $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
       $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+      $data['from'] = $this->job_delivery_model->destination();
+      $data['weight'] = $this->job_delivery_model->weight();
    
       $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar', $data);
-		  $this->load->view('pages/form');
+		  $this->load->view('pages/form', $data);
 		  $this->load->view('scaffolds/form_footer');
         
      }else
@@ -24,6 +26,13 @@ class Form extends CI_Controller {
 			redirect('login', 'refresh');
 		}	
 	 
+   }
+
+   public function destination(){
+      $keyword = $_GET['term'];
+      $data = $this->job_delivery_model->do_get_cost($keyword);
+      echo json_encode($data);
+      flush();
    }
 
 
@@ -39,15 +48,17 @@ class Form extends CI_Controller {
                 $email         =  $this->input->post('email');
                 $date_request  =  $this->input->post('date_request');
                 $time 		   =  $this->input->post('time');
-                $address_from  =  $this->input->post('address_from');
-                $address_to    =  $this->input->post('address_to');
                 $job_details   =  $this->input->post('job_details');
                 $sender   =  $this->input->post('sender'); 
                 $id   =  $this->input->post('id'); 
                 $price   =  $this->input->post('price'); 
                 $status   =  $this->input->post('status'); 
+                $destination   =  $this->input->post('destination'); 
+                $destination_cost   =  $this->input->post('destination_cost'); 
+                $weight   =  $this->input->post('weight'); 
+                $weight_cost   =  $this->input->post('weight_cost'); 
 
-                $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time,$address_from, $address_to, $job_details, $sender, $id, $price, $status);        
+                $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time,$job_details, $sender, $id, $price, $status,$destination, $destination_cost,$weight, $weight_cost);        
         }
 
       }else
@@ -73,8 +84,6 @@ class Form extends CI_Controller {
                 $id   =  $this->input->post('id'); 
                 $price   =  $this->input->post('price'); 
                 $status   =  $this->input->post('status'); 
-
-
 
             if ($this->input->post('submit_update')) {
                 $this->job_delivery_model->update_job_request($full_name, $tel_no, $email, $date_request, $time,$address_from, $address_to, $job_details, $sender, $id, $price, $status,$job_request_id);
