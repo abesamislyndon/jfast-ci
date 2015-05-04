@@ -35,10 +35,10 @@
                       <td><?php echo $value->tel_no?></td>
                       <td><?php echo $value->email?></td>
                       <td><?php echo $value->time?></td>
-                      <td><?php echo $value->address_from?></td>
-                      <td><?php echo $value->address_to?></td>
+                       <td><?php echo $value->destination?></td>
+                      <td><?php echo $value->weight?></td>
                       <td><?php echo $value->sender?></td>
-                      <td><?php echo $value->price?></td>
+                      <td><?php echo $value->destination_cost + $value->weight_cost?></td>
                       <td><a href="<?php echo base_url();?>joblist_bank/individualAllocate/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom">view</span></a></td>
                     </tr>
                     <?php endforeach; ?>

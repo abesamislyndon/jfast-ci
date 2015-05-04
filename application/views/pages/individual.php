@@ -78,19 +78,19 @@
 
               
                    <div class="form-group">
-                      <label>From: Address</label>
-                      <input type="text" name = "address_from" class="form-control" value = "<?php echo $value->address_from ?>"/>
+                      <label>Destination</label>
+                      <input type="text" name = "address_from" class="form-control" value = "<?php echo $value->destination ?>"/>
                     </div>
 
                     <div class="form-group">
-                      <label>To: Address</label>
-                      <input type="text" name = "address_to" class="form-control" value = "<?php echo $value->address_to ?>"/>
+                      <label>Weight</label>
+                      <input type="text" name = "address_to" class="form-control" value = "<?php echo $value->weight ?>"/>
                     </div>
 
 
                     <div class="form-group">
                       <label>Estimate Cost</label>
-                      <input type="text" name = "price" class="form-control" value = "<?php echo $value->price ?>"/>
+                      <input type="text" name = "price" class="form-control" value = "<?php echo $value->destination_cost + $value->weight_cost?>"/>
                     </div>
             
             
