@@ -33,20 +33,7 @@
                       <input type="email" name = "email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                     </div>
 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!--/.col (right) -->
-  
- 
-
-            <div class="col-md-7">
-              <!-- general form elements disabled -->
-              <div class="box box-info">
-                <div class="box-header">
-                  <h3 class="box-title">Job Delivery Decription</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <div class="form-group">
+                           <div class="form-group">
                     <label>Date</label>
                     <div class="input-group">
                       <div class="input-group-addon">
@@ -69,6 +56,21 @@
                     </div><!-- /.form group -->
                   </div>
              
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!--/.col (right) -->
+  
+ 
+
+            <div class="col-md-7">
+              <!-- general form elements disabled -->
+              <div class="box box-info">
+                <div class="box-header">
+                  <h3 class="box-title">Job Delivery Decription</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+           
                    <div class="panel  panel-info">
                         <div class="panel-heading">
                             Destination
@@ -100,7 +102,6 @@
                       </div><!--end of panel body-->
                   </div><!--end of panel info-->
 
-
                    <div class="panel  panel-info">
                         <div class="panel-heading">
                             Weight
@@ -108,7 +109,7 @@
                         <div class="panel-body">
                             <div class="col-md-10">
                                <div class="form-group">
-                                <label>From</label>
+                                <label>kg</label>
                                 <select class="form-control" name="weight" id="weight">
                                   <option value="none">-</option>
                                   <?php foreach ($weight as $value) { ?>
@@ -131,7 +132,71 @@
                         </div>
                       </div><!--end of panel body-->
                   </div><!--end of panel info-->
-                           
+
+
+                  <div class="panel  panel-info">
+                        <div class="panel-heading">
+                            Dimension
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-10">
+                               <div class="form-group">
+                                <label>measurement</label>
+                                <select class="form-control" name="dimension" id="dimension">
+                                  <option value="none">-</option>
+                                  <?php foreach ($dimension as $value) { ?>
+                                     <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->dimension ?></option>
+                                     <?php  } ?>    
+                                </select>
+                              </div>
+                           </div>
+                        
+                         <div class="col-md-2">
+                           <div class="form-group">
+                                <label>Cost</label>
+                              <select class="form-control" name = "dimension_cost" id="dimension_cost">
+                                     <option value="none">-</option>
+                                  <?php foreach ($dimension  as $value) { ?>
+                                     <option  value = "<?php echo $value->id ?>"><?php echo $value->cost ?></option>
+                                     <?php  } ?>   
+                               </select>
+                            </div>
+                        </div>
+                      </div><!--end of panel body-->
+                  </div><!--end of panel info-->
+
+                  <div class="panel  panel-info">
+                        <div class="panel-heading">
+                           Labor
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-10">
+                               <div class="form-group">
+                                <label>No of labor</label>
+                                <select class="form-control" name="labor" id="labor">
+                                  <option value="none">-</option>
+                                  <?php foreach ($labor as $value) { ?>
+                                     <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->labor ?></option>
+                                     <?php  } ?>    
+                                </select>
+                              </div>
+                           </div>
+                        
+                         <div class="col-md-2">
+                           <div class="form-group">
+                                <label>Cost</label>
+                              <select class="form-control" name = "labor_cost" id="labor_cost">
+                                     <option value="none">-</option>
+                                  <?php foreach ($labor  as $value) { ?>
+                                     <option  value = "<?php echo $value->id ?>"><?php echo $value->cost ?></option>
+                                     <?php  } ?>   
+                               </select>
+                            </div>
+                        </div>
+                      </div><!--end of panel body-->
+                  </div><!--end of panel info-->
+
+
                   <div class='box'>
                     <div class='box-header'>
                     <label>Complete Job Details</label>

@@ -24,12 +24,22 @@
           $('#dropDown2').val(this.value);
           });
       });
-      </script> 
-
-    <script type="text/javascript"> 
           $(function() {
           $('#weight').change(function(){
           $('#cost').val(this.value);
+          });
+      });
+
+     $(function() {
+          $('#dimension').change(function(){
+          $('#dimension_cost').val(this.value);
+          });
+      });
+
+
+        $(function() {
+          $('#labor').change(function(){
+          $('#labor_cost').val(this.value);
           });
       });
       </script> 
