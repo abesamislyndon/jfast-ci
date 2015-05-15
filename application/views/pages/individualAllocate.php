@@ -27,20 +27,6 @@
                      <label for="exampleInputEmail1">Email address</label>
                      <input type="email" name = "email" class="form-control" id="exampleInputEmail1" value = "<?php echo $value->email ?>">
                   </div>
-               </div>
-               <div class = "confirm-div">
-                  <p><?php echo $this->session->flashdata('msg'); ?></p>
-               </div>
-            </div>
-         </div><!--end of column 5-->
-
-         <div class="col-md-7">
-            <div class="box box-info">
-               <div class="box-header">
-                  <h3 class="box-title">Job Delivery Decription</h3>
-               </div>
-      
-               <div class="box-body">
                   <div class="form-group">
                      <label>Date</label>
                      <div class="input-group">
@@ -49,8 +35,7 @@
                         </div>
                         <input type="text" name = "date_request" class="form-control pull-right" id="datepicker" value = "<?php echo $value->date_request ?>"/>
                      </div>
-                 </div>
-     
+                  </div>
                   <div class="bootstrap-timepicker">
                      <div class="form-group">
                         <label>Time</label>
@@ -62,19 +47,39 @@
                         </div>
                      </div>
                   </div>
-               
+               </div>
+               <div class = "confirm-div">
+                  <p><?php echo $this->session->flashdata('msg'); ?></p>
+               </div>
+            </div>
+         </div>
+         <!--end of column 5-->
+         <div class="col-md-7">
+            <div class="box box-info">
+               <div class="box-body">
+                  <table class="table table-bordered table-custom">
+                     <label>Complete Summary</label>
+                     <tr>
+                        <th>Destination</th>
+                        <th>Weight</th>
+                        <th>Dimension</th>
+                        <th>No. of Labor</th>
+                        <th>Total Cost</th>
+                     </tr>
+                     <tr>
+                        <td><?php echo $value->destination ?></td>
+                        <td><?php echo $value->weight ?></td>
+                        <td><?php echo $value->dimension ?></td>
+                        <td><?php echo $value->labor ?></td>
+                        <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+                     </tr>
+                  </table>
+                  <hr>
                   <div class="form-group">
-                     <label>From: Address</label>
-                     <input type="text" name = "address_from" class="form-control" value = "<?php echo $value->address_from ?>"/>
+                     <label for="exampleInputEmail1">Complete address</label>
+                     <input type="email" name = "email" class="form-control" id="exampleInputEmail1" value = "<?php echo $value->address ?>">
                   </div>
-                  <div class="form-group">
-                     <label>To: Address</label>
-                     <input type="text" name = "address_to" class="form-control" value = "<?php echo $value->address_to ?>"/>
-                  </div>
-                  <div class="form-group">
-                     <label>Estimate Cost</label>
-                     <input type="text" name = "price" class="form-control" value = "<?php echo $value->price ?>"/>
-                  </div>
+                  <hr>
                   <div class='box'>
                      <div class='box-header'>
                         <label>Complete Job Details</label>
@@ -83,7 +88,6 @@
                            <button class="btn btn-default btn-sm" data-widget='remove' data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                         </div>
                      </div>
-                   
                      <div class='box-body pad'>
                         <textarea class="textarea" name = "job_details" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" value = ""><?php echo $value->job_details ?></textarea>
                      </div>
@@ -92,15 +96,18 @@
                   <div class="col-sm-7">
                   </div>
                   <div class="col-sm-4">
-                     <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "update">
-                        &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "allocate">
+                     <input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "allocate">
                      </p>
                   </div>
                   </form>
                </div>
+               <!--end of box body-->
             </div>
-         </div><!--end of col-sm-7-->
-
+            <!--end of box info-->
+         </div>
+         <!--end of col-sm-7-->
       </div>
+      <!--end of row upper part-->
    </section>
 </div>
+<!--end of content wrapper-->

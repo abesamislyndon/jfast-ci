@@ -2,7 +2,9 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 class  Job_delivery_model extends CI_Model
 {
-    function do_add_job_request($full_name, $tel_no, $email, $date_request, $time,$job_details, $sender, $id, $price, $status,$destination, $destination_cost,$weight, $weight_cost,$labor, $labor_cost,$dimension, $dimension_cost){
+    function do_add_job_request($full_name, $tel_no, $email, $date_request, $time,
+      $job_details, $sender, $id, $price, $status,$destination, $destination_cost,$weight,
+      $weight_cost,$labor, $labor_cost,$dimension, $dimension_cost, $address){
 
        $this->db->select('*');
        $this->db->where('id', $destination);
@@ -54,6 +56,7 @@ class  Job_delivery_model extends CI_Model
           'sender'=>$sender,
           'sender_id'=>$id,
           'status'=>$status,
+          'address'=>$address,
         
           'destination'=>$destination1,
           'destination_id'=>$destination,

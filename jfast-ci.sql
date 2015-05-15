@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 24, 2015 at 12:00 PM
+-- Generation Time: May 14, 2015 at 11:57 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `jfast-ci`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` varchar(390) NOT NULL,
+  `to` varchar(390) NOT NULL,
+  `estimate_cost` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`id`, `from`, `to`, `estimate_cost`) VALUES
+(1, 'toa payoh', 'machperson', 30);
 
 -- --------------------------------------------------------
 
@@ -66,6 +87,50 @@ INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activ
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `destination`
+--
+
+CREATE TABLE `destination` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` varchar(320) NOT NULL,
+  `to` varchar(320) NOT NULL,
+  `estimated_cost` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `destination`
+--
+
+INSERT INTO `destination` (`id`, `from`, `to`, `estimated_cost`) VALUES
+(1, 'Toa Payoh', 'Sengkang', 20),
+(2, 'Machperson', 'Tampines', 22),
+(3, 'Potong Pasir', 'Toa Payoh', 234);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dimension`
+--
+
+CREATE TABLE `dimension` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dimension` varchar(340) NOT NULL,
+  `cost` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `dimension`
+--
+
+INSERT INTO `dimension` (`id`, `dimension`, `cost`) VALUES
+(1, '10 Ft', 12),
+(2, '30 Ft', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `job_delivery`
 --
 
@@ -76,11 +141,55 @@ CREATE TABLE `job_delivery` (
   `email` varchar(230) NOT NULL,
   `date_request` date NOT NULL,
   `time` varchar(100) NOT NULL,
-  `address_from` varchar(340) NOT NULL,
-  `address_to` varchar(340) NOT NULL,
   `job_details` varchar(600) NOT NULL,
+  `sender` varchar(620) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `destination` varchar(340) NOT NULL,
+  `destination_id` int(11) NOT NULL,
+  `destination_cost` int(11) NOT NULL,
+  `weight` varchar(320) NOT NULL,
+  `weight_id` int(11) NOT NULL,
+  `weight_cost` int(11) NOT NULL,
+  `dimension` varchar(320) NOT NULL,
+  `dimension_id` int(11) NOT NULL,
+  `dimension_cost` int(11) NOT NULL,
+  `labor` int(11) NOT NULL,
+  `labor_id` int(11) NOT NULL,
+  `labor_cost` int(11) NOT NULL,
+  `kg` int(11) NOT NULL,
+  `address` varchar(620) NOT NULL,
   PRIMARY KEY (`job_request_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `job_delivery`
+--
+
+INSERT INTO `job_delivery` (`job_request_id`, `full_name`, `tel_no`, `email`, `date_request`, `time`, `job_details`, `sender`, `sender_id`, `price`, `status`, `destination`, `destination_id`, `destination_cost`, `weight`, `weight_id`, `weight_cost`, `dimension`, `dimension_id`, `dimension_cost`, `labor`, `labor_id`, `labor_cost`, `kg`, `address`) VALUES
+(15, 'Lyndon Abesamis', 6756, 'taametal@singnet.com.sg', '0000-00-00', '01:30 PM', 'This is a sample item', 'Christian Chan', 1, 0, 1, 'Potong Pasir-Toa Payoh', 3, 234, 'more than 20 kg', 2, 20, '30 Ft', 2, 5, 2, 1, 50, 0, 'NO 14 TUAS AVENUE 5 SINGAPORE 639339');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `labor`
+--
+
+CREATE TABLE `labor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `labor` int(11) NOT NULL,
+  `cost` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `labor`
+--
+
+INSERT INTO `labor` (`id`, `labor`, `cost`) VALUES
+(1, 2, 50),
+(2, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -103,8 +212,29 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_code`, `username`, `password`, `full_name`, `last_activity`) VALUES
-(1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'lyndon', '0000-00-00'),
+(1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Christian Chan', '0000-00-00'),
 (9, 2, 'sur', 'a587b16e0a2c4a9c61feee6486c3a6c5', 'sample surveyor', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weight`
+--
+
+CREATE TABLE `weight` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weight` varchar(329) NOT NULL,
+  `cost` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `weight`
+--
+
+INSERT INTO `weight` (`id`, `weight`, `cost`) VALUES
+(1, 'below 20 kg', 12),
+(2, 'more than 20 kg', 20);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

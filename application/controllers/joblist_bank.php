@@ -18,19 +18,19 @@ class Joblist_bank extends CI_Controller {
         $config["per_page"] = 8;
         $config["uri_segment"] = 3;
         $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
-		$config['full_tag_close'] ="</ul>";
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-		$config['next_tag_open'] = "<li>";
-		$config['next_tagl_close'] = "</li>";
-		$config['prev_tag_open'] = "<li>";
-		$config['prev_tagl_close'] = "</li>";
-		$config['first_tag_open'] = "<li>";
-		$config['first_tagl_close'] = "</li>";
-		$config['last_tag_open'] = "<li>";
- 		$config['last_tagl_close'] = "</li>";
+    		$config['full_tag_close'] ="</ul>";
+    		$config['num_tag_open'] = '<li>';
+    		$config['num_tag_close'] = '</li>';
+    		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+    		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+    		$config['next_tag_open'] = "<li>";
+    		$config['next_tagl_close'] = "</li>";
+    		$config['prev_tag_open'] = "<li>";
+    		$config['prev_tagl_close'] = "</li>";
+    		$config['first_tag_open'] = "<li>";
+    		$config['first_tagl_close'] = "</li>";
+    		$config['last_tag_open'] = "<li>";
+     		$config['last_tagl_close'] = "</li>";
 
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -61,19 +61,19 @@ class Joblist_bank extends CI_Controller {
         $config["per_page"] = 8;
         $config["uri_segment"] = 3;
         $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
-		$config['full_tag_close'] ="</ul>";
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-		$config['next_tag_open'] = "<li>";
-		$config['next_tagl_close'] = "</li>";
-		$config['prev_tag_open'] = "<li>";
-		$config['prev_tagl_close'] = "</li>";
-		$config['first_tag_open'] = "<li>";
-		$config['first_tagl_close'] = "</li>";
-		$config['last_tag_open'] = "<li>";
- 		$config['last_tagl_close'] = "</li>";
+    		$config['full_tag_close'] ="</ul>";
+    		$config['num_tag_open'] = '<li>';
+    		$config['num_tag_close'] = '</li>';
+    		$config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+    		$config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+    		$config['next_tag_open'] = "<li>";
+    		$config['next_tagl_close'] = "</li>";
+    		$config['prev_tag_open'] = "<li>";
+    		$config['prev_tagl_close'] = "</li>";
+    		$config['first_tag_open'] = "<li>";
+    		$config['first_tagl_close'] = "</li>";
+    		$config['last_tag_open'] = "<li>";
+     		$config['last_tagl_close'] = "</li>";
 
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -82,11 +82,10 @@ class Joblist_bank extends CI_Controller {
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
    
-	    $this->load->view('scaffolds/header');
+	      $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $data);
-	    $this->load->view('pages/allocate_joblist', $data);
-	    $this->load->view('scaffolds/footer');
-        
+	      $this->load->view('pages/allocate_joblist', $data);
+	      $this->load->view('scaffolds/footer'); 
      }
      else{
 			  redirect('login', 'refresh');
@@ -107,10 +106,10 @@ class Joblist_bank extends CI_Controller {
         $data['labor'] = $this->job_delivery_model->labor();
 
 
-          $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/header');
 	      $this->load->view('scaffolds/sidebar', $data);
 	      $this->load->view('pages/individual', $data);
-		  $this->load->view('scaffolds/form_footer');
+		    $this->load->view('scaffolds/form_footer');
    }
 
     public function individualAllocate(){
@@ -119,6 +118,11 @@ class Joblist_bank extends CI_Controller {
         $data['individual'] = $this->job_delivery_model->show_individual($id);
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+
+        $data['from'] = $this->job_delivery_model->destination();
+        $data['weight'] = $this->job_delivery_model->weight();
+        $data['dimension'] = $this->job_delivery_model->dimension();
+        $data['labor'] = $this->job_delivery_model->labor();
    
         $this->load->view('scaffolds/header');
 	      $this->load->view('scaffolds/sidebar', $data);
