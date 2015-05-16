@@ -10,7 +10,6 @@
                <!-- /.box-header -->
                <div class="box-body">
                   <?php foreach ($individual as  $value): ?>
-                  <?php echo form_open_multipart('form/process_job_request');?>  
                   <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
                   <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
                   <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
@@ -36,6 +35,7 @@
                         <input type="text" name = "date_request" class="form-control pull-right" id="datepicker" value = "<?php echo $value->date_request ?>"/>
                      </div>
                   </div>
+
                   <div class="bootstrap-timepicker">
                      <div class="form-group">
                         <label>Time</label>
@@ -94,12 +94,29 @@
                   </div>
                   <?php endforeach; ?>
                   <div class="col-sm-7">
+                     <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info" data-remote-target="#spec .modal-body">Allocate&nbsp;<i class="fa fa-truck"></i></a>
                   </div>
                   <div class="col-sm-4">
-                     <input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "allocate">
-                     </p>
                   </div>
-                  </form>
+
+                  <!--modal-->
+               
+                   <div id="spec" class="modal modal2"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header header-spec">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title"><i class="fa fa-truck"></i>&nbsp;Allocate</h4>
+                                 </div>
+                                 <div class="modal-body"></div>
+                                 <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" name = "submit" value = "add_qty"><i class="fa fa-check"></i>&nbsp;&nbsp;add quantity</button>
+                                    <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                              </div>
+                              </div>
+                           </div>
+                        </div>
+
                </div>
                <!--end of box body-->
             </div>

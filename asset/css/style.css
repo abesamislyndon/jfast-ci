@@ -38,6 +38,7 @@ select[disabled]{
 	color:#e53935; 
 	font-weight: bold; 
 	border: none;
+	font-size:12px; 
 	text-align: center;
 	-webkit-appearance: none;
     -moz-appearance: none;
@@ -47,12 +48,32 @@ label.costing{
 	float:left; 
 }
 .total{
+		width:100px;
 	background:none;
 	border: none;
 	margin-top: 20px;
 	text-align: center;
 	font-weight:bold;
-	font-size:22px; 
+	font-size:21px; 
 	color:#e53935; 
 }
-
+.gst{
+	width:100px; 
+	background:none;
+	border: none;
+	margin-top: 20px;
+	text-align: center;
+	font-weight:bold;
+	font-size:15px; 
+	color:#e53935; 
+}
+.subtotal{
+	width:80px; 
+	background:none;
+	border: none;
+	margin-top: 20px;
+	text-align: center;
+	font-weight:bold;
+	font-size:15px; 
+	color:#e53935; 
+}

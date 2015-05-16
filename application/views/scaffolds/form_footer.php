@@ -81,8 +81,13 @@
       var gst =  (( 7 * total) / 100 );
       var grand_total = total + gst;
       $("#sum").val(grand_total);
+      $("#gst").val(gst);
+      $("#subtotal").val(total);
     });
    </script>
+
+
+
 
   </body>
 </html>

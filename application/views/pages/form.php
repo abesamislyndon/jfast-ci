@@ -84,6 +84,8 @@
                         <th>Weight</th>
                         <th>Dimension</th>
                         <th>No. of Labor</th>
+                        <th>Sub Total</th>
+                        <th>Gst</th>
                         <th>Total Cost</th>
                      </tr>
 
@@ -189,7 +191,9 @@
                            </div>
                         </td>
 
-                        <td><input id = "sum" type="text" class="total form-control" value="" disabled/>
+                         <td><input id = "subtotal" type="text" class="subtotal form-control" value="" disabled/></td>
+                          <td><input id = "gst" type="text" class="gst form-control" value="" disabled/></td>
+                         <td><input id = "sum" type="text" class="total form-control" value="" disabled/>
                         </td>
 
                      </tr>

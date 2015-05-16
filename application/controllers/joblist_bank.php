@@ -130,6 +130,21 @@ class Joblist_bank extends CI_Controller {
 		    $this->load->view('scaffolds/footer');
    }
 
+
+    public function choose_allocate_individual()
+    {
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+//            $id                      = $this->uri->segment(3);
+  //          $data['category']        = $this->category_model->show_category();
+    //        $data['item_individual'] = $this->item_model->get_item($id);
+            
+            
+            $this->load->view('modal_form/allocate', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
 }
 
 /* End of file welcome.php */
