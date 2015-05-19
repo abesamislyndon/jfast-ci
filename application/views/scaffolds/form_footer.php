@@ -88,6 +88,41 @@
     });
    </script>
 
+        <script>
+  
+function calljavascriptfunction(){
+
+
+  $.ajax({
+     type : 'POST',
+     data : 'name='+ $('#name').val(),
+     url : '<?php echo base_url();?>driver_info/populate/',
+     success : function(data){
+       $('#address').val(data);
+     }
+ });
+
+    $.ajax({
+     type : 'POST',
+     data : 'name='+ $('#name').val(),
+     url : '<?php echo base_url();?>driver_info/populate1/',
+     success : function(data){
+       $('#company').val(data);
+     }
+ });
+
+   $.ajax({
+     type : 'POST',
+     data : 'name='+ $('#name').val(),
+     url : '<?php echo base_url();?>driver_info/populate2/',
+     success : function(data){
+       $('#contact_num').val(data);
+     }
+ });
+
+
+}
+    </script>
 
 
 

@@ -114,6 +114,40 @@ class  Job_delivery_model extends CI_Model
         return false;
      }
 
+      function show_ongoing_job($limit, $start){
+        
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->where('status', 3);
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+     }
+
+    function show_invoice_job($limit, $start){
+        
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->where('status', 4);
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+     }
+
     public function record_count(){
         return $this->db->count_all("job_delivery");
     }
@@ -274,6 +308,71 @@ class  Job_delivery_model extends CI_Model
         $this->db->order_by('total', 'desc');
         $query = $this->db->get();
         return $result = $query->result();
+    }
+
+
+    function count_ongoing_jobbank(){
+      
+        $this->db->select('status, COUNT(status) as total');
+        $this->db->where('status', 3);
+        $this->db->from('job_delivery');
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
+      function count_invoice_jobbank(){
+      
+        $this->db->select('status, COUNT(status) as total');
+        $this->db->where('status', 4);
+        $this->db->from('job_delivery');
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
+
+
+    function do_add_allocate($job_bank_id, $name, $address, $contact_num){
+
+       $this->db->select('*');
+       $this->db->where('id', $name);
+       $this->db->from('driver_info');
+       $query = $this->db->get();
+       $s = $query->result();
+
+        $name1 =   $s[0]->driver_name;
+
+         $row = array(
+          'name'=>$name1,
+          'address'=>$address,
+          'contact_num'=>$contact_num,
+          'job_bank_id'=>$job_bank_id
+          );
+
+          $this->db->insert('job_allocate_info', $row);
+
+          $row1 = array(
+          'status'=>3,
+          );
+          $this->db->where('job_request_id', $job_bank_id);
+          $this->db->update('job_delivery', $row1);
+         
+          $this->session->set_flashdata('msg', 'description succesfully added');
+          redirect('success/job_allocate_success');
+    }
+
+
+    function do_job_complete($id){
+ 
+          $row1 = array(
+          'status'=>4,
+          );
+          $this->db->where('job_request_id', $id);
+          $this->db->update('job_delivery', $row1);
+         
+          $this->session->set_flashdata('msg', 'description succesfully added');
+          redirect('success/job_complete_success');
     }
         
 }

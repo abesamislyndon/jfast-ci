@@ -29,5 +29,5 @@
          <label>Contact Number</label>
          <input type="text" name = "contact_num" id = "contact_num" class="form-control" placeholder="Enter ..." value = ""/>
       </div>
-</div>
+  </div>
 </div>

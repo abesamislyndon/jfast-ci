@@ -25,22 +25,22 @@
             </li>
                <li>
               <a href="<?php echo base_url(); ?>joblist_bank/incoming_joblist">
-                  <i class="fa fa-files-o"></i><span>Incoming Job Bank</span> <?php foreach($count_jobbank as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+                  <i class="fa fa-pencil-square-o"></i><span>Incoming Job Bank</span> <?php foreach($count_jobbank as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li> 
             <li>
               <a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist">
-                  <i class="fa fa-files-o"></i><span>Allocate Job Bank</span>  <?php foreach($count_allocate as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+                 <i class="fa fa-truck"></i><span>Allocate Job Bank</span>  <?php foreach($count_allocate as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li> 
             <li>
-              <a href="#">
-                <i class="fa fa-th"></i> <span>Ongoing Job Bank</span> <small class="label pull-right bg-green">new</small>
+            <a href="<?php echo base_url(); ?>joblist_bank/ongoing_job_list">
+              <i class="fa fa-files-o"></i><span>Ongoing Job Bank</span><?php foreach($count_ongoing_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li>
             <li>
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Job Bank Invoice</span> <small class="label pull-right bg-green">new</small>
+              <a href="<?php echo base_url(); ?>joblist_bank/job_invoice_list">
+                <i class="fa fa-th"></i> <span>Job Bank Invoice</span> <?php foreach($count_invoice_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li>
            
@@ -56,7 +56,6 @@
               </ul>
             </li>
 
-
           <li class="header">Search </li>
 
           <li class="treeview">
@@ -70,9 +69,9 @@
                 <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
               </ul>
             </li>
-             <li class="header">OTHERS </li>
 
-          <li class="treeview">
+          <li class="header">OTHERS </li>
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Manage User</span>
                 <i class="fa fa-angle-left pull-right"></i>

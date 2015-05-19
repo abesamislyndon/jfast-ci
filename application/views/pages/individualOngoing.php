@@ -7,13 +7,12 @@
                <div class="box-header">
                   <h3 class="box-title">Information Details</h3>
                </div>
-           
+          <?php echo form_open_multipart('joblist_bank/job_complete','id="form1"' );?>  
                <div class="box-body">
                   <?php foreach ($individual as  $value): ?>
                   <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
                   <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
-                  <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
-                  <input type="hidden" name = "status" class="form-control" value = "2" />       
+                  <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />                   
                   <div class="form-group">
                      <label>Contact Person (Full name)</label>
                      <input type="text" name = "full_name" class="form-control" value = "<?php echo $value->full_name ?>"/>
@@ -52,6 +51,7 @@
                </div>
             </div>
          </div>
+
          <!--end of column 5-->
          <div class="col-md-7">
             <div class="box box-info">
@@ -76,7 +76,7 @@
                   <hr>
                   <div class="form-group">
                      <label for="exampleInputEmail1">Complete address</label>
-                     <input type="email" name = "email" class="form-control" id="exampleInputEmail1" value = "<?php echo $value->address ?>">
+                     <input type="text" name = "address" class="form-control" id="exampleInputEmail1" value = "<?php echo $value->address ?>">
                   </div>
                   <hr>
                   <div class='box'>
@@ -93,29 +93,11 @@
                   </div>
                   <?php endforeach; ?>
                   <div class="col-sm-7">
-                     <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Allocate&nbsp;<i class="fa fa-truck"></i></a>
+                     <input type = "submit" name = "submit"  class = "btn btn-success btn-lg" value = "Job Complete">
                   </div>
+
                
-               <?php echo form_open_multipart('joblist_bank/add_allocate','id="form1"' );?>  
-                  <!--modal-->
-                  <div id="spec" class="modal modal2"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-                     <div class="modal-dialog">
-                        <div class="modal-content">
-                           <div class="modal-header header-spec">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title"><i class="fa fa-truck"></i>&nbsp;Allocate</h4>
-                               <input type="hidden" name = "job_bank_id" class="form-control"  value = "<?php echo $value->job_request_id ?>"/>
-                           </div>
-                           <div class="modal-body">
-                         
-                           </div>
-                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary" name = "submit"><i class="fa fa-check"></i>&nbsp;&nbsp;allocate</button>
-                              <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+     
                </form>   
                  <!--end of modal-->
 

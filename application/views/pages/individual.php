@@ -221,12 +221,35 @@
                   <div class="col-sm-8">
                      <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "update">
                         &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "approve">
-                        &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "approve and allocate">
+                        &nbsp;&nbsp;   <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Allocate&nbsp;<i class="fa fa-truck"></i></a>
                         &nbsp;&nbsp;<input type = "submit" name = "submit_reject" class="btn btn-danger btn-lg" value = "reject">
                      </p>
                   </div>
                   </form>
                </div>
+
+         <?php echo form_open_multipart('joblist_bank/add_allocate','id="form1"' );?>  
+                  <!--modal-->
+                  <div id="spec" class="modal modal2"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header header-spec">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title"><i class="fa fa-truck"></i>&nbsp;Allocate</h4>
+                               <input type="hidden" name = "job_bank_id" class="form-control"  value = "<?php echo $value->job_request_id ?>"/>
+                           </div>
+                           <div class="modal-body">                      
+                           </div>
+                           <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary" name = "submit"><i class="fa fa-check"></i>&nbsp;&nbsp;allocate</button>
+                              <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>   
+
+
                <!-- /.box-body -->
             </div>
             <!-- /.box -->

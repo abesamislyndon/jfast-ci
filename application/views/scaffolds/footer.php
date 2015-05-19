@@ -69,9 +69,6 @@ function calljavascriptfunction(){
 
 
 }
-
-
-
     </script>
 
  

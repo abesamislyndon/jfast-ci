@@ -17,6 +17,8 @@ class Driver_info extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
+            $id = $this->uri->segment(3);
+            $data['individual'] = $this->job_delivery_model->show_individual($id);         
             $data['driver_info'] = $this->driver_info_model->get_driver_info();
             
             $this->load->view('modal_form/allocate', $data);

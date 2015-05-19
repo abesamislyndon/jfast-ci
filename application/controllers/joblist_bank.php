@@ -38,6 +38,8 @@ class Joblist_bank extends CI_Controller {
         $data["links"] = $this->pagination->create_links();
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
 
    
  	      $this->load->view('scaffolds/header');
@@ -81,6 +83,8 @@ class Joblist_bank extends CI_Controller {
         $data["links"] = $this->pagination->create_links();
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
    
 	      $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $data);
@@ -93,12 +97,103 @@ class Joblist_bank extends CI_Controller {
 
    }
 
+    public function ongoing_job_list(){
+
+    if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
+     {
+        $config = array();
+        $config["base_url"] = base_url().'joblist_bank/ongoing_job_list';
+        $config["total_rows"] = $this->job_delivery_model->record_count();
+        $config["per_page"] = 8;
+        $config["uri_segment"] = 3;
+        $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['ongoing'] = $this->job_delivery_model->show_ongoing_job($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar', $data);
+        $this->load->view('pages/ongoing_joblist', $data);
+        $this->load->view('scaffolds/footer'); 
+     }
+     else{
+        redirect('login', 'refresh');
+    } 
+
+   }
+
+       public function job_invoice_list(){
+
+    if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
+     {
+        $config = array();
+        $config["base_url"] = base_url().'joblist_bank/job_invoice_list';
+        $config["total_rows"] = $this->job_delivery_model->record_count();
+        $config["per_page"] = 8;
+        $config["uri_segment"] = 3;
+        $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['ongoing'] = $this->job_delivery_model->show_invoice_job($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar', $data);
+        $this->load->view('pages/invoice_joblist', $data);
+        $this->load->view('scaffolds/footer'); 
+     }
+     else{
+        redirect('login', 'refresh');
+    } 
+
+   }
+
+
     public function individual(){
 
-    	$id = $this->uri->segment(3);
+    	  $id = $this->uri->segment(3);
         $data['individual'] = $this->job_delivery_model->show_individual($id);
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
 
         $data['from'] = $this->job_delivery_model->destination();
         $data['weight'] = $this->job_delivery_model->weight();
@@ -118,6 +213,8 @@ class Joblist_bank extends CI_Controller {
         $data['individual'] = $this->job_delivery_model->show_individual($id);
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
 
         $data['from'] = $this->job_delivery_model->destination();
         $data['weight'] = $this->job_delivery_model->weight();
@@ -130,20 +227,63 @@ class Joblist_bank extends CI_Controller {
 		    $this->load->view('scaffolds/footer');
    }
 
-
     public function choose_allocate_individual()
     {
-        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
-//            $id                      = $this->uri->segment(3);
-  //          $data['category']        = $this->category_model->show_category();
-    //        $data['item_individual'] = $this->item_model->get_item($id);
-            
-            
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {  
+            $id = $this->uri->segment(3);
+            $data['individual'] = $this->job_delivery_model->show_individual($id);         
             $this->load->view('modal_form/allocate', $data);
         } else {
             redirect('login', 'refresh');
         }
     }
+
+    public function add_allocate(){
+         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+               
+                $job_bank_id     = $this->input->post('job_bank_id');
+                $name            = $this->input->post('name');
+                $address         = $this->input->post('address');
+                $contact_num     = $this->input->post('contact_num');
+
+                $this->job_delivery_model->do_add_allocate($job_bank_id, $name, $address, $contact_num);
+            
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function individualOngoing(){
+
+        $id = $this->uri->segment(3);
+        $data['individual'] = $this->job_delivery_model->show_individual($id);
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+         $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+
+        $data['from'] = $this->job_delivery_model->destination();
+        $data['weight'] = $this->job_delivery_model->weight();
+        $data['dimension'] = $this->job_delivery_model->dimension();
+        $data['labor'] = $this->job_delivery_model->labor();
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar', $data);
+        $this->load->view('pages/individualOngoing', $data);
+        $this->load->view('scaffolds/footer');
+   }
+
+    public function job_complete(){
+           if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+            
+                $id = $this->input->post('job_request_id');
+                $this->job_delivery_model->do_job_complete($id);
+            
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
 
 }
 
