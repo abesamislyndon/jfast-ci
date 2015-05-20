@@ -362,7 +362,6 @@ class  Job_delivery_model extends CI_Model
           redirect('success/job_allocate_success');
     }
 
-
     function do_job_complete($id){
  
           $row1 = array(
@@ -373,6 +372,46 @@ class  Job_delivery_model extends CI_Model
          
           $this->session->set_flashdata('msg', 'description succesfully added');
           redirect('success/job_complete_success');
+    }
+
+    function do_job_invoice($id){
+ 
+          $row1 = array(
+          'status'=>5, 
+          );
+          $this->db->where('job_request_id', $id);
+          $this->db->update('job_delivery', $row1);
+
+          $row2 = array(
+          'job_bank_id'=>$id,
+          );
+          $this->db->insert('invoice', $row2);
+         
+          $this->session->set_flashdata('msg', 'description succesfully added');
+          redirect('success/job_invoice_success/'.$id);
+    }
+
+    function invoice_details($id){
+
+        $this->db->from('job_delivery');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        $this->db->where('status', 5);
+        $this->db->where('job_request_id', $id);
+        $query = $this->db->get();
+         return $query->result();
+
+    }
+
+
+    function sample($id){
+
+        $this->db->from('job_delivery');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        $this->db->where('status', 5);
+        $this->db->where('job_request_id', $id);
+        $query = $this->db->get();
+         return $query->result();
+
     }
         
 }

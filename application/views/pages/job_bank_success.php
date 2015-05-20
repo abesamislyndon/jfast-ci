@@ -17,9 +17,9 @@
                       <div class="success-style">
                           <p>SUCCESSFULLY APPROVED JOB BANK DETAILS</p>
                           <ul>
-                            <li><a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist" class =  "btn btn-success btn-lg">Allocate Job Bank</a></li>
-                            <li><a href="<?php echo base_url(); ?>joblist_bank/incoming_joblist" class =  "btn btn-success btn-lg">Go to Incoming job Bank List</a></li>
-                            <li><a href="<?php echo base_url(); ?>dashboard" class =  "btn btn-success btn-lg">Dashboard</a></li>
+                            <li><a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist" class =  "btn btn-info btn-lg">Allocate Job Bank</a></li>
+                            <li><a href="<?php echo base_url(); ?>joblist_bank/incoming_joblist" class =  "btn btn-info btn-lg">Go to Incoming job Bank List</a></li>
+                            <li><a href="<?php echo base_url(); ?>dashboard" class =  "btn btn-info btn-lg">Dashboard</a></li>
                           </ul>
                       </div>
                   </div>

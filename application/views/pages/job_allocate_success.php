@@ -17,10 +17,10 @@
                       <div class="success-style">
                           <p>SUCCESSFULLY ALLOCATE  JOB  DRIVER</p>
                           <ul>
-                            <li><a href="<?php echo base_url(); ?>joblist_bank/ongoing_job_list" class =  "btn btn-success btn-lg"> <i class="fa fa-files-o"></i> &nbsp;&nbsp;Ongoing Job Bank</a></li>
-                            <li><a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist" class =  "btn btn-success btn-lg"><i class="fa fa-truck"></i>&nbsp;&nbsp;Allocate Job Bank</a></li>
-                            <li><a href="<?php echo base_url(); ?>joblist_bank/incoming_joblist" class =  "btn btn-success btn-lg"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Incoming job Bank List</a></li>
-                            <li><a href="<?php echo base_url(); ?>dashboard" class =  "btn btn-success btn-lg"> <i class="fa fa-dashboard"></i> &nbsp;&nbsp;ashboard</a></li>
+                            <li><a href="<?php echo base_url(); ?>joblist_bank/ongoing_job_list" class =  "btn btn-info btn-lg"> <i class="fa fa-files-o"></i> &nbsp;&nbsp;Ongoing Job Bank</a></li>
+                            <li><a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist" class =  "btn btn-info btn-lg"><i class="fa fa-truck"></i>&nbsp;&nbsp;Allocate Job Bank</a></li>
+                            <li><a href="<?php echo base_url(); ?>joblist_bank/incoming_joblist" class =  "btn btn-info btn-lg"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Incoming job Bank List</a></li>
+                            <li><a href="<?php echo base_url(); ?>dashboard" class =  "btn btn-info btn-lg"> <i class="fa fa-dashboard"></i> &nbsp;&nbsp;ashboard</a></li>
                           </ul>
                       </div>
                   </div>

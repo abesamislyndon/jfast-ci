@@ -40,7 +40,7 @@
             </li>
             <li>
               <a href="<?php echo base_url(); ?>joblist_bank/job_invoice_list">
-                <i class="fa fa-th"></i> <span>Job Bank Invoice</span> <?php foreach($count_invoice_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+                <i class="fa fa-money"></i><span>Job Bank Invoice</span> <?php foreach($count_invoice_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li>
            
@@ -60,26 +60,39 @@
 
           <li class="treeview">
               <a href="#">
-                <i class="fa fa-edit"></i> <span>Manage Search</span>
+                <i class="fa fa-search"></i></i> <span>Manage Search</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Search by Job Bank #</a></li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Search  Job Bank #</a></li>
+                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
+              </ul>
+            </li>
+
+
+          <li class="header">Generate Report</li>
+
+          <li class="treeview">
+              <a href="#">
+                <i class="fa fa-bar-chart"></i></i> <span>Manage Report</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Search  Job Bank #</a></li>
+                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
               </ul>
             </li>
 
           <li class="header">OTHERS </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-edit"></i> <span>Manage User</span>
+               <i class="fa fa-user"></i><span>Manage User</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Users List</a></li>
+                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Add new user</a></li>
+                <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Update User</a></li>
               </ul>
             </li>
 

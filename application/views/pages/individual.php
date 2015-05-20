@@ -40,7 +40,6 @@
                      </div>
                   </div>
            
-
                   <div class="bootstrap-timepicker">
                      <div class="form-group">
                         <label>Time</label>
@@ -216,19 +215,17 @@
                      </div>
                   </div>
                   <?php endforeach; ?>
-                  <div class="col-sm-4">
-                  </div>
-                  <div class="col-sm-8">
+                   <div class="col-sm-12">
                      <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "update">
-                        &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "approve">
-                        &nbsp;&nbsp;   <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Allocate&nbsp;<i class="fa fa-truck"></i></a>
+                        &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "Approve">
+                        &nbsp;&nbsp;   <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Approved and Allocate&nbsp;<i class="fa fa-truck"></i></a>
                         &nbsp;&nbsp;<input type = "submit" name = "submit_reject" class="btn btn-danger btn-lg" value = "reject">
                      </p>
                   </div>
                   </form>
                </div>
 
-         <?php echo form_open_multipart('joblist_bank/add_allocate','id="form1"' );?>  
+              <?php echo form_open_multipart('joblist_bank/add_allocate','id="form1"' );?>  
                   <!--modal-->
                   <div id="spec" class="modal modal2"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
                      <div class="modal-dialog">
@@ -241,15 +238,13 @@
                            <div class="modal-body">                      
                            </div>
                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary" name = "submit"><i class="fa fa-check"></i>&nbsp;&nbsp;allocate</button>
+                              <button type="submit" class="btn btn-primary" name = "approvedAllocate"><i class="fa fa-check"></i>&nbsp;&nbsp;allocate</button>
                               <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
                            </div>
                         </div>
                      </div>
                   </div>
                </form>   
-
-
                <!-- /.box-body -->
             </div>
             <!-- /.box -->

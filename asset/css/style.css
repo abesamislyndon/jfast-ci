@@ -29,6 +29,9 @@
 	width:100%;
 	margin-left: -30px;  
 }
+.success-style p{
+	text-align: center !important;
+}
 .custom_count{
 	font-size: 13px;
 	color:#FFD54F;
@@ -76,4 +79,12 @@ label.costing{
 	font-weight:bold;
 	font-size:15px; 
 	color:#e53935; 
+}
+.invoice-style{
+	color:red;
+	font-size:20px; 
+}
+.details{
+	text-align: left;
+	list-style:square;
 }
