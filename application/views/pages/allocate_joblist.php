@@ -39,7 +39,7 @@
                       <td><?php echo $value->weight?></td>
                       <td><?php echo $value->sender?></td>
                       <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
-                      <td><a href="<?php echo base_url();?>joblist_bank/individualAllocate/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom">view</span></a></td>
+                      <td><a href="<?php echo base_url();?>joblist_bank/individualAllocate/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                     </tr>
                     <?php endforeach; ?>
                       <?php }?>               

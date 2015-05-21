@@ -9,7 +9,7 @@
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>asset/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>asset/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url();?>asset/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url();?>asset/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>asset/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>asset/dist/css/skins/_all-skins.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>asset/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
@@ -24,7 +24,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
 
   </head>
    <body class="skin-blue sidebar-mini">

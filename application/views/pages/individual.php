@@ -22,6 +22,10 @@
                      <input type="text" name = "full_name" class="form-control" value = "<?php echo $value->full_name ?>"/>
                   </div>
                   <div class="form-group">
+                     <label>Company</label>
+                     <input type="text" name = "company_client" class="form-control" value = "<?php echo $value->company_client ?>"/>
+                  </div>
+                  <div class="form-group">
                      <label>Tel no.</label>
                      <input type="text" name = "tel_no" class="form-control" value = "<?php echo $value->tel_no ?>"/>
                   </div>

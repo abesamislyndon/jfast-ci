@@ -50,6 +50,7 @@ class Form extends CI_Controller
             if ($this->input->post('submit')) {
                 
                 $full_name        = $this->input->post('full_name');
+                $company_client            = $this->input->post('company_client');
                 $tel_no           = $this->input->post('tel_no');
                 $email            = $this->input->post('email');
                 $date_request     = $this->input->post('date_request');
@@ -69,7 +70,7 @@ class Form extends CI_Controller
                 $dimension_cost   = $this->input->post('dimension_cost');
                 $address          = $this->input->post('address');
                 
-                $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $address);
+                $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $address, $company_client);
             }
             
         } else {
@@ -84,6 +85,7 @@ class Form extends CI_Controller
             
             $job_request_id   = $this->input->post('job_request_id');
             $full_name        = $this->input->post('full_name');
+            $company_client   = $this->input->post('company_client');
             $tel_no           = $this->input->post('tel_no');
             $email            = $this->input->post('email');
             $date_request     = $this->input->post('date_request');
@@ -103,7 +105,7 @@ class Form extends CI_Controller
             $dimension_cost   = $this->input->post('dimension_cost');
             
             if ($this->input->post('submit_update')) {
-                $this->job_delivery_model->update_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $job_request_id);
+                $this->job_delivery_model->update_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $job_request_id, $company_client);
             }
             if ($this->input->post('submit_approved')) {
                 $this->job_delivery_model->approved_job_request($job_request_id);

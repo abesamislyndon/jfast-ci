@@ -8,7 +8,7 @@
     <script src="<?php echo base_url();?>asset/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
     <script src="<?php echo base_url();?>asset/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url();?>asset/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>asset/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="<?php echo base_url();?>asset/plugins/colorpicker/bootstrap-colorpicker.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url();?>asset/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url();?>asset/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -72,12 +72,15 @@
       });
     </script>
 
-   <script type="text/javascript">
+
+ <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
                 
                 $('#datepicker').datepicker({
-                    format: "dd/mm/yyyy"
+                     autoclose: true,
+                     todayHighlight: true,
+               
                 });            
             });
    </script>

@@ -18,7 +18,7 @@
                   </div>
                   <div class="form-group">
                      <label>Company</label>
-                     <input type="text" name = "company" class="form-control" placeholder="Enter ..."/>
+                     <input type="text" name = "company_client" class="form-control" placeholder="Enter ..."/>
                   </div>
                   <div class="form-group">
                      <label>Tel no.</label>
@@ -45,7 +45,7 @@
                         <div class="input-group-addon">
                            <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" name = "date_request" class="form-control pull-right" id="datepicker"/>
+                        <input type="text" name = "date_request" class="form-control pull-right " id="datepicker"/>
                      </div>
                   </div>
                   <div class="bootstrap-timepicker">
@@ -95,7 +95,7 @@
                               <div class="form-group">
                                  <label>Location</label>
                                  <select class="form-control" name="destination" id="destination">
-                                    <option value="none">-</option>
+                                    <option value="0">-</option>
                                     <?php foreach ($from as $value) { ?>
                                     <option  value = "<?php echo $value->id ?>"><?php echo $value->from ?>&nbsp;-&nbsp;<?php echo $value->to ?></option>
                                     <?php  } ?>    
@@ -120,7 +120,7 @@
                               <div class="form-group">
                                  <label>kg</label>
                                  <select class="form-control sum_all" name="weight" id="weight">
-                                    <option value="none">-</option>
+                                    <option value="0">-</option>
                                     <?php foreach ($weight as $value) { ?>
                                     <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->weight ?></option>
                                     <?php  } ?>    
@@ -146,7 +146,7 @@
                               <div class="form-group">
                                  <label>measurement</label>
                                  <select class="form-control" name="dimension" id="dimension">
-                                    <option value="none">-</option>
+                                    <option value="0">-</option>
                                     <?php foreach ($dimension as $value) { ?>
                                     <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->dimension ?></option>
                                     <?php  } ?>    
@@ -171,7 +171,7 @@
                               <div class="form-group">
                                  <label>No of labor</label>
                                  <select class="form-control cost-style" name="labor" id="labor">
-                                    <option value="none">-</option>
+                                    <option value="0">-</option>
                                     <?php foreach ($labor as $value) { ?>
                                     <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->labor ?></option>
                                     <?php  } ?>    

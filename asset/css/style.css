@@ -88,3 +88,12 @@ label.costing{
 	text-align: left;
 	list-style:square;
 }
+.bg-blue {
+	padding:10px 20px;
+	font-size:15px;
+	border-radius: 5px !important;
+}
+.bg-blue:hover{
+	background:#0D47A1 !important;
+	border-radius: 5px !important;
+}

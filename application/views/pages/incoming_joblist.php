@@ -30,9 +30,9 @@
                    <?php foreach ($job_list_incoming as $value):?>
                     <tr>
                       <td><?php echo $value->job_request_id?></td>
-                      <td><?php echo $value->date_request?></td>
+                      <td><?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?></td>
                       <td><?php echo $value->full_name?></td>
-                      <td><?php echo $value->full_name?></td>
+                      <td><?php echo $value->company_client?></td>
                       <td><?php echo $value->tel_no?></td>
                       <td><?php echo $value->destination?></td>
                       <td><?php echo $value->address?></td>
@@ -46,7 +46,7 @@
                       </td>
                       <td><?php echo $value->sender?></td>
                       <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
-                      <td><a href="<?php echo base_url();?>joblist_bank/individual/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom">process</span></a></td>
+                      <td><a href="<?php echo base_url();?>joblist_bank/individual/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                     </tr>
                     <?php endforeach; ?>
                       <?php }?>               
