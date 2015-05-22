@@ -29,8 +29,11 @@
 	width:100%;
 	margin-left: -30px;  
 }
-.success-style p{
-	text-align: center !important;
+.success-style span{
+display:block;
+   width:200px;
+   height: 100%;
+   margin: 0 auto;
 }
 .custom_count{
 	font-size: 13px;

@@ -83,7 +83,13 @@ class  Job_delivery_model extends CI_Model
    
           $this->db->insert('job_delivery', $row);
           $this->session->set_flashdata('msg', 'description succesfully added');
-          redirect('form');
+
+          if($id == 1){
+             redirect('form');
+          }else{
+              redirect('regular_customer/success');
+          }
+  
     }
 
 

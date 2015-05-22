@@ -1,4 +1,6 @@
       </div><!-- ./wrapper -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="<?php echo base_url();?>asset/plugins/jQuery/jQuery-2.1.3.min.js"></script>
     <script src="<?php echo base_url();?>asset/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src='<?php echo base_url();?>asset/plugins/fastclick/fastclick.min.js'></script>
@@ -34,42 +36,59 @@
   });
  </script>
 
-     <script>
-  
-function calljavascriptfunction(){
+ <script>  
+        function calljavascriptfunction(){
+          $.ajax({
+             type : 'POST',
+             data : 'name='+ $('#name').val(),
+             url : '<?php echo base_url();?>driver_info/populate/',
+             success : function(data){
+               $('#address').val(data);
+             }
+         });
+
+            $.ajax({
+             type : 'POST',
+             data : 'name='+ $('#name').val(),
+             url : '<?php echo base_url();?>driver_info/populate1/',
+             success : function(data){
+               $('#company').val(data);
+             }
+         });
+
+           $.ajax({
+             type : 'POST',
+             data : 'name='+ $('#name').val(),
+             url : '<?php echo base_url();?>driver_info/populate2/',
+             success : function(data){
+               $('#contact_num').val(data);
+             }
+         });
 
 
-  $.ajax({
-     type : 'POST',
-     data : 'name='+ $('#name').val(),
-     url : '<?php echo base_url();?>driver_info/populate/',
-     success : function(data){
-       $('#address').val(data);
-     }
- });
+        }
+</script>
 
-    $.ajax({
-     type : 'POST',
-     data : 'name='+ $('#name').val(),
-     url : '<?php echo base_url();?>driver_info/populate1/',
-     success : function(data){
-       $('#company').val(data);
-     }
- });
+  <script type="text/javascript">
+      jQuery(document).ready(function($) {
+            $('form#process').submit(function(e){
+                e.preventDefault();
+                makeAjaxRequest();
+                return false;
+            });
 
-   $.ajax({
-     type : 'POST',
-     data : 'name='+ $('#name').val(),
-     url : '<?php echo base_url();?>driver_info/populate2/',
-     success : function(data){
-       $('#contact_num').val(data);
-     }
- });
-
-
-}
+            function makeAjaxRequest(){
+                $.ajax({
+                    url: '<?php echo base_url();?>search/get_result_jobbank',
+                    type: 'get',
+                    data: {name: $('input#search').val()},
+                    success: function(response) {
+                       $('table#resultTable tbody').html(response);
+                    }
+                });
+            }
+      }); 
     </script>
-
  
   </body>
 </html>
