@@ -1,6 +1,5 @@
       </div><!-- ./wrapper -->
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="<?php echo base_url();?>asset/plugins/jQuery/jQuery-2.1.3.min.js"></script>
     <script src="<?php echo base_url();?>asset/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src='<?php echo base_url();?>asset/plugins/fastclick/fastclick.min.js'></script>
@@ -25,12 +24,12 @@
       });
     </script>
 
-        <script type="text/javascript">
- $('[data-load-remote]').on('click',function(e) {
-    e.preventDefault();
-    var $this = $(this);
-    var remote = $this.data('load-remote');
-    if(remote) {
+  <script type="text/javascript">
+   $('[data-load-remote]').on('click',function(e) {
+     e.preventDefault();
+     var $this = $(this);
+     var remote = $this.data('load-remote');
+     if(remote) {
         $($this.data('remote-target')).load(remote);
     }
   });
@@ -64,14 +63,11 @@
                $('#contact_num').val(data);
              }
          });
-
-
         }
 </script>
 
   <script type="text/javascript">
-      jQuery(document).ready(function($) {
-            $('form#process').submit(function(e){
+            $('form#process1').submit(function(e){
                 e.preventDefault();
                 makeAjaxRequest();
                 return false;
@@ -79,7 +75,7 @@
 
             function makeAjaxRequest(){
                 $.ajax({
-                    url: '<?php echo base_url();?>search/get_result_jobbank',
+                    url: '<?php echo base_url();?>search/result_jobBank',
                     type: 'get',
                     data: {name: $('input#search').val()},
                     success: function(response) {
@@ -87,7 +83,6 @@
                     }
                 });
             }
-      }); 
     </script>
  
   </body>

@@ -18,6 +18,7 @@
     <link href="<?php echo base_url();?>asset/plugins/iCheck/all.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>asset/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
     <link href="<?php echo base_url();?>asset/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

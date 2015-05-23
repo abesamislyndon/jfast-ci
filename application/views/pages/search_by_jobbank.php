@@ -6,21 +6,43 @@
             <div class="panel  panel-info">
                <div class="panel-body">
                   <div class="box box-info">
-                    <div class="box-header">
-                     <h3 class="box-title">Search by Job Bank #</h3>
-                     <div class="col-sm-12">
-                          <form role="form" method="get" class="form-search" id = "process">
-                                    <div class="input-append">
-                                        <input type="text" class="span2 search" id = "search" name = "search_input">
-                                        <button type="submit" class="button-search" id = "submit_id">Search</button>
-                                    </div>
-                                </form>
+                     <div class="box-header">
+                        <h3 class="box-title">Information Details</h3>
+                        <br><br>
+                        <form role="form" method="get" class="form-search" id = "process1">
+                           <div class="input-group custom-search-form col-sm-8">
+                              <span class="input-group-btn">
+                              <input type="text" class="form-control" id = "search" name = "search_input" autocomplete="off">
+                              <button type="submit"class="btn btn-default" id = "submit_id"> <i class="fa fa-search"></i></button>
+                           </div>
+                        </form>
                      </div>
-                   </div>
-                 </div>
+                     <br>
+                     <table class="table table-bordered" id = "resultTable">
+                        <thead>
+                           <tr>
+                              <th style="width:100px">Job Bank id</th>
+                              <th>Date Request</th>
+                              <th>Client name</th>
+                              <th>Company</th>
+                              <th>Tel no.</th>
+                              <th>Destination</th>
+                              <th>Pickup Address</th>
+                              <th>Details</th>
+                              <th>Customer Sender</th>
+                              <th>Cost</th>
+                              <th>Remarks</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                     </table>
+                  </div>
                </div>
             </div>
          </div>
       </div>
-   </section>
+</div>
+</section>
 </div>
