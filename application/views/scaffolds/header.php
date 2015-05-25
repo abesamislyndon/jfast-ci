@@ -25,6 +25,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <script>
+jQuery(document).ready(function($) {  
+
+// site preloader -- also uncomment the div in the header and the css style for #preloader
+$(window).load(function(){
+  $('#preloader').fadeOut('slow',function(){$(this).remove();});
+});
+
+});
+    </script>
 
   </head>
    <body class="skin-blue sidebar-mini">
@@ -44,7 +54,7 @@
             <ul class="nav navbar-nav">
               <li class="dropdown messages-menu">
                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                 <i class="fa fa-sign-out"></i>
+                WELCOME&nbsp;<b><?php echo $this->session->userdata["logged_in"]["full_name"]; ?></b>&nbsp;<i class="fa fa-sign-out"></i>
                  </a>
                 <ul class="dropdown-menu">
                   <li class="header">Actions</li>
@@ -66,4 +76,4 @@
           </div>
         </nav>
       </header>
-     
+      <div id="preloader"></div>

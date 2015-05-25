@@ -7,7 +7,7 @@
                <div class="panel-body">
                   <div class="box box-info">
                      <div class="box-header">
-                        <h3 class="box-title">Information Details</h3>
+                        <h3 class="box-title">SEARCH BY JOB BANK</h3>
                         <br><br>
                         <form role="form" method="get" class="form-search" id = "process1">
                            <div class="input-group custom-search-form col-sm-8">

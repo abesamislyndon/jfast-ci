@@ -36,14 +36,14 @@
 
           <li class="header">Search </li>
 
-          <li class="treeview">
+         <li class="treeview">
               <a href="#">
                 <i class="fa fa-search"></i></i> <span>Manage Search</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Search  Job Bank #</a></li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
+                <li><a href="<?php echo base_url();?>search/jobBank_regular"><i class="fa fa-circle-o"></i>Search  Job Bank #</a></li>
+                <li><a href="<?php echo base_url();?>search/invoice_regular"><i class="fa fa-circle-o"></i>Search Invoice #</a></li>
               </ul>
             </li>
 

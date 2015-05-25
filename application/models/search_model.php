@@ -6,9 +6,43 @@ class  Search_model extends CI_Model
         
         $this->db->select('*');
         $this->db->from('job_delivery');
-       // $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
         $this->db->where('job_delivery.job_request_id', $jobBank_id);
-        //$this->db->like('invoice.job_bank_id', $jobBank_id);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+     }
+
+        function fetch_search_jobBank_regular($jobBank_id, $sender){
+        
+        $this->db->select('*');
+        $this->db->from('job_delivery');
+        $this->db->where('job_delivery.job_request_id', $jobBank_id);
+        $this->db->where('job_delivery.sender_id', $sender);
+     
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+     }
+
+        function fetch_search_invoice($invoice_id){
+        
+        $this->db->select('*');
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        $this->db->where('invoice.id', $invoice_id);
         $query = $this->db->get();
         
         if ($query->num_rows() > 0) {
@@ -20,6 +54,24 @@ class  Search_model extends CI_Model
         return false;
      }
         
+        function fetch_search_invoice_regular($invoice_id, $sender){
+        
+        $this->db->select('*');
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        $this->db->where('invoice.id', $invoice_id);
+        $this->db->where('job_delivery.sender_id', $sender);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+     }   
 }
 /* End of file category_model.php */
 /* Location: ./application/models/crud_model.php */

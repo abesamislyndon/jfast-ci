@@ -56,7 +56,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url();?>search/jobBank"><i class="fa fa-circle-o"></i>Search  Job Bank #</a></li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
+                <li><a href="<?php echo base_url();?>search/invoice"><i class="fa fa-circle-o"></i>Search Invoice #</a></li>
               </ul>
             </li>
 

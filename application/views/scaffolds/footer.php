@@ -84,6 +84,30 @@
                 });
             }
     </script>
+
+
+  <script type="text/javascript">
+            $('form#process1').submit(function(e){
+                e.preventDefault();
+                makeAjaxRequest();
+                return false;
+            });
+
+            function makeAjaxRequest(){
+                $.ajax({
+                    url: '<?php echo base_url();?>search/result_invoice',
+                    type: 'get',
+                    data: {name: $('input#search').val()},
+                    success: function(response) {
+                       $('table#resultTable tbody').html(response);
+                    }
+                });
+            }
+    </script>
+
+
+
+
  
   </body>
 </html>
