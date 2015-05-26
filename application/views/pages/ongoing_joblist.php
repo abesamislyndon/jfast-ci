@@ -13,11 +13,8 @@
                      <tr>
                         <th style="width:100px">Job Bank id</th>
                         <th>Date Request</th>
-                        <th>Client name</th>
-                        <th>Company</th>
-                        <th>Tel no.</th>
-                        <th>Destination</th>
-                        <th>Pickup Address</th>
+                        <th>Client Details</th>
+                        <th>Address Details</th>
                         <th>Delivery Details</th>
                         <th>Assigned Driver</th>
                         <th>Customer Sender</th>
@@ -29,11 +26,19 @@
                      <tr>
                         <td><?php echo $value->job_request_id?></td>
                         <td><?php echo $value->date_request?></td>
-                        <td><?php echo $value->full_name?></td>
-                        <td><?php echo $value->company_client?></td>
-                        <td><?php echo $value->tel_no?></td>
-                        <td><?php echo $value->destination?></td>
-                        <td><?php echo $value->address?></td>
+                        <td>
+                           <ul class = "details">
+                            <li><b>Client name</b>&nbsp;<?php echo $value->full_name?></li>
+                            <li><b>Company</b>&nbsp;<?php echo $value->company_client?></li>
+                            <li><b>Tel. No.</b>&nbsp;<?php echo $value->tel_no?></li>
+                         </ul>
+                       </td>
+                        <td>
+                            <ul class = "details">
+                              <li><b>Destination:</b>&nbsp;&nbsp;<?php echo $value->destination?></li>
+                              <li><b>pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address?></li>
+                           </ul>
+                        </td>
                         <td>
                            <ul class = "details">
                               <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>

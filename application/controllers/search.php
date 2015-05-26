@@ -30,7 +30,8 @@ class Search extends CI_Controller
             redirect('login', 'refresh');
         }
     }
-       public function jobBank_regular()
+  
+   public function jobBank_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
             
@@ -48,7 +49,6 @@ class Search extends CI_Controller
             redirect('login', 'refresh');
         }
     }
-   
 
    public function result_jobBank_regular()
     {
@@ -137,7 +137,7 @@ class Search extends CI_Controller
         }
     }
 
-  public function result_invoice_regular()
+   public function result_invoice_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
          

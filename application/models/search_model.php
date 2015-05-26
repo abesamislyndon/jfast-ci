@@ -54,7 +54,7 @@ class  Search_model extends CI_Model
         return false;
      }
         
-        function fetch_search_invoice_regular($invoice_id, $sender){
+     function fetch_search_invoice_regular($invoice_id, $sender){
         
         $this->db->select('*');
         $this->db->from('job_delivery');
@@ -71,7 +71,31 @@ class  Search_model extends CI_Model
             return $data;
         }
         return false;
-     }   
+     }  
+
+     function do_generate_jobBank($from, $to){      
+
+        $cal_date   = $from;
+        $format     = strtotime($cal_date);
+        $mysql_from = date('Y-m-d', $format);
+
+        $cal_date   = $to;
+        $format     = strtotime($cal_date);
+        $mysql_to = date('Y-m-d', $format);
+       
+       $this->db->select('*');
+       $this->db->from('job_delivery');
+       //$this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+       //$this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+      
+       //$this->db->where('job_delivery.status', '5');
+       $this->db->where('job_delivery.date_request >=',  $mysql_from);
+       $this->db->where('job_delivery.date_request <=',  $mysql_to);
+       $this->db->order_by('job_delivery.date_request','ASC');
+       $query = $this->db->get();
+       return $query->result();
+
+    } 
 }
 /* End of file category_model.php */
 /* Location: ./application/models/crud_model.php */

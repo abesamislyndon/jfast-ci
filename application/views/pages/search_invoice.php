@@ -29,18 +29,18 @@
          <td><?php echo $value->sender?></td>
          <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
              <td class = "remarks"><br>
-                 <?php
-                   if($value->status == 1) {
-                     echo 'pending job bank for approval';
-                   }elseif($value->status == 2){
-                     echo 'pending job bank for allocate' ;
-                   }elseif ($value->status == 3) {
-                    echo 'ongoing job'; 
-                   }elseif ($value->status == 4) {
-                    echo 'pending for checkout for invoice'; 
-                   }else{
-                    echo 'job finished'; 
-                   }
+             <?php
+               if($value->status == 1) {
+                 echo 'pending job bank for approval';
+               }elseif($value->status == 2){
+                 echo 'pending job bank for allocate' ;
+               }elseif ($value->status == 3) {
+                echo 'ongoing job'; 
+               }elseif ($value->status == 4) {
+                echo 'pending for checkout for invoice'; 
+               }else{
+                echo 'job finished'; 
+               }
              ?>
          </td>
          <td><a href="<?php echo base_url();?>joblist_bank/individual/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>

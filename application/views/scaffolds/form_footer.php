@@ -72,11 +72,41 @@
       });
     </script>
 
+      <script type="text/javascript" language="javascript">
+     $(document).ready(function() {
+              $( "#from" ).datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                changeYear:true,
+                yearRange: "2005:2015",
+                dateFormat: "yy-mm-dd",
+                autoclose: true,
+                todayHighlight: true,
+                onClose: function( selectedDate ) {
+                  $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                }
+              });
+              $( "#to" ).datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths:1,
+                changeYear:true,
+                yearRange: "2005:2015",
+                dateFormat: "yy-mm-dd",
+                autoclose: true,
+                todayHighlight: true,
+                onClose: function( selectedDate ) {
+                  jQuery( "#from" ).datepicker( "option", "maxDate", selectedDate );
+                }
+              });
+          });
+   </script>
 
- <script type="text/javascript">
+
+  <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
-                
                 $('#datepicker').datepicker({
                      autoclose: true,
                      todayHighlight: true,

@@ -13,7 +13,6 @@ class Dashboard extends CI_Controller {
 	{	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
-    
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
         $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
