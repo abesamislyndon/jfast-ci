@@ -62,9 +62,8 @@
     span{
         padding-bottom-bottom: 120px !important;
     }    
-
-
 </style>
+
   <?php 
      if(!empty($individual) ) {
      foreach($individual as $details): ?>  
@@ -72,17 +71,16 @@
      <h2>Invoice # <?php echo $value->id; ?></h2>
      <?php endforeach; ?>
     
-    <span><b>Attention to:</b>&nbsp;&nbsp;<?php echo $details->sender;?></span><br>
-    <h6>Delivery Details</h6> 
-    <span><b>Date:</b>&nbsp;&nbsp;<?php echo $details->date_request;?></span><br>
+    <span><b>Attention to:</b>&nbsp;&nbsp;<?php echo $details->sender;?></span><br><br>
+    <span><b>Date Request:</b>&nbsp;&nbsp;<?php echo $details->date_request;?></span><br>
+    <span><b>Date Invoice:</b>&nbsp;&nbsp;<?php echo $details->date_invoice;?></span><br><br>
     <span><b>Contact Person:</b>&nbsp;&nbsp;<?php echo $details->full_name;?></span><br>
+    <span><b>Destination Adddress:</b>&nbsp;&nbsp;<?php echo $details->destination;?></span><br>
     <span><b>Pickup Adddress:</b>&nbsp;&nbsp;<?php echo $details->address;?></span><br>
     <span><b>Pickup Time:</b>&nbsp;&nbsp;<?php echo $details->time;?></span><br><br>
     <span><b>Tel no:</b>&nbsp;&nbsp;<?php echo $details->tel_no;?></span><br>
     <span><b>Email:</b>&nbsp;&nbsp;<?php echo $details->email;?></span><br>
 
-
-   
 
     <table cellspacing="0" style="text-align: center; font-size: 9pt; padding:1px; border-collapse: collapse;">
      <tbody>
@@ -116,10 +114,8 @@
             <td style=" border: solid 1px black; font-style:italic;border-collapse: collapse;"><?php echo $details->labor_cost ?></td>
         </tr>  
         <?php endforeach; ?>
-      
-
-         <?php endforeach; }?>   
-        </tbody>
+        <?php endforeach; }?>   
+     </tbody>
     </table>
 
      <table cellspacing="0" style="text-align: center; font-size: 9pt;padding:4px;margin-top:-6px;margin-left:90px;border-collapse: collapse;">
@@ -187,8 +183,4 @@
         </td>
         </tr>
     </table>
-    </nobreak>
-
-
-
-    
+</nobreak>    

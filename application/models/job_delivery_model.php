@@ -169,7 +169,21 @@ class  Job_delivery_model extends CI_Model
 
       $this->db->select('*');
       $this->db->from('job_delivery');
-      $this->db->where('job_request_id', $id);
+ //     $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+   //   $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+      
+      $this->db->where('job_delivery.job_request_id', $id);
+      $query = $this->db->get();
+      return $query->result();
+    }
+       function show_individual_report($id){
+
+      $this->db->select('*');
+      $this->db->from('job_delivery');
+      $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+      $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+      
+      $this->db->where('job_delivery.job_request_id', $id);
       $query = $this->db->get();
       return $query->result();
     }
@@ -399,6 +413,7 @@ class  Job_delivery_model extends CI_Model
 
           $row2 = array(
           'job_bank_id'=>$id,
+          'date_invoice'=> date('Y-m-d H:i:s')
           );
           $this->db->insert('invoice', $row2);
          

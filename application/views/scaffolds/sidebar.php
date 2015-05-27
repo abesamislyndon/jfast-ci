@@ -47,6 +47,21 @@
               </ul>
             </li>
 
+           <li class="header">Costing Details </li>
+            <li class="treeview">
+              <a href="#">
+               <i class="fa fa-user"></i><span>Manage Costing</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url();?>costing_attributes/location"><i class="fa fa-circle-o"></i>Location</a></li>
+                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Weight</a></li>
+                <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Dimension</a></li>
+                <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Labor</a></li>
+              </ul>
+            </li>
+ 
+
           <li class="header">Search </li>
 
           <li class="treeview">
@@ -70,11 +85,11 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url();?>generate_history/jobBank"><i class="fa fa-circle-o"></i>Generate by Job Bank #</a></li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/invoice"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
               </ul>
             </li>
 
-          <li class="header">OTHERS </li>
+          <li class="header">USERS </li>
             <li class="treeview">
               <a href="#">
                <i class="fa fa-user"></i><span>Manage User</span>

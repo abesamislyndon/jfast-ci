@@ -141,7 +141,7 @@ class Joblist_bank extends CI_Controller {
 
    }
 
-       public function job_invoice_list(){
+  public function job_invoice_list(){
 
     if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
@@ -200,11 +200,10 @@ class Joblist_bank extends CI_Controller {
         $data['dimension'] = $this->job_delivery_model->dimension();
         $data['labor'] = $this->job_delivery_model->labor();
 
-
         $this->load->view('scaffolds/header');
-	      $this->load->view('scaffolds/sidebar', $data);
-	      $this->load->view('pages/individual', $data);
-		    $this->load->view('scaffolds/form_footer');
+	    $this->load->view('scaffolds/sidebar', $data);
+	    $this->load->view('pages/individual', $data);
+		$this->load->view('scaffolds/form_footer');
    }
 
     public function individualAllocate(){

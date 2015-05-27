@@ -39,6 +39,11 @@ display:block;
 	font-size: 13px;
 	color:#FFD54F;
 }
+.custom_count_dashboard{
+	font-size: 30px !important;
+	font-weight: bold !important;
+	color:#d32f2f;
+}
 select[disabled]{
 	background:#FFF !important;
 	color:#e53935; 
@@ -116,4 +121,17 @@ th{
 	font-weight:bold;
 	color: red;
 	border-collapse: collapse; 
+}
+.bg-aqua{
+	color: #E1F5FE !important;
+}
+.bg-red{
+	padding:12px 20px;
+	border-radius:6px; 
+}
+.bg-red:hover{
+	background:#f44336 !important; 
+}
+.bg-aqua:hover{
+	color: #fff !important;
 }
