@@ -5,7 +5,7 @@ class Regular_customer extends CI_Controller {
  function __construct()
  {
    parent::__construct();
-   $this->load->model('job_delivery_model');
+   $this->load->model('Job_delivery_model');
 
  }
 
@@ -15,10 +15,10 @@ class Regular_customer extends CI_Controller {
      {
     
             
-            $data['from']           = $this->job_delivery_model->destination();
-            $data['weight']         = $this->job_delivery_model->weight();
-            $data['dimension']      = $this->job_delivery_model->dimension();
-            $data['labor']          = $this->job_delivery_model->labor();
+            $data['from']           = $this->Job_delivery_model->destination();
+            $data['weight']         = $this->Job_delivery_model->weight();
+            $data['dimension']      = $this->Job_delivery_model->dimension();
+            $data['labor']          = $this->Job_delivery_model->labor();
    
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -35,10 +35,10 @@ class Regular_customer extends CI_Controller {
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '2')
      {
     
-        $data['from']           = $this->job_delivery_model->destination();
-        $data['weight']         = $this->job_delivery_model->weight();
-        $data['dimension']      = $this->job_delivery_model->dimension();
-        $data['labor']          = $this->job_delivery_model->labor();
+        $data['from']           = $this->Job_delivery_model->destination();
+        $data['weight']         = $this->Job_delivery_model->weight();
+        $data['dimension']      = $this->Job_delivery_model->dimension();
+        $data['labor']          = $this->Job_delivery_model->labor();
    
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -80,7 +80,7 @@ class Regular_customer extends CI_Controller {
                 $dimension_cost   = $this->input->post('dimension_cost');
                 $address          = $this->input->post('address');
                 
-                $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $address, $company_client);
+                $this->Job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $address, $company_client);
             }
             
         } else {
@@ -93,10 +93,10 @@ class Regular_customer extends CI_Controller {
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '2')
      {
     
-        $data['from']           = $this->job_delivery_model->destination();
-        $data['weight']         = $this->job_delivery_model->weight();
-        $data['dimension']      = $this->job_delivery_model->dimension();
-        $data['labor']          = $this->job_delivery_model->labor();
+        $data['from']           = $this->Job_delivery_model->destination();
+        $data['weight']         = $this->Job_delivery_model->weight();
+        $data['dimension']      = $this->Job_delivery_model->dimension();
+        $data['labor']          = $this->Job_delivery_model->labor();
    
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_regular_customer', $data);

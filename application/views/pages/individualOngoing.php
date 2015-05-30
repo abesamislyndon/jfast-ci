@@ -88,7 +88,7 @@
                         </div>
                      </div>
                      <div class='box-body pad'>
-                        <textarea class="textarea" name = "job_details" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" value = ""><?php echo $value->job_details ?></textarea>
+                       <textarea class="form-control myTextEditor details" name = "job_details" rows="3"><?php echo $value->job_details ?></textarea>
                      </div>
                   </div>
                   <?php endforeach; ?>

@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url']	= 'http://192.168.1.1:8888/jfast-ci/';
+$config['base_url']	= 'http://localhost:8888/jfast-ci/';
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +47,7 @@ $config['index_page'] = '';
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
 $config['uri_protocol']	= 'REQUEST_URI';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -355,14 +356,14 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] = 'files';
+$config['sess_driver'] = 'database';       // changed from file
+$config['sess_save_path'] = 'ci_sessions'; // table name
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
-$config['sess_match_ip'] = FALSE;
+$config['sess_match_ip'] = TRUE;
 $config['sess_time_to_update'] = 300;
-$config['sess_use_database'] = FALSE;
-$config['sess_regenerate_destroy'] = FALSE;
+$config['sess_use_database'] = TRUE;
+$config['sess_regenerate_destroy'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

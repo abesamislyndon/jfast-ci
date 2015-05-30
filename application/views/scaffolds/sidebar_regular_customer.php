@@ -56,9 +56,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Search  Job Bank #</a></li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
-              </ul>
+               <li><a href="<?php echo base_url();?>generate_history/jobBank_regular"><i class="fa fa-circle-o"></i>Generate by Job Bank #</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/invoice"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
+             </ul>
             </li>
 
          

@@ -135,3 +135,6 @@ th{
 .bg-aqua:hover{
 	color: #fff !important;
 }
+.details{
+	height:250px !important; 
+}

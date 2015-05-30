@@ -8,8 +8,8 @@ class Driver_info extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('job_delivery_model');
-        $this->load->model('driver_info_model');
+        $this->load->model('Job_delivery_model');
+        $this->load->model('Driver_info_model');
         
     }
     
@@ -18,8 +18,8 @@ class Driver_info extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id = $this->uri->segment(3);
-            $data['individual'] = $this->job_delivery_model->show_individual($id);         
-            $data['driver_info'] = $this->driver_info_model->get_driver_info();
+            $data['individual'] = $this->Job_delivery_model->show_individual($id);         
+            $data['driver_info'] = $this->Driver_info_model->get_driver_info();
             
             $this->load->view('modal_form/allocate', $data);
             
@@ -34,7 +34,7 @@ class Driver_info extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id           = $this->input->post('name');
-            $data         = $this->driver_info_model->get_other_info($id);
+            $data         = $this->Driver_info_model->get_other_info($id);
             $driver_info1 = $data[0]->address;
             echo $driver_info1;
             
@@ -49,7 +49,7 @@ class Driver_info extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id           = $this->input->post('name');
-            $data         = $this->driver_info_model->get_other_info1($id);
+            $data         = $this->Driver_info_model->get_other_info1($id);
             $driver_info2 = $data[0]->company;
             echo $driver_info2;
             
@@ -64,7 +64,7 @@ class Driver_info extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id           = $this->input->post('name');
-            $data         = $this->driver_info_model->get_other_info2($id);
+            $data         = $this->Driver_info_model->get_other_info2($id);
             $driver_info3 = $data[0]->contact_num;
             echo $driver_info3;
             

@@ -83,3 +83,5 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+$db['default']['dbprefix'] = "";
+$db['default']['active_r'] = TRUE;

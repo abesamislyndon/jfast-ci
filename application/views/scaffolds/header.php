@@ -18,7 +18,7 @@
     <link href="<?php echo base_url();?>asset/plugins/iCheck/all.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>asset/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
     <link href="<?php echo base_url();?>asset/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
-    
+       <script src="<?php echo base_url();?>asset/tiny_mce/tiny_mce.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,15 +26,23 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <script>
-jQuery(document).ready(function($) {  
+      jQuery(document).ready(function($) {  
 
-// site preloader -- also uncomment the div in the header and the css style for #preloader
-$(window).load(function(){
-  $('#preloader').fadeOut('slow',function(){$(this).remove();});
-});
+      // site preloader -- also uncomment the div in the header and the css style for #preloader
+      $(window).load(function(){
+        $('#preloader').fadeOut('slow',function(){$(this).remove();});
+      });
 
-});
+      });
     </script>
+
+    <script type="text/javascript">
+    tinyMCE.init({
+        mode : "specific_textareas",
+        editor_selector : "myTextEditor",
+        theme : "simple"
+    });
+  </script>
 
   </head>
    <body class="skin-blue sidebar-mini">

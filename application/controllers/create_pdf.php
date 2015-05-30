@@ -6,7 +6,7 @@ class Create_pdf extends CI_Controller
      function __construct()
      {
        parent::__construct();
-        $this->load->model('job_delivery_model');
+        $this->load->model('Job_delivery_model');
 
      }
 
@@ -18,8 +18,8 @@ public function print_invoice()
        {
          $id = $this->uri->segment(3);
         
-         $data['individual'] = $this->job_delivery_model->show_individual_report($id);
-         $data['sample'] = $this->job_delivery_model->sample($id);
+         $data['individual'] = $this->Job_delivery_model->show_individual_report($id);
+         $data['sample'] = $this->Job_delivery_model->sample($id);
          
          $this->load->view('pages/invoice_pdf', $data);
         }

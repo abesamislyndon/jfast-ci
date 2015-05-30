@@ -7,8 +7,8 @@ class Search extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('job_delivery_model');
-        $this->load->model('search_model');
+        $this->load->model('Job_delivery_model');
+        $this->load->model('Search_model');
         
     }
     
@@ -17,10 +17,10 @@ class Search extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
+            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
+            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
             
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $data);
@@ -36,10 +36,10 @@ class Search extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
             
             
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
+            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
+            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
             
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -58,7 +58,7 @@ class Search extends CI_Controller
             $sender  = $this->input->get('log_id');
 
     
-            $data['res'] = $this->search_model->fetch_search_jobBank_regular($jobBank_id, $sender);
+            $data['res'] = $this->Search_model->fetch_search_jobBank_regular($jobBank_id, $sender);
                    
             $this->load->view('pages/search_jobbank', $data);
             
@@ -73,7 +73,7 @@ class Search extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
          
             $jobBank_id  = $this->input->get('name');
-            $data['res'] = $this->search_model->fetch_search_jobBank($jobBank_id);
+            $data['res'] = $this->Search_model->fetch_search_jobBank($jobBank_id);
             $data["links"] = $this->pagination->create_links();
             $this->load->view('pages/search_jobbank', $data);
             
@@ -89,11 +89,11 @@ class Search extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
+            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
 
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
+            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
             
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $data);
@@ -109,7 +109,7 @@ class Search extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
          
             $invoice_id  = $this->input->get('name');
-            $data['res'] = $this->search_model->fetch_search_invoice($invoice_id);
+            $data['res'] = $this->Search_model->fetch_search_invoice($invoice_id);
                   
             $this->load->view('pages/search_invoice', $data);
                    
@@ -123,10 +123,10 @@ class Search extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
             
             
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
+            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
+            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
             
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -144,7 +144,7 @@ class Search extends CI_Controller
             $invoice_id  = $this->input->get('name');
             $sender  = $this->input->get('log_id1');
             
-            $data['res'] = $this->search_model->fetch_search_invoice_regular($invoice_id, $sender);
+            $data['res'] = $this->Search_model->fetch_search_invoice_regular($invoice_id, $sender);
             
             $this->load->view('pages/search_invoice', $data);
             
