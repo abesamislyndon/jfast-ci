@@ -46,15 +46,15 @@
 
     </script> 
 
-        <script type="text/javascript">
- $('[data-load-remote]').on('click',function(e) {
-    e.preventDefault();
-    var $this = $(this);
-    var remote = $this.data('load-remote');
-    if(remote) {
-        $($this.data('remote-target')).load(remote);
-    }
-  });
+  <script type="text/javascript">
+     $('[data-load-remote]').on('click',function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var remote = $this.data('load-remote');
+        if(remote) {
+            $($this.data('remote-target')).load(remote);
+        }
+      });
  </script>
 
 
@@ -131,41 +131,82 @@
     });
    </script>
 
-        <script>
+   <script>
   
-function calljavascriptfunction(){
+     function calljavascriptfunction(){
 
+      $.ajax({
+         type : 'POST',
+         data : 'name='+ $('#name').val(),
+         url : '<?php echo base_url();?>driver_info/populate/',
+         success : function(data){
+           $('#address').val(data);
+         }
+     });
 
-  $.ajax({
-     type : 'POST',
-     data : 'name='+ $('#name').val(),
-     url : '<?php echo base_url();?>driver_info/populate/',
-     success : function(data){
-       $('#address').val(data);
-     }
- });
+        $.ajax({
+         type : 'POST',
+         data : 'name='+ $('#name').val(),
+         url : '<?php echo base_url();?>driver_info/populate1/',
+         success : function(data){
+           $('#company').val(data);
+         }
+     });
 
-    $.ajax({
-     type : 'POST',
-     data : 'name='+ $('#name').val(),
-     url : '<?php echo base_url();?>driver_info/populate1/',
-     success : function(data){
-       $('#company').val(data);
-     }
- });
+       $.ajax({
+         type : 'POST',
+         data : 'name='+ $('#name').val(),
+         url : '<?php echo base_url();?>driver_info/populate2/',
+         success : function(data){
+           $('#contact_num').val(data);
+         }
+     });
+    }
 
-   $.ajax({
-     type : 'POST',
-     data : 'name='+ $('#name').val(),
-     url : '<?php echo base_url();?>driver_info/populate2/',
-     success : function(data){
-       $('#contact_num').val(data);
-     }
- });
-
-
-}
    </script>
+ 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/spin.js"></script>
+<script>
+$(document).ready(function() {
+    $('#submitbtn').click(function(e) {
+        var isValid = true;
+        $('input[type="text"].required, select.required, email.required, textarea.required ').each(function() {
+            if ($.trim($(this).val()) == '') {
+                isValid = false;
+                $(this).css({
+                    "border": "1px solid #e53935",
+                    "background": "#ffebee",
+                    "color":"#000"
+                });
+              $(this).attr("placeholder", "empty").addClass('empty1');
+            }
+            else {
+                $(this).css({
+                    "border": "",
+                    "background": ""
+                });
+            }
+        });
+        if (isValid == false) 
+            e.preventDefault();
+        else 
+                    $("#loading").fadeIn();
+                var opts = {
+                    lines: 12, // The number of lines to draw
+                    length: 7, // The length of each line
+                    width: 4, // The line thickness
+                    radius: 10, // The radius of the inner circle
+                    color: '#fff', // #rgb or #rrggbb
+                    speed: 1, // Rounds per second
+                    trail: 60, // Afterglow percentage
+                    shadow: false, // Whether to render a shadow
+                    hwaccel: false // Whether to use hardware acceleration
+                };
+                var target = document.getElementById('loading');
+                var spinner = new Spinner(opts).spin(target);
+    });
+});
+</script>
 
 
 

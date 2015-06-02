@@ -39,48 +39,82 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                       <p class="text-center">
                         <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
                       </p>
-                      <div class="chart">
-                        <!-- Sales Chart Canvas -->
-                        <canvas id="salesChart" height="180"></canvas>
-                      </div><!-- /.chart-responsive -->
+                  
+
+                    <table class="table table-bordered" id = "resultTable">
+                        <thead>
+                           <tr>
+                              <th style="width:100px">Job Bank id</th>
+                              <th>Date Request</th>
+                              <th>Client name</th>
+                              <th>Company</th>
+                              <th>Tel no.</th>
+                              <th>Destination</th>
+                              <th>Pickup Address</th>
+                              <th>Details</th>
+                              </tr>
+                        </thead>
+                         <?php if($result == true){ ?>
+                              <?php foreach($result as $value): ?>
+                                  <tr>
+                                     <td><?php echo $value->job_request_id?></td>
+                                     <td><?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?></td>
+                                     <td>
+                                          <ul class = "details">
+                                           <li><b>Client name</b>&nbsp;<?php echo $value->full_name?></li>
+                                           <li><b>Company</b>&nbsp;<?php echo $value->company_client?></li>
+                                           <li><b>Tel. No.</b>&nbsp;<?php echo $value->tel_no?></li>
+                                        </ul>
+                                     </td>
+                                     <td>
+                                        <ul class = "details">
+                                           <li><b>Destination</b>&nbsp;<?php echo $value->destination?></li>
+                                           <li><b>pickup Address</b>&nbsp;<?php echo $value->address?></li>
+                                        </ul>
+                                     </td>
+                                     <td>
+                                        <ul class = "details">
+                                           <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>
+                                           <li><b>Weight:</b>&nbsp;<?php echo $value->weight?></li>
+                                           <li><b>Dimension:</b>&nbsp;<?php echo $value->dimension?></li>
+                                           <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
+                                        </ul>
+                                     </td>
+                                     <td><?php echo $value->sender?></td>
+                                     <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+                                         <td class = "remarks"><br>
+                                           <?php
+                                             if($value->status == 1) {
+                                               echo 'pending job bank for approval';
+                                             }elseif($value->status == 2){
+                                               echo 'pending job bank for allocate' ;
+                                             }elseif ($value->status == 3) {
+                                              echo 'ongoing job'; 
+                                             }elseif ($value->status == 4) {
+                                              echo 'pending for checkout for invoice'; 
+                                             }else{
+                                              echo $value->remarks;
+                                             }
+                                           ?>
+                                     </td>
+                                  </tr>
+                             <?php  endforeach; 
+                               }else{?>
+                           <tr>
+                             <td colspan = "9" class = "no-result">NO RESULT</td>
+                            
+                           </tr>
+                        <?php }?>
+                     </table>
+
+
+
                     </div><!-- /.col -->
-                    <div class="col-md-4">
-                      <p class="text-center">
-                        <strong>Goal Completion</strong>
-                      </p>
-                      <div class="progress-group">
-                        <span class="progress-text">Add Products to Cart</span>
-                        <span class="progress-number"><b>160</b>/200</span>
-                        <div class="progress sm">
-                          <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
-                        </div>
-                      </div><!-- /.progress-group -->
-                      <div class="progress-group">
-                        <span class="progress-text">Complete Purchase</span>
-                        <span class="progress-number"><b>310</b>/400</span>
-                        <div class="progress sm">
-                          <div class="progress-bar progress-bar-red" style="width: 80%"></div>
-                        </div>
-                      </div><!-- /.progress-group -->
-                      <div class="progress-group">
-                        <span class="progress-text">Visit Premium Page</span>
-                        <span class="progress-number"><b>480</b>/800</span>
-                        <div class="progress sm">
-                          <div class="progress-bar progress-bar-green" style="width: 80%"></div>
-                        </div>
-                      </div><!-- /.progress-group -->
-                      <div class="progress-group">
-                        <span class="progress-text">Send Inquiries</span>
-                        <span class="progress-number"><b>250</b>/500</span>
-                        <div class="progress sm">
-                          <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
-                        </div>
-                      </div><!-- /.progress-group -->
-                    </div><!-- /.col -->
+              
                   </div><!-- /.row -->
                 </div><!-- ./box-body -->
           

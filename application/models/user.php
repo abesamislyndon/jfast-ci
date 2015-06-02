@@ -59,12 +59,12 @@ Class User extends CI_Model
         $full_name = $this->input->post('full_name');
         $username  = $this->input->post('username');
         $role_code = $this->input->post('role_code');
-        $password  = $this->input->post('password');
+        //$password  = $this->input->post('password');
         
         $data = array(
             'full_name' => $full_name,
             'username' => $username,
-            'password' => md5($password),
+       //     'password' => md5($password),
             'role_code' => $role_code
         );
         

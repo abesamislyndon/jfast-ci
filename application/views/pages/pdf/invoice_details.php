@@ -56,9 +56,13 @@
         color:red;
         font-size:17px; 
     }
-       h6{
-        font-size:12px; 
-        }
+    h6{
+        text-align:right;
+        margin-top:40px;  
+        position: absolute;
+        color:black;
+        font-size:10px; 
+    }
     span{
         padding-bottom-bottom: 120px !important;
     }    
@@ -68,7 +72,8 @@
      if(!empty($individual) ) {
      foreach($individual as $details): ?>  
      <?php foreach ($sample as  $value): ?>
-     <h2>Invoice # <?php echo $value->id; ?></h2>
+     <h2>Invoice # : <?php echo $value->id; ?></h2>
+     <h6>Remarks : <?php echo $value->remarks; ?></h6>
      <?php endforeach; ?>
     
     <span><b>Attention to:</b>&nbsp;&nbsp;<?php echo $details->sender;?></span><br><br>
@@ -79,9 +84,9 @@
     <span><b>Pickup Adddress:</b>&nbsp;&nbsp;<?php echo $details->address;?></span><br>
     <span><b>Pickup Time:</b>&nbsp;&nbsp;<?php echo $details->time;?></span><br><br>
     <span><b>Tel no:</b>&nbsp;&nbsp;<?php echo $details->tel_no;?></span><br>
-    <span><b>Email:</b>&nbsp;&nbsp;<?php echo $details->email;?></span><br>
-
-
+    <span><b>Email:</b>&nbsp;&nbsp;<?php echo $details->email;?></span><br><br>
+    <span><b>Job Description:</b>&nbsp;&nbsp;<?php echo strip_tags($details->job_details);?></span><br>
+  
     <table cellspacing="0" style="text-align: center; font-size: 9pt; padding:1px; border-collapse: collapse;">
      <tbody>
     <tr>
@@ -161,7 +166,6 @@
         </td>
         <td style="text-align: left;">
         <span style="font-size: 10px; font-weight: normal;">
-        <b>Jobe Done by:</b>
         </span>
         </td>
         </tr>
@@ -178,8 +182,8 @@
             Company Chop and Signature
         </td>
         <td style="text-align: left;">
-            _________________________________<br><br>
-            For - F & L REINSTATEMENT PTE LTD
+            <br><br>
+           
         </td>
         </tr>
     </table>

@@ -18,12 +18,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN </li>
-            <li class="active treeview">
-              <a href="<?php echo base_url();?>/regular_customer">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
-              </a>
-            </li>
-       
+           
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Forms</span>
@@ -57,7 +52,7 @@
               </a>
               <ul class="treeview-menu">
                <li><a href="<?php echo base_url();?>generate_history/jobBank_regular"><i class="fa fa-circle-o"></i>Generate by Job Bank #</a></li>
-                <li><a href="<?php echo base_url();?>generate_history/invoice"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/invoice_regular"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
              </ul>
             </li>
 

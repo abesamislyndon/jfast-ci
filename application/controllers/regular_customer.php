@@ -6,20 +6,23 @@ class Regular_customer extends CI_Controller {
  {
    parent::__construct();
    $this->load->model('Job_delivery_model');
-
+   $this->load->model('Search_model');
  }
 
 	public function index()
 	{	
-	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '2')
+	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
     
-            
-            $data['from']           = $this->Job_delivery_model->destination();
-            $data['weight']         = $this->Job_delivery_model->weight();
-            $data['dimension']      = $this->Job_delivery_model->dimension();
-            $data['labor']          = $this->Job_delivery_model->labor();
-   
+         
+        $sender = $this->session->userdata["logged_in"]["full_name"]; 
+        $data['from']           = $this->Job_delivery_model->destination();
+        $data['weight']         = $this->Job_delivery_model->weight();
+        $data['dimension']      = $this->Job_delivery_model->dimension();
+        $data['labor']          = $this->Job_delivery_model->labor();
+        $data['result'] = $this->Search_model->fetch_all_jobBank_regular($sender);
+
+
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_regular_customer', $data);
 		$this->load->view('pages/dashboard_regular_customer');

@@ -154,8 +154,6 @@ class Search extends CI_Controller
         }
     }
 
-
-
 }
 
 /* End of file search.php */

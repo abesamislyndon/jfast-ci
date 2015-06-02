@@ -20,7 +20,7 @@
                               <th>Client Details</th>
                               <th style="width:290px">Address Details</th>
                               <th>Delivery Details</th>
-                              <th>Customer Sender</th>
+                              <th>Regular Customer Sender</th>
                               <th>Cost</th>
                               <th style="width:90px">Remarks</th>
                               <th>Action</th>

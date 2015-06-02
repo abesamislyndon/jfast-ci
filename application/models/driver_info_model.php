@@ -42,6 +42,8 @@ class  Driver_info_model extends CI_Model
 
 
 
+
+
         
 }
 /* End of file category_model.php */

@@ -5,8 +5,8 @@ class Costing_attributes extends CI_Controller {
  function __construct()
  {
    parent::__construct();
-   $this->load->model('Job_delivery_model');
-   $this->load->model('Costing_model');
+   $this->load->model('job_delivery_model');
+   $this->load->model('costing_model');
  }
 
  // **************************** costing for destination  ******************************
@@ -15,11 +15,11 @@ class Costing_attributes extends CI_Controller {
 	{	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
-        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
-        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
-        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-        $data['location_details'] = $this->Costing_model->location_details();
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+        $data['location_details'] = $this->costing_model->location_details();
    
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar', $data);
@@ -43,7 +43,7 @@ class Costing_attributes extends CI_Controller {
                 $to           = $this->input->post('to');
                 $cost           = $this->input->post('estimated_cost');
                 
-                $this->Costing_model->do_add_location($from, $to, $cost);
+                $this->costing_model->do_add_location($from, $to, $cost);
             }
             
         } else {
@@ -55,7 +55,7 @@ class Costing_attributes extends CI_Controller {
       if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id = $this->uri->segment(3);
-            $data['location_details'] = $this->Costing_model->location_details_id($id);
+            $data['location_details'] = $this->costing_model->location_details_id($id);
             
             $this->load->view('modal_form/location', $data);
             
@@ -72,7 +72,7 @@ class Costing_attributes extends CI_Controller {
             $to = $this->input->post('to');
             $cost = $this->input->post('estimated_cost');
 
-            $data['location_details'] = $this->Costing_model->do_update_location($from, $to, $cost, $id);
+            $data['location_details'] = $this->costing_model->do_update_location($from, $to, $cost, $id);
             
             $this->load->view('modal_form/location', $data);
             
@@ -87,7 +87,7 @@ class Costing_attributes extends CI_Controller {
             
 
             $id     = $this->uri->segment(3);
-            $this->Costing_model->do_delete_location($id);
+            $this->costing_model->do_delete_location($id);
             
            
         } else {
@@ -102,11 +102,11 @@ class Costing_attributes extends CI_Controller {
     {   
      if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
-        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
-        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
-        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-        $data['weight_details'] = $this->Costing_model->weight_details();
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+        $data['weight_details'] = $this->costing_model->weight_details();
    
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $data);
@@ -129,7 +129,7 @@ class Costing_attributes extends CI_Controller {
                 $weight        = $this->input->post('weight');
                 $cost           = $this->input->post('cost');
                 
-                $this->Costing_model->do_add_weight($weight, $cost);
+                $this->costing_model->do_add_weight($weight, $cost);
             }
             
         } else {
@@ -141,7 +141,7 @@ class Costing_attributes extends CI_Controller {
       if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id = $this->uri->segment(3);
-            $data['weight_details'] = $this->Costing_model->weight_details_id($id);
+            $data['weight_details'] = $this->costing_model->weight_details_id($id);
             
             $this->load->view('modal_form/weight', $data);
             
@@ -157,7 +157,7 @@ class Costing_attributes extends CI_Controller {
             $weight = $this->input->post('weight');
             $cost = $this->input->post('cost');
 
-           $data['weight_details'] = $this->Costing_model->do_update_weight($weight, $cost, $id);
+           $data['weight_details'] = $this->costing_model->do_update_weight($weight, $cost, $id);
             
             $this->load->view('modal_form/weight', $data);
             
@@ -172,7 +172,7 @@ class Costing_attributes extends CI_Controller {
             
 
             $id     = $this->uri->segment(3);
-            $this->Costing_model->do_delete_weight($id);
+            $this->costing_model->do_delete_weight($id);
             
            
         } else {
@@ -188,11 +188,11 @@ class Costing_attributes extends CI_Controller {
     {   
      if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
-        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
-        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
-        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-        $data['dimension_details'] = $this->Costing_model->dimension_details();
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+        $data['dimension_details'] = $this->costing_model->dimension_details();
    
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $data);
@@ -216,7 +216,7 @@ class Costing_attributes extends CI_Controller {
                 $dimension        = $this->input->post('dimension');
                 $cost           = $this->input->post('cost');
                 
-                $this->Costing_model->do_add_dimension($dimension,$cost);
+                $this->costing_model->do_add_dimension($dimension,$cost);
             }
             
         } else {
@@ -228,7 +228,7 @@ class Costing_attributes extends CI_Controller {
       if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id = $this->uri->segment(3);
-            $data['dimension_details'] = $this->Costing_model->dimension_details_id($id);
+            $data['dimension_details'] = $this->costing_model->dimension_details_id($id);
             
             $this->load->view('modal_form/dimension', $data);
             
@@ -244,7 +244,7 @@ class Costing_attributes extends CI_Controller {
             $dimension = $this->input->post('dimension');
             $cost = $this->input->post('cost');
 
-           $data['dimension_details'] = $this->Costing_model->do_update_dimension($dimension, $cost, $id);
+           $data['dimension_details'] = $this->costing_model->do_update_dimension($dimension, $cost, $id);
             
             $this->load->view('modal_form/dimension', $data);
             
@@ -259,7 +259,7 @@ class Costing_attributes extends CI_Controller {
             
 
             $id     = $this->uri->segment(3);
-            $this->Costing_model->do_delete_dimension($id);
+            $this->costing_model->do_delete_dimension($id);
             
            
         } else {
@@ -275,11 +275,11 @@ class Costing_attributes extends CI_Controller {
     {   
      if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
-        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
-        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
-        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-        $data['labor_details'] = $this->Costing_model->labor_details();
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+        $data['labor_details'] = $this->costing_model->labor_details();
    
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $data);
@@ -303,7 +303,7 @@ class Costing_attributes extends CI_Controller {
                 $labor        = $this->input->post('labor');
                 $cost           = $this->input->post('cost');
                 
-                $this->Costing_model->do_add_labor($labor,$cost);
+                $this->costing_model->do_add_labor($labor,$cost);
             }
             
         } else {
@@ -315,7 +315,7 @@ class Costing_attributes extends CI_Controller {
       if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
             $id = $this->uri->segment(3);
-            $data['labor_details'] = $this->Costing_model->labor_details_id($id);
+            $data['labor_details'] = $this->costing_model->labor_details_id($id);
             
             $this->load->view('modal_form/labor', $data);
             
@@ -331,7 +331,7 @@ class Costing_attributes extends CI_Controller {
             $labor = $this->input->post('labor');
             $cost = $this->input->post('cost');
 
-           $data['labor_details'] = $this->Costing_model->do_update_labor($labor, $cost, $id);
+           $data['labor_details'] = $this->costing_model->do_update_labor($labor, $cost, $id);
             
             $this->load->view('modal_form/labor', $data);
             
@@ -346,7 +346,7 @@ class Costing_attributes extends CI_Controller {
             
 
             $id     = $this->uri->segment(3);
-            $this->Costing_model->do_delete_labor($id);
+            $this->costing_model->do_delete_labor($id);
             
            
         } else {

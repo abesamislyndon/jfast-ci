@@ -21,7 +21,7 @@
                                 <th>Cost</th>
                                 <th>Action</th>
                             </tr>
-                            <?php if (isset($ongoing) & ($ongoing <> NULL)) {?>  
+                               <?php if($ongoing== true){ ?>   
                             <?php foreach ($ongoing as $value):?>
                             <tr>
                                 <td><?php echo $value->job_request_id?></td>
@@ -60,7 +60,12 @@
                                 <td><a href="<?php echo base_url();?>joblist_bank/individual_invoice/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                             </tr>
                             <?php endforeach; ?>
-                            <?php }?>               
+                            <?php }else{?>
+                           <tr>
+                             <td colspan = "9" class = "no-result">NO RESULT</td>
+                            
+                           </tr> 
+                        <?php }?>                    
                         </table>
                     </div>
                     <!-- /.box-body -->

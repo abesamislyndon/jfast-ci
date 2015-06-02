@@ -6,7 +6,7 @@ class VerifyLogin extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('User', 'login', TRUE);
+        $this->load->model('user', 'login', TRUE);
     }
     
     // *************************** Default Login Page Controller ***************************************************************   
@@ -29,7 +29,7 @@ class VerifyLogin extends CI_Controller
               }
            if($this->session->userdata['logged_in']['role_code'] == '2')
               {
-                redirect(base_url('regular_customer'), 'refresh');
+                redirect(base_url('regular_customer/form'), 'refresh');
               }  
       
           }
@@ -40,7 +40,7 @@ class VerifyLogin extends CI_Controller
     
     function check_database($password)
     {
-        $this->load->model('User');
+        $this->load->model('user');
         $username = $this->input->post('username'); 
         $result   = $this->login->login($username,$password);
         
@@ -51,7 +51,7 @@ class VerifyLogin extends CI_Controller
             {
                 $sess_array = array(
                     'id' => $row->id,
-                    'Username' => $row->username,
+                    'username' => $row->username,
                     'role_code'=>$row->role_code,
                     'full_name'=>$row->full_name,
                   
@@ -65,7 +65,7 @@ class VerifyLogin extends CI_Controller
         else 
         {
             
-            $this->form_validation->set_message('check_database', 'Invalid Username or password <i class="fa fa-exclamation-circle"></i>');
+            $this->form_validation->set_message('check_database', 'Invalid username or password <i class="fa fa-exclamation-circle"></i>');
             return FALSE;
         }
     }

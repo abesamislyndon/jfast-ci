@@ -48,7 +48,7 @@
    <body class="skin-blue sidebar-mini">
       <div class="wrapper">
         <header class="main-header">
-        <a href="index2.html" class="logo">
+        <a href="<?php echo base_url(); ?>dashboard" class="logo">
           <span class="logo-mini"><b>J</b></span>
           <span class="logo-lg"><b>JFAST</b></span>
         </a>

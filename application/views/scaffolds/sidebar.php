@@ -33,7 +33,7 @@
             </li>
             <li>
               <a href="<?php echo base_url(); ?>joblist_bank/job_invoice_list">
-                <i class="fa fa-money"></i><span>Job Bank Invoice</span> <?php foreach($count_invoice_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+                <i class="fa fa-money"></i><span>Checkout and Invoice</span> <?php foreach($count_invoice_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li>
            
@@ -60,6 +60,18 @@
                 <li><a href="<?php echo base_url();?>costing_attributes/labor"><i class="fa fa-circle-o"></i>Labor</a></li>
               </ul>
             </li>
+
+              <li class="header">Driver Details </li>
+            <li class="treeview">
+              <a href="#">
+               <i class="fa fa-user"></i><span>Manage Driver</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url();?>driver_info/driver_list"><i class="fa fa-circle-o"></i>Driver List</a></li>
+              </ul>
+            </li>
+ 
  
 
           <li class="header">Search </li>
@@ -84,8 +96,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url();?>generate_history/jobBank"><i class="fa fa-circle-o"></i>Generate by Job Bank #</a></li>
-                <li><a href="<?php echo base_url();?>generate_history/invoice"><i class="fa fa-circle-o"></i>Search Invoice</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/jobBank"><i class="fa fa-circle-o"></i>Job Bank #</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/invoice"><i class="fa fa-circle-o"></i>Invoice #</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/invoice_with_sender"><i class="fa fa-circle-o"></i>Sender with invoice</a></li>
               </ul>
            </li>
 
@@ -97,7 +110,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url();?>manage_user_accounts/account_list"><i class="fa fa-circle-o"></i>Users List</a></li>
-                <li><a href="<?php echo base_url();?>manage_user_accounts/add_user"></i>Add new user</a></li>
+                <li><a href="<?php echo base_url();?>manage_user_accounts/add_user"><i class="fa fa-circle-o"></i>Add new user</a></li>
               </ul>
             </li>
           </ul>

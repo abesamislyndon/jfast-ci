@@ -15,7 +15,7 @@
                   <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
                   <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
                   <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
-                  <input type="hidden" name = "status" class="form-control" value = "2" />       
+                  <input type="hidden" name = "status" class="form-control" value = "2" /> 
 
                   <div class="form-group">
                      <label>Contact Person (Full name)</label>

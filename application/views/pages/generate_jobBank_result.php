@@ -77,7 +77,7 @@
                                              }elseif ($value->status == 4) {
                                               echo 'pending for checkout for invoice'; 
                                              }else{
-                                              echo 'job finished'; 
+                                              echo $value->remarks; 
                                              }
                                            ?>
                                      </td>
