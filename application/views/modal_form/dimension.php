@@ -1,9 +1,3 @@
-<div class="row">
-   <div class="col-md-5 item-details-modal"> 
-   </div>
-   <div class="col-md-7">
-   </div>
-</div>
 <div class = "confirm-div"></div>
 <?php echo validation_errors(); ?>
 <div class="row">

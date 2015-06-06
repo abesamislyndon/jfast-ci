@@ -12,7 +12,7 @@
             <div class = "confirm-div"></div>
             <div class="box box-info">
                <div class="box-header">
-                  <h3 class="box-title">Information Details</h3>
+                  <h3 class="box-title">1. Pickup Details</h3>
                </div>
                <div class="box-body">
                   <?php echo form_open_multipart('form/add_job_request','id="form1"' );?>  
@@ -35,15 +35,52 @@
                      <label for="exampleInputEmail1">Email</label>
                      <input type="email" name = "email" class="form-control  required" id="exampleInputEmail1" placeholder="Enter email" required/>
                   </div>
+                  <div class="form-group">
+                     <label>Pickup Address</label>
+                     <input type="text" name = "address" class="form-control  required" placeholder="Enter ..." required/>
+                  </div>
                </div>
             </div>
          </div><!--end of col-6-->
 
-         <div class="col-md-6">
+
+     <div class="col-md-6">
             <div class = "confirm-div"></div>
             <div class="box box-info">
                <div class="box-header">
-                  <h3 class="box-title">Job Delivery Decription</h3>
+                  <h3 class="box-title">2. Delivery Details</h3>
+               </div>
+               <div class="box-body">
+                  <div class="form-group">
+                     <label>Contact Person (Full name)</label>
+                     <input type="text" name = "full_name_deliver" class="form-control  required" placeholder="Enter ..." required/>
+                  </div>
+                  <div class="form-group">
+                     <label>Company</label>
+                     <input type="text" name = "company_client_deliver" class="form-control  required" placeholder="Enter ..." required/>
+                  </div>
+                  <div class="form-group">
+                     <label>Tel no.</label>
+                     <input type="text" name = "tel_no_deliver" class="form-control  required" placeholder="Enter ..." required/>
+                  </div>
+                  <div class="form-group">
+                     <label for="exampleInputEmail1">Email</label>
+                     <input type="email" name = "email_deliver" class="form-control  required" id="exampleInputEmail1" placeholder="Enter email" required/>
+                  </div>
+                  <div class="form-group">
+                     <label>Delivery Address</label>
+                     <input type="text" name = "address_deliver" class="form-control  required" placeholder="Enter ..." required/>
+                  </div>
+               </div>
+            </div>
+         </div><!--end of col-6-->
+
+
+         <div class="col-md-12">
+            <div class = "confirm-div"></div>
+            <div class="box box-info">
+               <div class="box-header">
+                  <h3 class="box-title">3. Date and Time Decription</h3>
                </div>
                <div class="box-body">
                   <div class="form-group">
@@ -66,15 +103,13 @@
                         </div>
                      </div>
                   </div>
-                  <div class="form-group">
-                     <label>Complete Address</label>
-                     <input type="text" name = "address" class="form-control  required" placeholder="Enter ..." required/>
-                  </div>
+                  
           
                </div>
             </div>
          </div><!--end of col-6-->
       </div>
+      
       <!--end of row--> 
       <div class="row">
          <!--/.col (right) -->
@@ -83,7 +118,7 @@
                <div class="panel-body">
                   <div class="box box-info">
                     <div class="box-header">
-                     <h3 class="box-title">Costing Details</h3>
+                     <h3 class="box-title">4. Costing Details</h3>
                    </div>
                     <table class="table table-bordered table-custom">
                      <tr>
@@ -198,11 +233,9 @@
                            </div>
                         </td>
 
-                         <td><input id = "subtotal" type="text" class="subtotal form-control" value="" disabled/></td>
-                          <td><input id = "gst" type="text" class="gst form-control" value="" disabled/></td>
-                         <td><input id = "sum" type="text" class="total form-control" value="" disabled/>
-                        </td>
-
+                      <td><input id = "subtotal" type="text" class="subtotal form-control" value="" disabled/></td>
+                      <td><input id = "gst" type="text" class="gst form-control" value="" disabled/></td>
+                      <td><input id = "sum" type="text" class="total form-control" value="" disabled/></td>
                      </tr>
                   </table>
                  </div>
@@ -212,7 +245,7 @@
          <div class="col-md-12">
             <div class="box box-info">
                <div class="box-header">
-                  <h3 class="box-title">Delivery Description</h3>
+                  <h3 class="box-title">5. Description</h3>
                </div>
                <div class="box-body">
                   <div class='box'>

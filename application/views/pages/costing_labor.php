@@ -47,12 +47,11 @@
                      </div>
                   </div>
                </form>   
-                 <!--end of modal-->
-
+             <!--end of modal-->
             </div><!-- /.box -->
          </div>
 
-     <div class="col-md-6">
+      <div class="col-md-6">
             <div class = "confirm-div"></div>
             <div class="box">
                <div class="box-header">

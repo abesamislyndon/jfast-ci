@@ -208,7 +208,11 @@ $(document).ready(function() {
 });
 </script>
 
-
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
   </body>
 </html>

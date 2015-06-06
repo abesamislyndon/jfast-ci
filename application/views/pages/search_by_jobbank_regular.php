@@ -25,15 +25,13 @@
                            <tr>
                               <th style="width:100px">Job Bank id</th>
                               <th>Date Request</th>
-                              <th>Client name</th>
-                              <th>Company</th>
-                              <th>Tel no.</th>
-                              <th>Destination</th>
-                              <th>Pickup Address</th>
-                              <th>Details</th>
-                              <th>Customer Sender</th>
+                              <th>Client Details</th>
+                              <th style="width:290px">Address Details</th>
+                              <th>Delivery Details</th>
+                              <th>Regular Customer Sender</th>
                               <th>Cost</th>
-                              <th>Remarks</th>
+                              <th style="width:90px">Remarks</th>
+                              <th>Cost</th>
                               <th>Action</th>
                            </tr>
                         </thead>

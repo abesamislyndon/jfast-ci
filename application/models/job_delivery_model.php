@@ -2,8 +2,11 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Job_delivery_model extends CI_Model
 {
-    function do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $address, $company_client)
-    {
+    function do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, 
+                    $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, 
+                    $labor, $labor_cost, $dimension, $dimension_cost, $address, $company_client,
+                    $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver)
+     {
         
         $this->db->select('*');
         $this->db->where('id', $destination);
@@ -54,14 +57,23 @@ class Job_delivery_model extends CI_Model
             'full_name' => $full_name,
             'tel_no' => $tel_no,
             'email' => $email,
+             'address' => $address,
+            'company_client' => $company_client,
+
+            'full_name_deliver' => $full_name_deliver,
+            'tel_no_deliver' => $tel_no_deliver,
+            'email_deliver' => $email_deliver,
+             'address_deliver' => $address_deliver,
+            'company_client_deliver' => $company_client_deliver,
+         
+
             'date_request' => $mysql_date,
             'time' => $time,
             'job_details' => $job_details,
             'sender' => $sender,
             'sender_id' => $id,
             'status' => $status,
-            'address' => $address,
-            'company_client' => $company_client,
+           
             
             'destination' => $destination1,
             'destination_id' => $destination,
@@ -228,7 +240,8 @@ class Job_delivery_model extends CI_Model
     }
     
     
-    function update_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $job_request_id, $company_client)
+    function update_job_request($full_name, $company_client,  $tel_no, $email, $address,
+                                $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $job_request_id)
     {
         
         $this->db->select('*');
@@ -271,19 +284,33 @@ class Job_delivery_model extends CI_Model
         $dimension1     = $di[0]->dimension;
         $dimension_cost = $di[0]->cost;
         
+
+         $cal_date   = $date_request;
+        $format     = strtotime($cal_date);
+        $mysql_date = date('Y-m-d', $format);
         
         
         $row = array(
+
             'full_name' => $full_name,
             'tel_no' => $tel_no,
             'email' => $email,
-            'date_request' => $date_request,
+            'address'=>$address,
+            'company_client' => $company_client,
+
+            'full_name_deliver' => $full_name_deliver,
+            'company_client_deliver' => $company_client_deliver,
+            'tel_no_deliver' => $tel_no_deliver,
+            'email_deliver' => $email_deliver,
+            'address_deliver'=>$address_deliver,
+           
             'time' => $time,
+            'date_request' =>  $mysql_date,
             'job_details' => $job_details,
             'sender' => $sender,
             'sender_id' => $id,
             'status' => 1,
-            'company_client' => $company_client,
+          
             
             'destination' => $destination1,
             'destination_id' => $destination,

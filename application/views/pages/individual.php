@@ -5,7 +5,7 @@
             <!-- general form elements disabled -->
             <div class="box box-info">
                <div class="box-header">
-                  <h3 class="box-title">Information Details</h3>
+                  <h3 class="box-title">Pickup Details</h3>
                </div>
                <!-- /.box-header -->
                <div class="box-body">
@@ -33,38 +33,89 @@
                      <label for="exampleInputEmail1">Email address</label>
                      <input type="email" name = "email" class="form-control" id="exampleInputEmail1" value = "<?php echo $value->email ?>">
                   </div>
-                  
-                   <div class="form-group">
+                  <div class="form-group">
+                    <label>Address</label>
+                     <input type="text" name = "address" class="form-control" value = "<?php echo $value->address ?>"/>
+                  </div>
+                
+               </div>
+          </div>
+
+
+             <div class="box box-info">
+               <div class="box-header">
+                  <h3 class="box-title">Delivery Details</h3>
+               </div>
+               <!-- /.box-header -->
+               <div class="box-body">
+                  <div class="form-group">
+                     <label>Contact Person (Full name)</label>
+                     <input type="text" name = "full_name_deliver" class="form-control" value = "<?php echo $value->full_name_deliver ?>"/>
+                  </div>
+                  <div class="form-group">
+                     <label>Company</label>
+                     <input type="text" name = "company_client_deliver" class="form-control" value = "<?php echo $value->company_client_deliver ?>"/>
+                  </div>
+                  <div class="form-group">
+                     <label>Tel no.</label>
+                     <input type="text" name = "tel_no_deliver" class="form-control" value = "<?php echo $value->tel_no_deliver ?>"/>
+                  </div>
+                  <div class="form-group">
+                     <label for="exampleInputEmail1">Email address</label>
+                     <input type="email" name = "email_deliver" class="form-control" id="exampleInputEmail1" value = "<?php echo $value->email_deliver ?>">
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                     <input type="text" name = "address_deliver" class="form-control" value = "<?php echo $value->address_deliver ?>"/>
+                  </div>
+                
+               </div>
+            </div>
+
+         <!--************************************************end of pickup delivery *****************************-->   
+
+
+          <div class="box box-info">
+               <div class="box-header">
+                  <h3 class="box-title">Date and time Details</h3>
+               </div>
+               <!-- /.box-header -->
+               <div class="box-body">      
+                  <div class="form-group">
                      <label>Date</label>
                      <div class="input-group">
                         <div class="input-group-addon">
                            <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" name = "date_request" class="form-control pull-right" id="datepicker" value = "<?php echo $value->date_request ?>"/>
+                        <input type="text" name = "date_request" class="form-control pull-right  required" id="datepicker" value = "<?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?>"/>
                      </div>
                   </div>
-           
                   <div class="bootstrap-timepicker">
                      <div class="form-group">
                         <label>Time</label>
                         <div class="input-group">
-                           <input type="text" name = "time" class="form-control timepicker" value = "<?php echo $value->time ?>"/>
+                           <input type="text" name = "time" class="form-control timepicker  required" value = "<?php echo $value->time ?>"/>
                            <div class="input-group-addon">
                               <i class="fa fa-clock-o"></i>
                            </div>
                         </div>
                      </div>
                   </div>
-               </div>
+                  
+               </div><!--******** end of box body ****************-->
                <div class = "confirm-div">
                   <p><?php echo $this->session->flashdata('msg'); ?></p>
                </div>
-            </div>
-         </div>
+            </div><!--end og box info-->
+
+         </div><!--*********************************************end of column 5*********************************-->
 
 
          <div class="col-md-7">
-            <!-- general form elements disabled -->
+            <div class = "confirm-div">
+                  <p><?php echo $this->session->flashdata('msg'); ?></p>
+               </div>
+
             <div class="box box-info">
                <div class="box-header">
                   <h3 class="box-title">Job Delivery Decription</h3>
@@ -206,7 +257,10 @@
                   </div>
                   <div class='box'>
                      <div class='box-header'>
-                        <label>Complete Job Details</label>
+                          <div class="box-header">
+                          <h3 class="box-title">Description Details</h3>
+                       </div>
+               
                         <div class="pull-right box-tools">
                            <button class="btn btn-default btn-sm" data-widget='collapse' data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                            <button class="btn btn-default btn-sm" data-widget='remove' data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>

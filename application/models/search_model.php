@@ -6,6 +6,7 @@ class  Search_model extends CI_Model
         
         $this->db->select('*');
         $this->db->from('job_delivery');
+       // $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
         $this->db->where('job_delivery.job_request_id', $jobBank_id);
         $query = $this->db->get();
         
@@ -85,18 +86,20 @@ class  Search_model extends CI_Model
        
        $this->db->select('*');
        $this->db->from('job_delivery');
+       $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
        //$this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
        //$this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
       
        //$this->db->where('job_delivery.status', '5');
        $this->db->where('job_delivery.date_request >=',  $mysql_from);
        $this->db->where('job_delivery.date_request <=',  $mysql_to);
-       $this->db->order_by('job_delivery.date_request','ASC');
+       //$this->db->order_by('job_delivery.date_request','ASC');
        $query = $this->db->get();
        return $query->result();
 
     } 
 
+   
 
      function do_generate_jobBank_regular($from, $to, $sender){      
 
@@ -110,10 +113,7 @@ class  Search_model extends CI_Model
        
        $this->db->select('*');
        $this->db->from('job_delivery');
-       //$this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
-       //$this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
-      
-       //$this->db->where('job_delivery.status', '5');
+   
        $this->db->where('job_delivery.date_request >=',  $mysql_from);
        $this->db->where('job_delivery.date_request <=',  $mysql_to);
         $this->db->where('job_delivery.sender',$sender);

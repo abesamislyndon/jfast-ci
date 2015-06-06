@@ -96,6 +96,27 @@ label.costing {
     text-align: left;
     list-style: square;
 }
+.details1 {
+    text-align: left;
+    list-style: square;
+}
+.details2 {
+    text-align: left;
+}
+.details1  li:first-child{
+    list-style: none;
+    font-size:15px;
+    padding-bottom:5px;
+    color:red;
+    font-weight: bold;  
+}
+.details2  li:first-child{
+    list-style: none;
+    font-size:15px;
+    padding-bottom:5px;
+    color:red;
+    font-weight: bold;  
+}
 .bg-blue {
     padding: 10px 20px;
     font-size: 15px;
@@ -135,9 +156,7 @@ th {
 .bg-aqua:hover {
     color: #fff !important;
 }
-.details {
-    height: 250px !important;
-}
+
 #loading {
     display: none;
     position: fixed;
@@ -181,4 +200,22 @@ th {
     font-size: 14px;
     font-weight: bold;
     color: #424242 !important;
+}
+tbody tr:nth-child(odd) {
+   background-color: #f8f8f8;
+}
+.table-custom tr:hover{
+    background-color: #ededed;
+}
+.cost{
+    color:red;
+    font-weight: bold;
+    font-size: 15px; 
+}
+.up{
+    margin-top:-530px; 
+}
+.box-title{
+    font-weight: bold;
+    color: #01579B !important;
 }

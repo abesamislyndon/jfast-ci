@@ -16,7 +16,6 @@ class Search extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
-            
             $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
             $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
             $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
@@ -75,7 +74,8 @@ class Search extends CI_Controller
             $jobBank_id  = $this->input->get('name');
             $data['res'] = $this->Search_model->fetch_search_jobBank($jobBank_id);
             $data["links"] = $this->pagination->create_links();
-            $this->load->view('pages/search_jobbank', $data);
+
+            $this->load->view('pages/search_jobBank', $data);
             
             
         } else {

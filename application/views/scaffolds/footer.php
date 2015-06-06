@@ -13,8 +13,7 @@
     <script src="<?php echo base_url();?>asset/dist/js/demo.js" type="text/javascript"></script>
     <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
     <script src="<?php echo base_url();?>asset/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
- <?php $sample = '11111'; ?>    
- <script src="<?php echo base_url();?>asset/dist/js/pages/dashboard2.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>asset/dist/js/pages/dashboard2.js" type="text/javascript"></script>
 
     <script type="text/javascript">
       $(function () {
@@ -36,7 +35,7 @@
     }
   });
  </script>
-
+<!-- for auto populate for -->
  <script>  
         function calljavascriptfunction(){
           $.ajax({
@@ -69,13 +68,13 @@
 </script>
 
   <script type="text/javascript">
-            $('form#process1').submit(function(e){
+            $('form#process2').submit(function(e){
                 e.preventDefault();
-                makeAjaxRequest();
+                makeAjaxRequest1();
                 return false;
             });
 
-            function makeAjaxRequest(){
+            function makeAjaxRequest1(){
                 $.ajax({
                     url: '<?php echo base_url();?>search/result_jobBank',
                     type: 'get',
@@ -109,14 +108,13 @@
 
 <script>
     var deleteLink = document.querySelector('.delete');
-deleteLink.addEventListener('click', function(event) {
-  event.preventDefault();
+    deleteLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    var choice = confirm(this.getAttribute('data-confirm'));
   
-  var choice = confirm(this.getAttribute('data-confirm'));
-  
-  if (choice) {
+    if (choice) {
     window.location.href = this.getAttribute('href');
-  }
+    }
 });
     
 </script>
@@ -187,7 +185,11 @@ deleteLink.addEventListener('click', function(event) {
   }
   </script>
 
-
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
  
   </body>
 </html>

@@ -10,7 +10,7 @@
                </div>
                <!-- /.box-header -->
                <div class="box-body">
-                  <?php echo form_open_multipart('costing_attributes/add_location','id="form1"' );?>  
+                  <?php echo form_open_multipart('Driver_info/add_driver','id="form1"' );?>  
                   <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
                   <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
                   <input type="hidden" name = "status" class="form-control" value = "1" />       
@@ -35,7 +35,7 @@
                </div>
                <!-- /.box-body -->
 
-               <?php echo form_open_multipart('costing_attributes/update_location','id="form1"' );?>  
+               <?php echo form_open_multipart('Driver_info/update_driver','id="form1"' );?>  
                   <!--modal-->
                   <div id="spec" class="modal modal2"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
                      <div class="modal-dialog">
@@ -84,9 +84,9 @@
                         <td><?php echo $value->company; ?></td>
                         <td><?php echo $value->address; ?></td>
                         <td><?php echo $value->contact_num; ?></td>
-                        <td><a href="#spec" role="button"  class="badge bg-blue custom" data-toggle="modal" data-load-remote="<?php echo base_url();?>costing_attributes/modal_location/<?php echo $value->id; ?>" data-remote-target="#spec .modal-body"> <i class="fa fa-pencil-square-o"></i></a>
+                        <td><a href="#spec" role="button"  class="badge bg-blue custom" data-toggle="modal" data-load-remote="<?php echo base_url();?>Driver_info/modal_driver/<?php echo $value->id; ?>" data-remote-target="#spec .modal-body"> <i class="fa fa-pencil-square-o"></i></a>
                         </td>
-                        <td><a href="<?php echo base_url();?>costing_attributes/delete_location/<?php echo $value->id ?>" onclick="return confirm('Are you sure you want to Delete?');"><span class="badge bg-red custom"><i class="fa fa-trash-o"></i></span></a></td>
+                        <td><a href="<?php echo base_url();?>Driver_info/delete_driver/<?php echo $value->id ?>" onclick="return confirm('Are you sure you want to Delete?');"><span class="badge bg-red custom"><i class="fa fa-trash-o"></i></span></a></td>
                      </tr>
                      <?php endforeach; ?>  
                   </table>

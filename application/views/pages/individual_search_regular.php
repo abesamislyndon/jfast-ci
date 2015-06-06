@@ -97,12 +97,13 @@
                         </div>
                      </div>
                      <div class='box-body pad'>
-                       <textarea class="form-control details" name = "job_details" rows="3"  disabled><?php echo $value->job_details ?></textarea>
+                       <textarea class="form-control details  " name = "job_details" rows="3"  disabled><?php echo strip_tags($value->job_details); ?></textarea>
                      </div>
                   </div>
                   <?php endforeach; ?>
                   <div class="col-sm-7">
-                     <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Generate Pdf&nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
+                                  <td><a href="<?php echo base_url();?>create_pdf/print_invoice_regular/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom">&nbsp;&nbsp;generate&nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;</span></a></td>
+                 
                   </div>
              
                </div>

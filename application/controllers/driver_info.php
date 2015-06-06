@@ -1,10 +1,8 @@
 <?php
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+if (!defined('BASEPATH'))exit('No direct script access allowed');
+
 class Driver_info extends CI_Controller
-{
-    
-    
+{    
     function __construct()
     {
         parent::__construct();
@@ -17,8 +15,8 @@ class Driver_info extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
-            $id = $this->uri->segment(3);
-            $data['individual'] = $this->Job_delivery_model->show_individual($id);         
+            $id                  = $this->uri->segment(3);
+            $data['individual']  = $this->Job_delivery_model->show_individual($id);
             $data['driver_info'] = $this->Driver_info_model->get_driver_info();
             
             $this->load->view('modal_form/allocate', $data);
@@ -73,10 +71,11 @@ class Driver_info extends CI_Controller
         }
         
     }
-
-
-    public function driver_list(){
-
+    
+    
+    public function driver_list()
+    {
+        
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
             $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
@@ -91,6 +90,66 @@ class Driver_info extends CI_Controller
         } else {
             redirect('login', 'refresh');
         }
+    }
+    
+    public function add_driver()
+    {
+        if ($this->input->post('submit')) {
+            $driver_name = $this->input->post('driver_name');
+            $company     = $this->input->post('company');
+            $address     = $this->input->post('address');
+            $contact_num = $this->input->post('contact_num');
+            
+            $this->Driver_info_model->do_add_driver($driver_name, $company, $address, $contact_num);
+            
+        }
+    }
+    
+    public function modal_driver()
+    {
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+            
+            $id                     = $this->uri->segment(3);
+            $data['driver_details'] = $this->Driver_info_model->driver_details_id($id);
+            
+            $this->load->view('modal_form/driver', $data);
+            
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    
+    public function update_driver()
+    {
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+            
+            $id          = $this->input->post('id');
+            $driver_name = $this->input->post('driver_name');
+            $company     = $this->input->post('company');
+            $address     = $this->input->post('address');
+            $contact_num = $this->input->post('contact_num');
+            
+            $this->Driver_info_model->do_update_driver($driver_name, $company, $address, $contact_num, $id);
+            
+            
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    
+    public function delete_driver()
+    {
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+            
+            $id = $this->uri->segment(3);
+            $this->Driver_info_model->do_delete_driver($id);
+            
+        } else {
+            redirect('login', 'refresh');
+        }
+        
     }
     
     

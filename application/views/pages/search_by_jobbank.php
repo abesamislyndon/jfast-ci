@@ -9,7 +9,7 @@
                      <div class="box-header">
                         <h3 class="box-title">SEARCH BY JOB BANK</h3>
                         <br><br>
-                        <form role="form" method="get" class="form-search" id = "process1">
+                        <form role="form" method="get" class="form-search" id = "process2">
                            <div class="input-group custom-search-form col-sm-8">
                               <span class="input-group-btn">
                               <input type="text" class="form-control" id = "search" name = "search_input" autocomplete="off">
@@ -19,19 +19,17 @@
                      </div>
                      <br>
                      <table class="table table-bordered" id = "resultTable">
-                        <thead>
+                      <thead>
                            <tr>
                               <th style="width:100px">Job Bank id</th>
                               <th>Date Request</th>
-                              <th>Client name</th>
-                              <th>Company</th>
-                              <th>Tel no.</th>
-                              <th>Destination</th>
-                              <th>Pickup Address</th>
-                              <th>Details</th>
-                              <th>Customer Sender</th>
+                              <th>Client Details</th>
+                              <th>Address Details</th>
+                              <th style="width:200px">Delivery Details</th>
+                              <th>Regular Customer Sender</th>
                               <th>Cost</th>
                               <th>Remarks</th>
+                              <th>Cost</th>
                               <th>Action</th>
                            </tr>
                         </thead>
