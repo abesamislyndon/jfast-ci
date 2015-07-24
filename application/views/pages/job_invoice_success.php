@@ -20,8 +20,6 @@
                           <?php foreach ($invoice_details as $value){?>
                            <li><a href = "<?php echo base_url();?>create_pdf/print_invoice/<?php echo $value->job_request_id ?>"  class =  "btn btn-success btn-lg" target = "_blank"><i class="fa fa-print"></i>&nbsp;&nbsp;&nbsp;&nbsp;INVOICE #&nbsp;&nbsp;<?php echo $value->id ?></a></li>
                           <?php } ?>
-                          </ul>
-                          <ul>
                             <li><a href="<?php echo base_url(); ?>joblist_bank/job_invoice_list" class =  "btn btn-info btn-lg"> <i class="fa fa-files-o"></i> &nbsp;&nbsp;Job Bank Invoice</a></li>
                             <li><a href="<?php echo base_url(); ?>joblist_bank/ongoing_job_list" class =  "btn btn-info btn-lg"> <i class="fa fa-files-o"></i> &nbsp;&nbsp;Ongoing Job Bank</a></li>
                             <li><a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist" class =  "btn btn-info btn-lg"><i class="fa fa-truck"></i>&nbsp;&nbsp;Allocate Job Bank</a></li>

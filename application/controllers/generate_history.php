@@ -2,8 +2,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 class Generate_history extends CI_Controller
-{
-    
+{ 
     function __construct()
     {
         parent::__construct();
@@ -30,7 +29,8 @@ class Generate_history extends CI_Controller
             redirect('login', 'refresh');
         }
     }
-        public function jobBank_regular()
+    
+    public function jobBank_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
                    
@@ -80,7 +80,7 @@ class Generate_history extends CI_Controller
         }
     }
 
-     public function jobBank_generate_regular()
+    public function jobBank_generate_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
  
@@ -95,7 +95,7 @@ class Generate_history extends CI_Controller
            $ses_date_to = $this->session->userdata('date_to');
            $data['date_to'] = $ses_date_to;
 
-          $sender = $this->session->userdata["logged_in"]["full_name"]; 
+         $sender = $this->session->userdata["logged_in"]["id"]; 
 
            $data['result'] = $this->Search_model->do_generate_jobBank_regular($from, $to, $sender);
                    
@@ -132,7 +132,7 @@ class Generate_history extends CI_Controller
         }
     }
 
-      public function invoice_generate()
+    public function invoice_generate()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
  
@@ -165,8 +165,7 @@ class Generate_history extends CI_Controller
 
 //****************************************** inovice regular**************************************************************************
 
-
-      public function invoice_regular()
+    public function invoice_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
                    
@@ -185,7 +184,7 @@ class Generate_history extends CI_Controller
         }
     }
 
-  public function invoice_generate_regular()
+    public function invoice_generate_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
  
@@ -200,7 +199,7 @@ class Generate_history extends CI_Controller
            $ses_date_to = $this->session->userdata('date_to');
            $data['date_to'] = $ses_date_to;
 
-           $sender = $this->session->userdata["logged_in"]["full_name"]; 
+           $sender = $this->session->userdata["logged_in"]["id"]; 
 
            $data['result'] = $this->Search_model->do_generate_invoice_regular($from, $to, $sender);
                    
@@ -220,7 +219,7 @@ class Generate_history extends CI_Controller
 
 // *********************************************************************************** invoice with sender ****************************************
 
-        public function invoice_with_sender()
+    public function invoice_with_sender()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
                    
@@ -239,15 +238,19 @@ class Generate_history extends CI_Controller
         }
     }
 
-
-      public function invoice_generate_sender()
+    public function invoice_generate_sender()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
  
            $from = $this->input->post('from');
            $to = $this->input->post('to');
            $sender = $this->input->post('sender');
-            $data['sender_list'] = $this->Job_delivery_model->sender_info();
+           $data['sender_list'] = $this->Job_delivery_model->sender_info();
+
+
+            $this->session->set_userdata('sender', $sender);
+           $sender1= $this->session->userdata('sender');
+           $data['sender'] = $sender1;
  
            $this->session->set_userdata('date_from', $from);
            $ses_date_from = $this->session->userdata('date_from');
@@ -258,6 +261,8 @@ class Generate_history extends CI_Controller
            $data['date_to'] = $ses_date_to;
 
            $data['result'] = $this->Search_model->do_generate_invoice_sender($from, $to, $sender);
+           $data['sample'] = $this->Job_delivery_model->sample($sender); 
+
                    
            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();

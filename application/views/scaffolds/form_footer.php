@@ -17,6 +17,7 @@
     <script src="<?php echo base_url();?>asset/dist/js/app.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url();?>asset/dist/js/demo.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="<?php echo base_url(); ?>asset/js/stacktable.js"></script>
  
 
     <script type="text/javascript"> 
@@ -80,7 +81,7 @@
                 numberOfMonths: 1,
                 changeYear:true,
                 yearRange: "2005:2015",
-                dateFormat: "yy-mm-dd",
+                format: "yy-mm-dd",
                 autoclose: true,
                 todayHighlight: true,
                 onClose: function( selectedDate ) {
@@ -93,7 +94,7 @@
                 numberOfMonths:1,
                 changeYear:true,
                 yearRange: "2005:2015",
-                dateFormat: "yy-mm-dd",
+                 format: "yy-mm-dd",
                 autoclose: true,
                 todayHighlight: true,
                 onClose: function( selectedDate ) {
@@ -158,9 +159,19 @@
          data : 'name='+ $('#name').val(),
          url : '<?php echo base_url();?>driver_info/populate2/',
          success : function(data){
-           $('#contact_num').val(data);
+           $('#contact_no').val(data);
          }
      });
+
+   $.ajax({
+         type : 'POST',
+         data : 'name='+ $('#name').val(),
+         url : '<?php echo base_url();?>driver_info/populate3/',
+         success : function(data){
+           $('#driver_id').val(data);
+         }
+     });
+
     }
 
    </script>
@@ -214,5 +225,70 @@ function goBack() {
 }
 </script>
 
-  </body>
+
+<script>
+  $(document).on('click', '#run', function(e) {
+    e.preventDefault();
+    $('#simple-example-table').stacktable({hideOriginal:true});
+    $(this).replaceWith('<span>ran</span>');
+  });
+  $('#responsive-example-table').stacktable({myClass:'stacktable small-only'});
+  $('#card-table').cardtable({myClass:'stacktable small-only' });
+  $('#agenda-example').stackcolumns({myClass:'stacktable small-only' });
+</script>
+
+
+<script>
+  $(function(){
+      $('.ck , ck1').click(function(){
+          if($('.ck:checked').length > 0){
+               $('#show').show();
+          }else{
+               $('#show').hide(); 
+          }
+      });
+      
+      $('.ck1').click(function(){
+           if($('.ck1:checked').length > 0){
+               $('#show1').show();
+            }else{
+               $('#show1').hide(); 
+          }
+      });
+
+      $('.ck2').click(function(){
+           if($('.ck2:checked').length > 0){
+               $('#show2').show();
+            }else{
+               $('#show2').hide(); 
+          }
+      });
+
+      $('.ck3').click(function(){
+           if($('.ck3:checked').length > 0){
+               $('#show3').show();
+            }else{
+               $('#show3').hide(); 
+          }
+      });
+
+      $('.ck4').click(function(){
+           if($('.ck4:checked').length > 0){
+               $('#show4').show();
+            }else{
+               $('#show4').hide(); 
+          }
+      });
+
+      $('.ck5').click(function(){
+           if($('.ck5:checked').length > 0){
+               $('#show5').show();
+            }else{
+               $('#show5').hide(); 
+          }
+      });
+
+  });
+</script>
+</body>
 </html>

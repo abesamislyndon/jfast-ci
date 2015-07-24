@@ -13,6 +13,15 @@ class  Costing_model extends CI_Model
         return $result = $query->result();
     }
 
+    function location_details1($id){
+      
+        $this->db->select('*');
+        $this->db->where('id', $id);
+        $this->db->from('destination');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
        function location_details_id($id){
       
         $this->db->select('*');

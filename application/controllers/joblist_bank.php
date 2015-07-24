@@ -41,11 +41,10 @@ class Joblist_bank extends CI_Controller {
         $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
         $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
 
-   
- 	      $this->load->view('scaffolds/header');
-	      $this->load->view('scaffolds/sidebar', $data);
-		    $this->load->view('pages/incoming_joblist', $data);
-		    $this->load->view('scaffolds/footer');
+ 	    $this->load->view('scaffolds/header');
+	    $this->load->view('scaffolds/sidebar', $data);
+		$this->load->view('pages/incoming_joblist', $data);
+		$this->load->view('scaffolds/footer');
         
      }
      else{
@@ -86,10 +85,10 @@ class Joblist_bank extends CI_Controller {
         $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
         $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
    
-	      $this->load->view('scaffolds/header');
+	    $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $data);
-	      $this->load->view('pages/allocate_joblist', $data);
-	      $this->load->view('scaffolds/footer'); 
+	    $this->load->view('pages/allocate_joblist', $data);
+	    $this->load->view('scaffolds/footer'); 
      }
      else{
 			  redirect('login', 'refresh');
@@ -221,12 +220,11 @@ class Joblist_bank extends CI_Controller {
         $data['labor'] = $this->job_delivery_model->labor();
 
         $this->load->view('scaffolds/header');
-        $this->load->view('scaffolds/sidebar', $data);
         $this->load->view('pages/individual_search', $data);
         $this->load->view('scaffolds/form_footer');
    }
 
-       public function individual_search_regular(){
+    public function individual_search_regular(){
 
         $id = $this->uri->segment(3);
         $data['individual'] = $this->job_delivery_model->show_individual($id);
@@ -261,9 +259,9 @@ class Joblist_bank extends CI_Controller {
         $data['labor'] = $this->job_delivery_model->labor();
    
         $this->load->view('scaffolds/header');
-	      $this->load->view('scaffolds/sidebar', $data);
-	      $this->load->view('pages/individualAllocate', $data);
-		    $this->load->view('scaffolds/footer');
+	    $this->load->view('scaffolds/sidebar', $data);
+	    $this->load->view('pages/individualAllocate', $data);
+		$this->load->view('scaffolds/footer');
    }
 
     public function choose_allocate_individual()
@@ -280,12 +278,13 @@ class Joblist_bank extends CI_Controller {
     public function add_allocate(){
          if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
                
-                $job_bank_id     = $this->input->post('job_bank_id');
-                $name            = $this->input->post('name');
-                $address         = $this->input->post('address');
-                $contact_num     = $this->input->post('contact_num');
+             $job_bank_id     = $this->input->post('job_bank_id');
+             $name            = $this->input->post('name');
+             $address         = $this->input->post('address');
+             $contact_no     = $this->input->post('contact_no');
+             $driver_id     = $this->input->post('driver_id');
 
-                $this->job_delivery_model->do_add_allocate($job_bank_id, $name, $address, $contact_num);
+             $this->job_delivery_model->do_add_allocate($job_bank_id, $name, $address, $contact_no, $driver_id);
             
         } else {
             redirect('login', 'refresh');
@@ -317,6 +316,31 @@ class Joblist_bank extends CI_Controller {
             redirect('login', 'refresh');
         }
    }
+       public function individualOngoingView(){
+    
+     if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+           
+        $id = $this->uri->segment(3);
+        $data['individual'] = $this->job_delivery_model->show_individual($id);
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+
+        $data['from'] = $this->job_delivery_model->destination();
+        $data['weight'] = $this->job_delivery_model->weight();
+        $data['dimension'] = $this->job_delivery_model->dimension();
+        $data['labor'] = $this->job_delivery_model->labor();
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar', $data);
+        $this->load->view('pages/individualOngoingView', $data);
+        $this->load->view('scaffolds/footer');
+
+          } else {
+            redirect('login', 'refresh');
+        }
+   }
 
     public function job_complete(){
            if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
@@ -330,7 +354,7 @@ class Joblist_bank extends CI_Controller {
     }
 
 
-        public function individual_invoice(){
+    public function individual_invoice(){
 
         $id = $this->uri->segment(3);
         $data['individual'] = $this->job_delivery_model->show_individual($id);
@@ -350,9 +374,8 @@ class Joblist_bank extends CI_Controller {
         $this->load->view('scaffolds/footer');
    }
 
-
-       public function job_invoice(){
-           if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+   public function job_invoice(){
+       if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             
                 $id = $this->input->post('job_request_id');
                 $this->job_delivery_model->do_job_invoice($id);
@@ -361,12 +384,10 @@ class Joblist_bank extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
-
-
-
+    
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file joblist_bank.php */
+/* Location: ./application/controllers/joblist_bank.php */
 
 

@@ -9,7 +9,8 @@
                </div>
                <!-- /.box-header -->
                <div class="box-body">
-                  <table class="table table-bordered table-custom">
+                  <table class="table table-bordered table-custom" id = "card-table">
+                   <thead> 
                      <tr>
                         <th style="width:40px">id</th>
                               <th>Date Request</th>
@@ -23,9 +24,9 @@
                               <th>Remarks</th>
                               <th>Actions</th>
                      </tr>
+                   </thead>  
                       <?php if($ongoing== true){ ?>   
                      <?php foreach ($ongoing as $value):?>
-                    
                         <tr>
                              <td><?php echo $value->job_request_id?></td>
                              <td><?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?></td>
@@ -35,7 +36,7 @@
                                    <li><b>Contact Person:</b>&nbsp;&nbsp;<?php echo $value->full_name?></li>
                                    <li><b>Company:</b>&nbsp;&nbsp;<?php echo $value->company_client?></li>
                                    <li><b>Tel. No.:</b>&nbsp;&nbsp;<?php echo $value->tel_no?></li>
-                                   <li><b>Pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address?></li>
+                                   <li><b>Pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address_pickup?></li>
                                 </ul>
                              </td>
                              <td>
@@ -56,14 +57,14 @@
                              </td>
                            <td>
                                <ul class = "details">
-                                  <li><b>Driver Name:</b>&nbsp;<?php echo $value->name?></li>
+                                  <li><b>Driver Name:</b>&nbsp;<?php echo $value->full_name?></li>
                                   <li><b>Company:</b>&nbsp;<?php echo $value->company?></li>
                                   <li><b>Address:</b>&nbsp;<?php echo $value->address?></li>
-                                  <li><b>Contact #:</b>&nbsp;<?php echo $value->contact_num?></li>
+                                  <li><b>Contact #:</b>&nbsp;<?php echo $value->contact_no?></li>
                                </ul>
                             </td>
                              <td><?php echo $value->sender?></td>
-                             <td class = "cost"><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+                            <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td> 
                                  <td class = "remarks"><br>
                                    <?php
                                      if($value->status == 1) {
@@ -84,8 +85,7 @@
                      <?php  endforeach; 
                        }else{?>
                    <tr>
-                     <td colspan = "9" class = "no-result">NO RESULT</td>
-                    
+                     <td colspan = "9" class = "no-result">NO RESULT</td>            
                    </tr>
                 <?php }?>
 

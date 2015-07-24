@@ -3,7 +3,6 @@
         color:red;
         font-weight: bold;
     }
-
     table{
         margin-top:20px;
         border-collapse: collapse !important; 
@@ -18,7 +17,6 @@
     }
     th{
         padding:5px 8px;
-        text-align: center;
         background:#ccc;
         border-collapse: collapse;
         border: none;
@@ -65,7 +63,10 @@
     }
     span{
         padding-bottom-bottom: 120px !important;
-    }    
+    } 
+    .sample{
+        background: red !important;
+    }   
 </style>
 
   <?php 
@@ -73,19 +74,26 @@
      foreach($individual as $details): ?>  
      <?php foreach ($sample as  $value): ?>
      <h2>Invoice # : <?php echo $value->id; ?></h2>
-     <h6>Remarks : <?php echo $value->remarks; ?></h6>
+     <h6>Remarks : <?php  if($value->remarks == 'approved'){ echo "Job Complete";}else{ echo $value->remarks;}  ?></h6>
      <?php endforeach; ?>
-    
-    <span><b>Attention to:</b>&nbsp;&nbsp;<?php echo $details->sender;?></span><br><br>
-    <span><b>Date Request:</b>&nbsp;&nbsp;<?php echo $details->date_request;?></span><br>
-    <span><b>Date Invoice:</b>&nbsp;&nbsp;<?php echo $details->date_invoice;?></span><br><br>
-    <span><b>Contact Person:</b>&nbsp;&nbsp;<?php echo $details->full_name;?></span><br>
-    <span><b>Destination Adddress:</b>&nbsp;&nbsp;<?php echo $details->destination;?></span><br>
-    <span><b>Pickup Adddress:</b>&nbsp;&nbsp;<?php echo $details->address;?></span><br>
-    <span><b>Pickup Time:</b>&nbsp;&nbsp;<?php echo $details->time;?></span><br><br>
-    <span><b>Tel no:</b>&nbsp;&nbsp;<?php echo $details->tel_no;?></span><br>
-    <span><b>Email:</b>&nbsp;&nbsp;<?php echo $details->email;?></span><br><br>
-    <span><b>Job Description:</b>&nbsp;&nbsp;<?php echo strip_tags($details->job_details);?></span><br>
+    <span><b>Attention to:</b>&nbsp;&nbsp;<?php echo $details->full_name;?></span><br>
+    <span><b>Address:</b>&nbsp;&nbsp;<?php echo $details->address;?></span><br>
+    <span><b>Company:</b>&nbsp;&nbsp;<?php echo $details->company;?></span><br><br>
+
+    <span><b>Date Request:</b>&nbsp;&nbsp;<?php $day = date('l', strtotime($details->date_request));$month = date(' F j, Y',strtotime($details->date_request)); echo $month; ?></span><br>
+    <span><b>Date Complete:</b>&nbsp;&nbsp;&nbsp;<?php $day = date('l', strtotime($details->date_complete));$month = date(' F j, Y',strtotime($details->date_complete)); echo $month; ?></span><br>
+    <span><b>Date Invoice:</b>&nbsp;&nbsp;&nbsp;<?php $day = date('l', strtotime($details->date_invoice));$month = date(' F j, Y',strtotime($details->date_invoice)); echo $month; ?></span><br><br>
+
+    <span><b>Destination:</b>&nbsp;&nbsp;<?php echo $details->destination ?></span><br>
+    <span><b>Pickup Address:</b>&nbsp;&nbsp;<?php echo $details->address_pickup?></span> <br>
+    <span><b>Delivery Address:</b>&nbsp;&nbsp;<?php echo $details->address_deliver ?></span> <br><br>
+
+    <span><b>Job Description:</b>&nbsp;&nbsp;<?php echo strip_tags($details->job_details);?></span> 
+  
+    <br><br>  
+
+
+
   
     <table cellspacing="0" style="text-align: center; font-size: 9pt; padding:1px; border-collapse: collapse;">
      <tbody>

@@ -69,7 +69,7 @@
                      </tr>
                      <?php foreach($labor_details as $value): ?>
                      <tr>
-                        <td><?php echo $value->labor; ?></td>
+                        <td><?php echo $value->labor;?></td>
                         <td><?php echo $value->cost; ?></td>
                         <td><a href="#spec" role="button"  class="badge bg-blue custom" data-toggle="modal" data-load-remote="<?php echo base_url();?>costing_attributes/modal_labor/<?php echo $value->id; ?>" data-remote-target="#spec .modal-body"> <i class="fa fa-pencil-square-o"></i></a>
                         </td>

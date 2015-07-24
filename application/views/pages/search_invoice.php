@@ -9,7 +9,7 @@
          <td><?php echo $value->company_client?></td>
          <td><?php echo $value->tel_no?></td>
          <td><?php echo $value->destination?></td>
-         <td><?php echo $value->address?></td>
+         <td><?php echo $value->address_pickup?></td>
          <td>
             <ul class = "details">
                <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>
@@ -20,14 +20,15 @@
          </td>
             <td>
               <ul class = "details">
-                  <li><b>Driver Name:</b>&nbsp;<?php echo $value->name?></li>
+                  <li><b>Driver Name:</b>&nbsp;<?php echo $value->full_name?></li>
                   <li><b>Company:</b>&nbsp;<?php echo $value->company?></li>
                   <li><b>Address:</b>&nbsp;<?php echo $value->address?></li>
-                  <li><b>Contact #:</b>&nbsp;<?php echo $value->contact_num?></li>
+                  <li><b>Contact #:</b>&nbsp;<?php echo $value->contact_no?></li>
               </ul>
           </td>
          <td><?php echo $value->sender?></td>
-         <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+         <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>                   
+                 
              <td class = "remarks"><br>
              <?php
                if($value->status == 1) {

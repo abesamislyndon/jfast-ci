@@ -16,7 +16,7 @@
                                  <select class="form-control sum_all" name="sender" id="weight">
                                     <option value="">-</option>
                                     <?php foreach ($sender_list as $value) { ?>
-                                    <option  value = "<?php echo $value->full_name ?>">&nbsp;&nbsp;<?php echo $value->full_name ?></option>
+                                    <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->full_name ?></option>
                                     <?php  } ?>    
                                  </select>
                            </div>
@@ -28,48 +28,64 @@
                            </div>
                              <div class=" col-md-3">
                              <input type = "submit" name = "submit" class="btn  btn-success btn-md generate-style-btn" value = "GENERATE">
-                        </div>
-                           <br><br><br>
+                             <a href="<?php echo base_url();?>create_pdf/search_report_quotation_sender/<?php echo $date_from; ?>/<?php echo $date_to; ?>/<?php echo $sender; ?>" target = "_blank" class="btn  btn-success btn-md generate-style-btn">&nbsp;<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;</a> 
+                     
+                    <span class = "total1">TOTAL :&nbsp;&nbsp;
+                        <?php  
+                        if(!empty($result)){
+                        $sum = 0; 
+                         foreach($result as $value):
+                            $subtotal = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost;
+                            $sum+=$subtotal;
+                         endforeach; 
+                        echo number_format($sum,2);
+                       }?>&nbsp;sgd
+                     </span>
+                     </div>
+                     <br><br><br>
                      </form>
                      <br>
                      <table class="table table-bordered" id = "resultTable">
                         <thead>
                            <tr>
-                              <th style="width:100px">Invoice #</th>
+                            <th style="width:100px">Invoice #</th>
                               <th style="width:100px">Job Bank id</th>
-                              <th>Date details</th>
-                              <th>Client Details</th>
-                              <th style="width:290px">Address Details</th>
-                              <th>Delivery Details</th>
-                              <th>Customer Sender</th>
-                              <th>Cost</th>
-                              <th style="width:90px">Remarks</th>
+                              <th>Date Request</th>
+                              <th>Date Complete</th>
+                              <th>Destination</th>
+                              <th style="width:290px">Pickup Details </th>
+                              <th style="width:290px">Delivery Details</th>
+                              <th>Job Description</th>
+                               <th style="width:220px">Driver Details</th>
+                              <th style="width:90px">Requested by</th>
+                              <th style="width:90px">Cost</th>
+                              <th>Remarks</th>
                               <th>Action</th>
                            </tr>
                         </thead>
-                        <tbody>
+                      <tbody>
                            <?php if($result == true){ ?>
                               <?php foreach($result as $value): ?>
                                   <tr>
                                      <td><?php echo $value->id?></td>
                                      <td><?php echo $value->job_request_id?></td>
-                                     <td>
-                                       <ul class = "details">
-                                           <li><b>Date Invoice</b>&nbsp;<?php $day = date('l', strtotime($value->date_invoice));$month = date(' F j, Y',strtotime($value->date_invoice)); echo $month; ?></li>
-                                           <li><b>Date request:</b>&nbsp;<?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?></td>
-                                   </li>
-                                        </ul>
+                                     <td><?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?></td>
+                                     <td><?php $day = date('l', strtotime($value->date_complete));$month = date(' F j, Y',strtotime($value->date_complete)); echo $month; ?></td>
+                                     <td>&nbsp;&nbsp;<?php echo $value->destination?></td>
                                      <td>
                                           <ul class = "details">
-                                           <li><b>Client name</b>&nbsp;<?php echo $value->full_name?></li>
-                                           <li><b>Company</b>&nbsp;<?php echo $value->company_client?></li>
-                                           <li><b>Tel. No.</b>&nbsp;<?php echo $value->tel_no?></li>
+                                           <li><b>Contact Person:</b>&nbsp;&nbsp;<?php echo $value->full_name?></li>
+                                           <li><b>Company:</b>&nbsp;&nbsp;<?php echo $value->company_client?></li>
+                                           <li><b>Tel. No.:</b>&nbsp;&nbsp;<?php echo $value->tel_no?></li>
+                                           <li><b>Pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address_pickup?></li>
                                         </ul>
                                      </td>
                                      <td>
                                         <ul class = "details">
-                                           <li><b>Destination</b>&nbsp;<?php echo $value->destination?></li>
-                                           <li><b>pickup Address</b>&nbsp;<?php echo $value->address?></li>
+                                           <li><b>Contact Person:</b>&nbsp;&nbsp;<?php echo $value->full_name_deliver?></li>
+                                           <li><b>Company:</b>&nbsp;&nbsp;<?php echo $value->company_client_deliver?></li>
+                                           <li><b>Tel. No.:</b>&nbsp;&nbsp;<?php echo $value->tel_no_deliver?></li>
+                                           <li><b>Delivery Address:</b>&nbsp;&nbsp;<?php echo $value->address_deliver?></li>
                                         </ul>
                                      </td>
                                      <td>
@@ -80,8 +96,16 @@
                                            <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
                                         </ul>
                                      </td>
+                                   <td>
+                                       <ul class = "details">
+                                          <li><b>Driver Name:</b>&nbsp;<?php echo $value->full_name?></li>
+                                          <li><b>Company:</b>&nbsp;<?php echo $value->company?></li>
+                                          <li><b>Address:</b>&nbsp;<?php echo $value->address?></li>
+                                          <li><b>Contact #:</b>&nbsp;<?php echo $value->contact_no?></li>
+                                       </ul>
+                                    </td> 
                                      <td><?php echo $value->sender?></td>
-                                     <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+                                      <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>
                                          <td class = "remarks"><br>
                                            <?php
                                              if($value->status == 1) {
@@ -91,13 +115,13 @@
                                              }elseif ($value->status == 3) {
                                               echo 'ongoing job'; 
                                              }elseif ($value->status == 4) {
-                                              echo 'pending for checkout for invoice'; 
+                                              echo 'pending for checkout and invoice'; 
                                              }else{
-                                               echo $value->remarks; 
+                                              echo 'job finished'; 
                                              }
                                            ?>
                                      </td>
-                                     <td><a href="<?php echo base_url();?>create_pdf/print_invoice/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom">&nbsp;&nbsp;generate&nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;</span></a></td>
+                                     <td><a href="<?php echo base_url();?>create_pdf/print_invoice/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom">&nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;</span></a></td>
                                   </tr>
                              <?php  endforeach; 
                                }else{?>

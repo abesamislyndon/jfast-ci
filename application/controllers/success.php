@@ -1,15 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Success extends CI_Controller {
+class Success extends CI_Controller 
+{
 
 
- function __construct()
+  function __construct()
  {
     parent::__construct();
    $this->load->model('job_delivery_model');
 
  }
 
-	public function job_bank_success()
+	function job_bank_success()
 	{	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
@@ -30,7 +31,8 @@ class Success extends CI_Controller {
 		}	
 	 
    }
-   public function job_allocate_success()
+
+ function job_allocate_success()
 	{	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
@@ -50,9 +52,9 @@ class Success extends CI_Controller {
 			redirect('login', 'refresh');
 		}	
 	 
-   }
+    }
 
-   public function job_complete_success()
+ function job_complete_success()
 	{	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
@@ -74,7 +76,10 @@ class Success extends CI_Controller {
 	 
    }
 
-      public function job_invoice_success()
+
+   
+
+ function job_invoice_success()
 	{	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
@@ -99,9 +104,8 @@ class Success extends CI_Controller {
 	 
    }
 
-
-	public function job_bank_reject()
-	{	
+ function job_bank_reject()
+   {	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
      {
     
@@ -116,11 +120,36 @@ class Success extends CI_Controller {
 		$this->load->view('scaffolds/footer');
         
      }else
-		{
+     {
 			redirect('login', 'refresh');
 		}	
 	 
    }
+
+
+// *************************************************** driver ********************************************************//
+
+ function job_complete_success_driver()
+	{	
+	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '3')
+     {
+    
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+
+ 	    $this->load->view('scaffolds/header');
+	    $this->load->view('scaffolds/sidebar_driver', $data);
+		$this->load->view('pages/job_complete_success_driver');
+		$this->load->view('scaffolds/footer');
+        
+     }else
+		{
+			redirect('login', 'refresh');
+		}	
+	 
+       }
 
 }
 

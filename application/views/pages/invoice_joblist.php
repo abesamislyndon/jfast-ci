@@ -13,6 +13,7 @@
                           <tr>
                         <th style="width:40px">id</th>
                               <th>Date Request</th>
+                              <th>Date Complete</th>
                               <th>Destination</th>
                               <th style="width:290px">Pickup Details </th>
                               <th style="width:290px">Delivery Details</th>
@@ -28,13 +29,15 @@
                                 <tr>
                              <td><?php echo $value->job_request_id?></td>
                              <td><?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?></td>
+                             <td><?php $day = date('l', strtotime($value->date_complete));$month = date(' F j, Y',strtotime($value->date_complete)); echo $month; ?></td>
+                          
                              <td>&nbsp;&nbsp;<?php echo $value->destination?></td>
                              <td>
                                   <ul class = "details">
                                    <li><b>Contact Person:</b>&nbsp;&nbsp;<?php echo $value->full_name?></li>
                                    <li><b>Company:</b>&nbsp;&nbsp;<?php echo $value->company_client?></li>
                                    <li><b>Tel. No.:</b>&nbsp;&nbsp;<?php echo $value->tel_no?></li>
-                                   <li><b>Pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address?></li>
+                                   <li><b>Pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address_pickup?></li>
                                 </ul>
                              </td>
                              <td>
@@ -55,10 +58,10 @@
                              </td>
                            <td>
                                <ul class = "details">
-                                  <li><b>Driver Name:</b>&nbsp;<?php echo $value->name?></li>
+                                  <li><b>Driver Name:</b>&nbsp;<?php echo $value->full_name?></li>
                                   <li><b>Company:</b>&nbsp;<?php echo $value->company?></li>
                                   <li><b>Address:</b>&nbsp;<?php echo $value->address?></li>
-                                  <li><b>Contact #:</b>&nbsp;<?php echo $value->contact_num?></li>
+                                  <li><b>Contact #:</b>&nbsp;<?php echo $value->contact_no?></li>
                                </ul>
                             </td> 
                              <td><?php echo $value->sender?></td>
@@ -78,7 +81,7 @@
                                      }
                                    ?>
                              </td>
-                             <td><a href="<?php echo base_url();?>joblist_bank/individualOngoing/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
+                             <td><a href="<?php echo base_url();?>joblist_bank/individual_invoice/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                           </tr>
                      <?php  endforeach; 
                        }else{?>

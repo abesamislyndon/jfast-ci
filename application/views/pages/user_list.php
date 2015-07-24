@@ -17,6 +17,9 @@
                  <tr>
                     <th>Full Name</th>
                     <th>Username</th>
+                    <th>Company</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
                     <th>Role</th>
                     <th>Actions</th>
                  </tr>
@@ -27,10 +30,15 @@
                         <tr>
                             <td ><?php echo $individual->full_name?></td>
                             <td ><?php echo $individual->username?></td>
+                            <td ><?php echo $individual->company?></td>
+                            <td ><?php echo $individual->address?></td>
+                            <td ><?php echo $individual->contact_no?></td>
                             <?php if($individual->role_code == "1"){ ?>
-                                <td>admin</td>    
-                             <?php }else{ ?>
-                                <td>Surveyor</td> 
+                                <td>Admin</td>    
+                             <?php }elseif($individual->role_code == "2"){ ?>
+                                <td>Regular Customer</td> 
+                            <?php }else{ ?>
+                                <td>Driver</td> 
                             <?php } ?>
                             <td>
                               <div class="btn-group pull-right">

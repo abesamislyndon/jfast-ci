@@ -29,24 +29,23 @@
         <a href="<?php echo base_url();?>"><b>JFAST</b>&nbsp;Courier and transportation</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
-        <p><?php echo validation_errors(); ?></p>   
+        <p class="login-box-msg">Please Login</p>
+        <?php echo validation_errors(); ?>
         <form action="<?php echo base_url()?>verifylogin" method="post">
           <div class="form-group has-feedback">
           <input name="username" type="text" class="form-control" value="Username" onfocus="this.value=''" /><!--END USERNAME-->
           </div>
-          <div class="form-group has-feedback">  
+          <div class="form-group has-feedback">
             <input name="password" type="password" class="form-control" value="Password" onfocus="this.value=''" /><!--END PASSWORD-->
           </div>
           <div class="row">
-            <div class="col-xs-8">    
+            <div class="col-xs-8">
             </div><!-- /.col -->
             <div class="col-xs-4">
                <input type="submit" name="login" value="Sign In" class="btn btn-primary btn-block btn-flat"/>
             </div><!-- /.col -->
           </div>
         </form>
-     
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 

@@ -2,6 +2,10 @@
    <section class="content">
       <div class="row">
          <div class="col-md-5">
+           <div class = "confirm-div">
+                  <p><?php echo $this->session->flashdata('msg'); ?></p>
+               </div>
+           
             <!-- general form elements disabled -->
             <div class="box box-info">
                <div class="box-header">
@@ -35,7 +39,7 @@
                   </div>
                   <div class="form-group">
                     <label>Address</label>
-                     <input type="text" name = "address" class="form-control" value = "<?php echo $value->address ?>"/>
+                     <input type="text" name = "address_pickup" class="form-control" value = "<?php echo $value->address_pickup ?>"/>
                   </div>
                 
                </div>
@@ -112,9 +116,9 @@
 
 
          <div class="col-md-7">
-            <div class = "confirm-div">
-                  <p><?php echo $this->session->flashdata('msg'); ?></p>
-               </div>
+                  <div class="box-header">
+                        <h3 class="box-title1">Job Bank #: <?php echo $value->job_request_id; ?></h3>
+                 </div>
 
             <div class="box box-info">
                <div class="box-header">
@@ -252,8 +256,8 @@
 
 
                   <div class="form-group">
-                     <label>Estimate Cost</label>
-                     <input type="text" name = "price" class="form-control" value = "<?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?>"/>
+                     <label>Estimate Cost&nbsp;&nbsp;&nbsp;&nbsp;<p style = "color:red;">GST&nbsp;&nbsp;<?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; echo $gst = (7 * $sub) / 100; ?>&nbsp;sgd</p></label>
+                     <input type="text" name = "price" class="form-control" value = "<?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?>"/>
                   </div>
                   <div class='box'>
                      <div class='box-header'>

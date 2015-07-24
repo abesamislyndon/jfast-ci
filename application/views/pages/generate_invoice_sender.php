@@ -16,7 +16,7 @@
                                  <select class="form-control sum_all" name="sender" id="weight">
                                     <option value="">-</option>
                                     <?php foreach ($sender_list as $value) { ?>
-                                    <option  value = "<?php echo $value->full_name ?>">&nbsp;&nbsp;<?php echo $value->full_name ?></option>
+                                    <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->full_name ?></option>
                                     <?php  } ?>    
                                  </select>
                            </div>

@@ -54,8 +54,6 @@ class Regular_customer extends CI_Controller {
 		}	
    }
 
-
-
     public function add_job_request()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
@@ -66,7 +64,7 @@ class Regular_customer extends CI_Controller {
                 $company_client   = $this->input->post('company_client');
                 $tel_no           = $this->input->post('tel_no');
                 $email            = $this->input->post('email');
-                $address          = $this->input->post('address');
+                $address_pickup         = $this->input->post('address_pickup');
 
 
                 $full_name_deliver        = $this->input->post('full_name_deliver');
@@ -95,7 +93,7 @@ class Regular_customer extends CI_Controller {
                 
                 $this->Job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, 
                     $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, 
-                    $labor, $labor_cost, $dimension, $dimension_cost, $address, $company_client,
+                    $labor, $labor_cost, $dimension, $dimension_cost, $address_pickup, $company_client,
                     $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver);
 
 
@@ -130,7 +128,7 @@ class Regular_customer extends CI_Controller {
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file Regular_customer.php */
+/* Location: ./application/controllers/Regular_customer.php */
 
 

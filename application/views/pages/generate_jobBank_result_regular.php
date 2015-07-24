@@ -53,7 +53,7 @@
                                      <td>
                                         <ul class = "details">
                                            <li><b>Destination</b>&nbsp;<?php echo $value->destination?></li>
-                                           <li><b>pickup Address</b>&nbsp;<?php echo $value->address?></li>
+                                           <li><b>pickup Address</b>&nbsp;<?php echo $value->address_pickup?></li>
                                         </ul>
                                      </td>
                                      <td>
@@ -65,7 +65,7 @@
                                         </ul>
                                      </td>
                                      <td><?php echo $value->sender?></td>
-                                     <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+                                       <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>
                                          <td class = "remarks"><br>
                                            <?php
                                              if($value->status == 1) {

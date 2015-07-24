@@ -7,6 +7,7 @@ class Create_pdf extends CI_Controller
      {
        parent::__construct();
         $this->load->model('job_delivery_model');
+        $this->load->model('Search_model');
 
      }
 
@@ -45,6 +46,43 @@ public function print_invoice_regular()
            redirect('login', 'refresh');
         }
 }
+
+public function search_report_quotation(){
+    if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1'){
+       
+         $from = $this->uri->segment(3);
+         $to = $this->uri->segment(4);
+
+         $data['from'] = $from;
+         $data['to'] = $to;
+
+         $data['result'] = $this->Search_model->do_generate_invoice($from, $to);
+         $this->load->view('pages/search_report_invoice_pdf', $data);
+        }
+   
+       else {
+           redirect('login', 'refresh');
+        }
+   }
+
+ public function search_report_quotation_sender(){
+        if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1'){
+       
+         $from = $this->uri->segment(3);
+         $to = $this->uri->segment(4);
+         $sender = $this->uri->segment(5);
+
+         $data['from'] = $from;
+         $data['to'] = $to; 
+      
+         $data['result'] = $this->Search_model->do_generate_invoice_sender($from, $to, $sender);
+         $this->load->view('pages/search_report_invoice_pdf', $data);
+        }
+   
+       else {
+           redirect('login', 'refresh');
+        }
+   }
 
 }
 /* End of file create_pdf.php */

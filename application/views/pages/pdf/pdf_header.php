@@ -4,7 +4,7 @@
     }
 </style>
 
-<page backtop="40mm" backbottom="15mm" backleft="3mm" backright="10mm" >
+<page backtop="30mm" backbottom="15mm" backleft="3mm" backright="10mm" >
     <page_header>
     <h3>JFAST COURIER AND TRANSPORTATION PTE LTD</h3>
             <p>NO. 51 Bukit Batok Crescent, #02 - 23 Unity Centre, Singapore 658077 <br>
@@ -13,7 +13,7 @@
              <hr>
     </page_header>
      <page_footer>
-        <table style="width: 100%; border: none;">
+        <table>
             <tr>
                 <td style="text-align: right; width: 50%; border: none;">page [[page_cu]]/[[page_nb]]</td>
             </tr>

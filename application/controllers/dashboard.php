@@ -16,7 +16,6 @@ class Dashboard extends CI_Controller {
      {
 
         $date =  date("Y"); 
-
         $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
         $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();

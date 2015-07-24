@@ -4,8 +4,8 @@ class Job_delivery_model extends CI_Model
 {
     function do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, 
                     $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, 
-                    $labor, $labor_cost, $dimension, $dimension_cost, $address, $company_client,
-                    $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver)
+                    $labor, $labor_cost, $dimension, $dimension_cost, $address_pickup, $company_client,
+                    $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver,  $item_type, $qty_check, $dimension_check)
      {
         
         $this->db->select('*');
@@ -57,7 +57,7 @@ class Job_delivery_model extends CI_Model
             'full_name' => $full_name,
             'tel_no' => $tel_no,
             'email' => $email,
-             'address' => $address,
+            'address_pickup' => $address_pickup,
             'company_client' => $company_client,
 
             'full_name_deliver' => $full_name_deliver,
@@ -93,6 +93,18 @@ class Job_delivery_model extends CI_Model
         );
         
         $this->db->insert('job_delivery', $row);
+        $job_request_id1   = $this->db->insert_id();
+
+        $row1  = array(
+
+            'job_request_id'=>$job_request_id1,
+            'item_type' => $item_type,
+            'qty_check' => $qty_check,
+            'dimension_check' => $dimension_check,
+        );
+
+        $this->db->insert('item_type', $row1);
+
         $this->session->set_flashdata('msg', 'description succesfully added');
         
         if ($id == 1) {
@@ -144,7 +156,28 @@ class Job_delivery_model extends CI_Model
         
         $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->group_by('job_delivery.job_request_id');
         $this->db->where('status', 3);
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+     function show_driver_job($limit, $start, $driver)
+    {
+        
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+       // $this->db->group_by('job_delivery.job_request_id');
+        $this->db->where('status', 3);
+        $this->db->where('job_allocate_info.driver_id', $driver);
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         
@@ -159,9 +192,10 @@ class Job_delivery_model extends CI_Model
     
     function show_invoice_job($limit, $start)
     {
-        
+        $this->db->select('*');   
         $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->group_by('job_delivery.job_request_id');
         $this->db->where('status', 4);
         $this->db->limit($limit, $start);
         $query = $this->db->get();
@@ -199,6 +233,7 @@ class Job_delivery_model extends CI_Model
         $this->db->select('*');
         $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('users', 'users.id = job_delivery.sender_id');
         $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
         
         $this->db->where('job_delivery.job_request_id', $id);
@@ -284,8 +319,7 @@ class Job_delivery_model extends CI_Model
         $dimension1     = $di[0]->dimension;
         $dimension_cost = $di[0]->cost;
         
-
-         $cal_date   = $date_request;
+        $cal_date   = $date_request;
         $format     = strtotime($cal_date);
         $mysql_date = date('Y-m-d', $format);
         
@@ -371,9 +405,9 @@ class Job_delivery_model extends CI_Model
         $this->db->update('job_delivery', $row);
         
         $row = array(
-            'name' => 'none',
+            'full_name' => 'none',
             'address' => 'none',
-            'contact_num' => 'none',
+            'contact_no' => 'none',
             'job_bank_id' => $job_request_id
         );
         
@@ -384,8 +418,6 @@ class Job_delivery_model extends CI_Model
         redirect('success/job_bank_reject');
         
     }
-    
-    
     
     function count_incoming_jobbank()
     {
@@ -446,28 +478,30 @@ class Job_delivery_model extends CI_Model
     
     
     
-    function do_add_allocate($job_bank_id, $name, $address, $contact_num)
+    function do_add_allocate($job_bank_id, $name, $address, $contact_no, $driver_id)
     {
         
         $this->db->select('*');
         $this->db->where('id', $name);
-        $this->db->from('driver_info');
+        $this->db->from('users');
         $query = $this->db->get();
         $s     = $query->result();
         
-        $name1 = $s[0]->driver_name;
+        $name1 = $s[0]->full_name;
         
         $row = array(
-            'name' => $name1,
+            'full_name' => $name1,
             'address' => $address,
-            'contact_num' => $contact_num,
-            'job_bank_id' => $job_bank_id
+            'contact_no' => $contact_no,
+            'job_bank_id' => $job_bank_id,
+            'driver_id' => $driver_id
         );
         
         $this->db->insert('job_allocate_info', $row);
         
         $row1 = array(
-            'status' => 3
+            'status' => 3,
+            'remarks'=> 'approved'
         );
         $this->db->where('job_request_id', $job_bank_id);
         $this->db->update('job_delivery', $row1);
@@ -488,6 +522,7 @@ class Job_delivery_model extends CI_Model
         $this->session->set_flashdata('msg', 'description succesfully added');
         redirect('success/job_complete_success');
     }
+    
     
     function do_job_invoice($id)
     {
@@ -535,9 +570,9 @@ class Job_delivery_model extends CI_Model
     
     function sender_info()
     {
-        
         $this->db->select('*');
         $this->db->from('users');
+        $this->db->where('role_code', 2);
         $query = $this->db->get();
         return $query->result();
     }

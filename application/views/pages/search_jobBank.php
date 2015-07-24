@@ -14,7 +14,7 @@
         <td>
             <ul class = "details">
               <li><b>Destination:</b>&nbsp;&nbsp;<?php echo $value->destination?></li>
-              <li><b>pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address?></li>
+              <li><b>pickup Address:</b>&nbsp;&nbsp;<?php echo $value->address_pickup?></li>
            </ul>
         </td>
         <td>
@@ -27,7 +27,8 @@
         </td>
        
         <td><?php echo $value->sender?></td>
-            <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+        <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>                   
+                 
           <td class = "remarks"><br>
                  <?php
                    if($value->status == 1) {
@@ -44,7 +45,7 @@
                  ?>
            </td>
         <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
-        <td><a href="<?php echo base_url();?>joblist_bank/individual_search_regular/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom"><i class="fa fa-eye"></i>&nbsp;&nbsp;view</span></a></td>         
+        <td><a href="<?php echo base_url();?>joblist_bank/individual_search/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom"><i class="fa fa-eye"></i>&nbsp;&nbsp;view</span></a></td>         
      </tr>
       <?php endforeach; ?>
       <?php }else{?>

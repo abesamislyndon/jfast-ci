@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group">
                      <label>Pickup Address</label>
-                     <input type="text" name = "address" class="form-control  required" placeholder="Enter ..." required/>
+                     <input type="text" name = "address_pickup" class="form-control  required" placeholder="Enter ..." required/>
                   </div>
                </div>
             </div>
@@ -260,7 +260,7 @@
                      </div>
                      <!-- /.box-header -->
                      <div class='box-body pad'>
-                        <textarea class="form-control myTextEditor details" name = "job_details" rows="3"></textarea>
+                        <textarea class="form-control myTextEditor details2" name = "job_details" rows="3"></textarea>
                      </div>
                   </div>
                   <input type = "submit" name = "submit" class="btn  btn-success btn-lg" id = "submitbtn" value = "submit">
@@ -272,3 +272,4 @@
    </section>
    <!-- /.content -->
 </div>
+

@@ -63,7 +63,7 @@ class Driver_info extends CI_Controller
             
             $id           = $this->input->post('name');
             $data         = $this->Driver_info_model->get_other_info2($id);
-            $driver_info3 = $data[0]->contact_num;
+            $driver_info3 = $data[0]->contact_no;
             echo $driver_info3;
             
         } else {
@@ -72,6 +72,20 @@ class Driver_info extends CI_Controller
         
     }
     
+  public function populate3()
+    {
+        if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
+            
+            $id           = $this->input->post('name');
+            $data         = $this->Driver_info_model->get_other_info3($id);
+            $driver_info3 = $data[0]->id;
+            echo $driver_info3;
+            
+        } else {
+            redirect('login', 'refresh');
+        }
+        
+    }
     
     public function driver_list()
     {
@@ -151,8 +165,138 @@ class Driver_info extends CI_Controller
         }
         
     }
+
+
+    //******************************************** Driver Info **********************************************************//
+
+
+   public function job_list(){
+
+    if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '3')
+     {
+        $config = array();
+        $config["base_url"] = base_url().'Driver_info/ongoing_job_list';
+        $config["total_rows"] = $this->Job_delivery_model->record_count();
+        $config["per_page"] = 8;
+        $config["uri_segment"] = 3;
+        $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $this->pagination->initialize($config);
+        $driver = $this->uri->segment(4);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['ongoing'] = $this->Job_delivery_model->show_driver_job($config["per_page"], $driver, $page);
+        $data["links"] = $this->pagination->create_links();
+        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
+        
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar_driver', $data, $driver);
+        $this->load->view('pages/driver_job_list', $data);
+        $this->load->view('scaffolds/footer'); 
+     }
+     else{
+        redirect('login', 'refresh');
+    } 
+
+   }
+
+  //*********************************************** DRIUVER PROCESS ************************************************ //
+
+  public function job_process(){
     
+     if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
+           
+        $id = $this->uri->segment(3);
+        $data['individual'] = $this->Job_delivery_model->show_individual($id);
+     
+        $data['from'] = $this->Job_delivery_model->destination();
+        $data['weight'] = $this->Job_delivery_model->weight();
+        $data['dimension'] = $this->Job_delivery_model->dimension();
+        $data['labor'] = $this->Job_delivery_model->labor();
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar_driver', $data);
+        $this->load->view('pages/job_process_driver', $data);
+        $this->load->view('scaffolds/footer');
+
+          } else {
+            redirect('login', 'refresh');
+        }
+   }
+
+  public function job_complete(){
+           if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
+            
+                $id = $this->input->post('job_request_id');
+                $this->Driver_info_model->do_job_complete_driver($id);  
+
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
     
+  public function driver_history(){
+
+    if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '3')
+     {
+        $config = array();
+        $config["base_url"] = base_url().'driver_info/driver_histdry';
+        $config["total_rows"] = $this->Job_delivery_model->record_count();
+        $config["per_page"] = 20;
+        $config["uri_segment"] = 3;
+        $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $this->pagination->initialize($config);
+        $driver = $this->uri->segment(4);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['ongoing'] = $this->Driver_info_model->show_driver_history($config["per_page"], $driver, $page);
+        $data["links"] = $this->pagination->create_links();
+        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
+        
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar_driver', $data, $driver);
+        $this->load->view('pages/driver_history', $data);
+        $this->load->view('scaffolds/footer'); 
+     }
+     else{
+        redirect('login', 'refresh');
+    } 
+
+   }
+
 }
 
 /* End of file welcome.php */

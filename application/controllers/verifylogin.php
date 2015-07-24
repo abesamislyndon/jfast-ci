@@ -8,64 +8,70 @@ class VerifyLogin extends CI_Controller
         parent::__construct();
         $this->load->model('user', 'login', TRUE);
     }
-    
-    // *************************** Default Login Page Controller ***************************************************************   
-    
+
+    // *************************** Default Login Page Controller ***************************************************************
+
     function index()
     {
 
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
-        
-        if ($this->form_validation->run() == FALSE) 
+
+        if ($this->form_validation->run() == FALSE)
         {
             $this->load->view('pages/login');
-        } 
-        else 
-        {         
+        }
+        else
+        {
             if($this->session->userdata['logged_in']['role_code'] == '1')
               {
                    redirect(base_url('dashboard'), 'refresh');
               }
-           if($this->session->userdata['logged_in']['role_code'] == '2')
+            if($this->session->userdata['logged_in']['role_code'] == '2')
               {
                 redirect(base_url('regular_customer/form'), 'refresh');
-              }  
-      
+              }
+             if($this->session->userdata['logged_in']['role_code'] == '3')
+              {
+                 $driver = $this->session->userdata["logged_in"]["id"];
+                redirect(base_url('driver_info/job_list/'.$driver), 'refresh');
+              }
+
+
           }
-        
+
     }
-    
-    // *************************** Chaeck and Verufy User Aunthentication in Database *******************************
-    
+
+    // *************************** Chaeck and Verufy User Aunthentication in Database ******************************* //
+
     function check_database($password)
     {
         $this->load->model('user');
-        $username = $this->input->post('username'); 
+        $username = $this->input->post('username');
         $result   = $this->login->login($username,$password);
-        
-        if ($result) 
+
+        if ($result)
         {
             $sess_array = array();
-            foreach ($result as $row) 
+            foreach ($result as $row)
             {
                 $sess_array = array(
                     'id' => $row->id,
                     'username' => $row->username,
                     'role_code'=>$row->role_code,
                     'full_name'=>$row->full_name,
-                  
+
                 );
-  
+
                $this->session->set_userdata('logged_in', $sess_array);
-    
+
             }
             return TRUE;
-        } 
-        else 
+        }
+        else
         {
-            
-            $this->form_validation->set_message('check_database', 'Invalid username or password <i class="fa fa-exclamation-circle"></i>');
+
+            $this->form_validation->set_message('check_database', '<p class = "error">Invalid Username or Password <i class="fa fa-exclamation-circle"></i></p>');
             return FALSE;
         }
     }
