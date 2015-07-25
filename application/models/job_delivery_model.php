@@ -45,8 +45,8 @@ class Job_delivery_model extends CI_Model
         $labor1     = $l[0]->labor;
         $labor_cost = $l[0]->cost;
         
-        $dimension1     = $di[0]->dimension;
-        $dimension_cost = $di[0]->cost;
+     //   $dimension1     = $di[0]->dimension;
+      //  $dimension_cost = $di[0]->cost;
         
         
         $cal_date   = $date_request;
@@ -77,33 +77,36 @@ class Job_delivery_model extends CI_Model
             
             'destination' => $destination1,
             'destination_id' => $destination,
-            'destination_cost' => $destination_cost1,
+           // 'destination_cost' => $destination_cost1,
             
             'weight' => $weight1,
             'weight_id' => $weight,
-            'weight_cost' => $weight_cost,
+           // 'weight_cost' => $weight_cost,
             
             'labor' => $labor1,
             'labor_id' => $labor,
             'labor_cost' => $labor_cost,
             
-            'dimension' => $dimension1,
-            'dimension_id' => $dimension,
-            'dimension_cost' => $dimension_cost
+          //  'dimension' => $dimension1,
+          //  'dimension_id' => $dimension,
+          //  'dimension_cost' => $dimension_cost
         );
         
         $this->db->insert('job_delivery', $row);
         $job_request_id1   = $this->db->insert_id();
+        $row_count = count($item_type);
+            for ($i = 0; $i < $row_count; $i++)
+                {
+                $rows1[] = array(
+                    'job_request_id'=>$job_request_id1,
+                     'item_type' => $item_type[$i],
+                     'qty_check' => $qty_check[$i],
+                     'dimension_check' => $dimension_check[$i],
+                );
+                }
 
-        $row1  = array(
 
-            'job_request_id'=>$job_request_id1,
-            'item_type' => $item_type,
-            'qty_check' => $qty_check,
-            'dimension_check' => $dimension_check,
-        );
-
-        $this->db->insert('item_type', $row1);
+         $this->db->insert_batch('item_type', $rows1);
 
         $this->session->set_flashdata('msg', 'description succesfully added');
         

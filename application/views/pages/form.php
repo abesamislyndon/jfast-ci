@@ -8,6 +8,10 @@
   </div>
 
 <?php echo form_open_multipart('form/add_job_request','id="form1"' );?>  
+     <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
+      <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
+      <input type="hidden" name = "status" class="form-control" value = "1" />       
+
 <div class="container">
    <div class="row">
       <div class="col-md-12 wrapper1">
@@ -270,23 +274,23 @@
 
         <div class="col-md-2">    
                <div class="form-group">
-                  <label><input type="checkbox" name = "item_type[0]" class = "ck">&nbsp;&nbsp;&nbsp;BOX</label>    
+                  <label><input type="checkbox" name = "item_type[]" value = "box" class = "ck">&nbsp;&nbsp;&nbsp;BOX</label>    
                </div>
                <div class="select-box" id = "show">
-                  <select name="qty_check[0]" id="">
-                      <option value="" selected>-</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                      <option value="">5</option>
-                      <option value="">6</option>
-                      <option value="">7</option>
+                  <select name="qty_check[]" id="">
+                      <option value="none" selected>-</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
                   </select>
-                  <select name="dimension_check[0]" id="">
-                      <option value="" selected>-</option>
-                      <option value="">less than 50 x 50 x 50</option>
-                      <option value="">more than than 50 x 50 x 50</option>
+                  <select name="dimension_check[]" id="">
+                      <option value="none" selected>-</option>
+                      <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>
@@ -294,46 +298,46 @@
  
          <div class="col-md-2">    
                <div class="form-group">
-                  <label><input type="checkbox" name = "box" class = "ck1">&nbsp;&nbsp;&nbsp;PARCEL</label>    
+                  <label><input type="checkbox" name = "item_type[]"  value = "parcel" class = "ck1">&nbsp;&nbsp;&nbsp;PARCEL</label>    
                </div>
                <div class="select-box" id = "show1">
-                  <select name="" id="">
-                      <option value="" selected>-</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                      <option value="">5</option>
-                      <option value="">6</option>
-                      <option value="">7</option>
+                    <select name="qty_check[]" id="">
+                      <option value="none" selected>-</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
                   </select>
-                  <select name="" id="">
-                      <option value="" selected>-</option>
-                      <option value="">less than 50 x 50 x 50</option>
-                      <option value="">more than than 50 x 50 x 50</option>
+                  <select name="dimension_check[]" id="">
+                      <option value="none" selected>-</option>
+                      <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>
 
        <div class="col-md-2">    
                <div class="form-group">
-                  <label><input type="checkbox" name = "box" class = "ck2">&nbsp;&nbsp;&nbsp;PALLET</label>    
+                  <label><input type="checkbox" name = "item_type[]" value = "pallet" class = "ck2">&nbsp;&nbsp;&nbsp;PALLET</label>    
                </div>
                <div class="select-box" id = "show2">
-                  <select name="" id="">
-                      <option value="" selected>-</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                      <option value="">5</option>
-                      <option value="">6</option>
-                      <option value="">7</option>
+                   <select name="qty_check[]" id="">
+                      <option value="none" selected>-</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
                   </select>
-                  <select name="" id="">
-                      <option value="" selected>-</option>
-                      <option value="">less than 50 x 50 x 50</option>
-                      <option value="">more than than 50 x 50 x 50</option>
+                    <select name="dimension_check[]" id="">
+                      <option value="none" selected>-</option>
+                      <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>
