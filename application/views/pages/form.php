@@ -136,10 +136,19 @@
 
          <div class="form-group">
                   <div class="col-md-2">
-                    <label>Deliver Address:</label> &nbsp; &nbsp;     
+                    <label>Vehicle:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-10">
-                     <input class="form-control input-md lg" placeholder="Email" type="text">        
+                         <select class="form-control  lg" name="vehicle" id="destination" required>
+                         <option value="" selected>-</option>
+                         <option value="">Van</option>
+                         <option value="10 ft Lorry">10 ft Lorry</option>
+                         <option value="14 ft Lorry">14 ft Lorry</option>
+                         <option value="20 ft Lorry">20 ft Lorry</option>
+                         <option value="24 ft Lorry">24 ft Lorry</option>
+                         <option value="Bus">Bus</option>
+                         <option value="Mini Bus">Mini Bus</option>
+                     </select>  
                   </div>
                </div>
         </div>
@@ -198,11 +207,11 @@
                   </div>
                    <div class="col-md-9">
                       <select class="form-control  required" name="destination" id="destination" required>
-                                    <option value="">-</option>
-                                    <?php foreach ($from as $value) { ?>
-                                    <option  value = "<?php echo $value->id ?>"><?php echo $value->from ?>&nbsp;-&nbsp;<?php echo $value->to ?></option>
-                                    <?php  } ?>    
-                                 </select>      
+                        <option value="">-</option>
+                        <?php foreach ($from as $value) { ?>
+                        <option  value = "<?php echo $value->id ?>"><?php echo $value->from ?>&nbsp;-&nbsp;<?php echo $value->to ?></option>
+                        <?php  } ?>    
+                     </select>      
                   </div>
                </div>
 
@@ -215,13 +224,16 @@
                    <div class="col-md-9">
                        <select class="form-control  lg" name="no_trips" id="destination" required>
                          <option value="" selected>-</option>
-                         <option value="">1</option>
-                         <option value="">2</option>
-                         <option value="">3</option>
-                         <option value="">4</option>
-                         <option value="">5</option>
-                         <option value="">6</option>
-                         <option value="">7</option>
+                         <option value="1">1</option>
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                         <option value="4">4</option>
+                         <option value="5">5</option>
+                         <option value="6">6</option>
+                         <option value="7">7</option>
+                         <option value="8">8</option>
+                         <option value="9">9</option>
+                         <option value="10">10</option>
                      </select>   
                   </div>
                </div>
@@ -250,11 +262,11 @@
                   </div>
                    <div class="col-md-9">
                      <select class="form-control lg cost-style  required" name="labor" id="labor" required>
-                                    <option value="">-</option>
-                                    <?php foreach ($labor as $value) { ?>
-                                    <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->labor ?></option>
-                                    <?php  } ?>    
-                                 </select>    
+                          <option value="">-</option>
+                          <?php foreach ($labor as $value) { ?>
+                          <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->labor ?></option>
+                          <?php  } ?>    
+                       </select>    
                   </div>
                </div>
             </div>

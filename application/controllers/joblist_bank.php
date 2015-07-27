@@ -189,6 +189,7 @@ class Joblist_bank extends CI_Controller {
 
     	$id = $this->uri->segment(3);
         $data['individual'] = $this->job_delivery_model->show_individual($id);
+        $data['individual_item_type'] = $this->job_delivery_model->show_individual_item_type($id);
         $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
         $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();

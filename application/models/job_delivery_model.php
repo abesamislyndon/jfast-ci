@@ -5,7 +5,7 @@ class Job_delivery_model extends CI_Model
     function do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, 
                     $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, 
                     $labor, $labor_cost, $dimension, $dimension_cost, $address_pickup, $company_client,
-                    $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver,  $item_type, $qty_check, $dimension_check)
+                    $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver,  $item_type, $qty_check, $dimension_check,$no_trips, $vehicle)
      {
         
         $this->db->select('*');
@@ -66,6 +66,9 @@ class Job_delivery_model extends CI_Model
              'address_deliver' => $address_deliver,
             'company_client_deliver' => $company_client_deliver,
          
+            'no_trips'=>$no_trips,
+            'vehicle'=>$vehicle,
+
 
             'date_request' => $mysql_date,
             'time' => $time,
@@ -85,7 +88,7 @@ class Job_delivery_model extends CI_Model
             
             'labor' => $labor1,
             'labor_id' => $labor,
-            'labor_cost' => $labor_cost,
+           // 'labor_cost' => $labor_cost,
             
           //  'dimension' => $dimension1,
           //  'dimension_id' => $dimension,
@@ -223,13 +226,29 @@ class Job_delivery_model extends CI_Model
         
         $this->db->select('*');
         $this->db->from('job_delivery');
-        //     $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+       // $this->db->join('item_type', 'item_type.job_request_id = job_delivery.job_request_id');
         //   $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
         
         $this->db->where('job_delivery.job_request_id', $id);
         $query = $this->db->get();
         return $query->result();
     }
+
+
+ function show_individual_item_type($id)
+    {
+        
+        $this->db->select('*');
+        $this->db->from('job_delivery');
+        $this->db->join('item_type', 'item_type.job_request_id = job_delivery.job_request_id');
+        
+        $this->db->where('job_delivery.job_request_id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+   
+
+
     function show_individual_report($id)
     {
         
@@ -278,8 +297,8 @@ class Job_delivery_model extends CI_Model
     }
     
     
-    function update_job_request($full_name, $company_client,  $tel_no, $email, $address,
-                                $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $job_request_id)
+    function update_job_request($full_name, $company_client,  $tel_no, $email, $address_pickup,
+                                $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost,$vehicle_cost,$trip_cost,$item_type_cost, $job_request_id, $item_type_id)
     {
         
         $this->db->select('*');
@@ -306,21 +325,21 @@ class Job_delivery_model extends CI_Model
         $query = $this->db->get();
         $di    = $query->result();
         
-        $destination_from  = $s[0]->from;
-        $destination_to    = $s[0]->to;
-        $destination_final = $destination_from . '-' . $destination_to;
+       // $destination_from  = $s[0]->from;
+       // $destination_to    = $s[0]->to;
+       // $destination_final = $destination_from . '-' . $destination_to;
         
-        $destination1      = $destination_final;
-        $destination_cost1 = $s[0]->estimated_cost;
+      //  $destination1      = $destination_final;
+//        $destination_cost1 = $s[0]->estimated_cost;
         
-        $weight1     = $d[0]->weight;
-        $weight_cost = $d[0]->cost;
+      //  $weight1     = $d[0]->weight;
+  //      $weight_cost = $d[0]->cost;
         
-        $labor1     = $l[0]->labor;
-        $labor_cost = $l[0]->cost;
+       // $labor1     = $l[0]->labor;
+    //    $labor_cost = $l[0]->cost;
         
-        $dimension1     = $di[0]->dimension;
-        $dimension_cost = $di[0]->cost;
+     //   $dimension1     = $di[0]->dimension;
+      //  $dimension_cost = $di[0]->cost;
         
         $cal_date   = $date_request;
         $format     = strtotime($cal_date);
@@ -332,43 +351,61 @@ class Job_delivery_model extends CI_Model
             'full_name' => $full_name,
             'tel_no' => $tel_no,
             'email' => $email,
-            'address'=>$address,
+             'address_pickup'=>$address_pickup,
             'company_client' => $company_client,
 
-            'full_name_deliver' => $full_name_deliver,
-            'company_client_deliver' => $company_client_deliver,
-            'tel_no_deliver' => $tel_no_deliver,
-            'email_deliver' => $email_deliver,
+             'full_name_deliver' => $full_name_deliver,
+             'company_client_deliver' => $company_client_deliver,
+             'tel_no_deliver' => $tel_no_deliver,
+             'email_deliver' => $email_deliver,
             'address_deliver'=>$address_deliver,
            
             'time' => $time,
             'date_request' =>  $mysql_date,
-            'job_details' => $job_details,
+        //    'job_details' => $job_details,
             'sender' => $sender,
             'sender_id' => $id,
             'status' => 1,
           
             
-            'destination' => $destination1,
+          //  'destination' => $destination1,
             'destination_id' => $destination,
-            'destination_cost' => $destination_cost1,
+            'destination_cost' => $destination_cost,
             
-            'weight' => $weight1,
-            'weight_id' => $weight,
+        //    'weight' => $weight1,
+        //    'weight_id' => $weight,
             'weight_cost' => $weight_cost,
             
-            'labor' => $labor1,
+        //    'labor' => $labor1,
             'labor_id' => $labor,
             'labor_cost' => $labor_cost,
             
-            'dimension' => $dimension1,
-            'dimension_id' => $dimension,
-            'dimension_cost' => $dimension_cost
+       //     'dimension' => $dimension1,
+       //     'dimension_id' => $dimension,
+            'dimension_cost' => $dimension_cost,
+
+            'trip_cost' => $trip_cost,
+            'vehicle_cost' => $vehicle_cost,
         );
         
         
-        $this->db->where('job_request_id', $job_request_id);
-        $this->db->update('job_delivery', $row);
+         $this->db->where('job_request_id', $job_request_id);
+         $this->db->update('job_delivery', $row);
+
+      
+          $row_count = count($item_type_cost);
+          for ($i = 0; $i < $row_count; $i++)
+            {
+            $rows = array(
+                  'item_type_cost'=>$item_type_cost[$i],
+            );
+              $this->db->where('item_type_id', $item_type_id[$i]);
+              $this->db->update('item_type', $rows);
+            }
+
+
+
+
         
         $this->session->set_flashdata('msg', 'INFORMATION UPDATED');
         redirect('joblist_bank/individuaL/' . $job_request_id);

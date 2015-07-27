@@ -82,12 +82,15 @@ class Form extends CI_Controller
                 $item_type           = $this->input->post('item_type');
                 $qty_check            = $this->input->post('qty_check');
                 $dimension_check          = $this->input->post('dimension_check');
+
+                $no_trips = $this->input->post('no_trips');
+                $vehicle = $this->input->post('vehicle');
                
                 
                 $this->job_delivery_model->do_add_job_request($full_name, $tel_no, $email, $date_request, $time, $job_details, 
                        $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, 
                        $labor, $labor_cost, $dimension, $dimension_cost, $address_pickup, $company_client,
-                       $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $item_type, $qty_check, $dimension_check);
+                       $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $item_type, $qty_check, $dimension_check, $no_trips, $vehicle);
             }
             
         } else {
@@ -106,7 +109,7 @@ class Form extends CI_Controller
             $company_client   = $this->input->post('company_client');
             $tel_no           = $this->input->post('tel_no');
             $email            = $this->input->post('email');
-            $address          = $this->input->post('address');
+            $address_pickup          = $this->input->post('address_pickup');
 
             $full_name_deliver        = $this->input->post('full_name_deliver');
             $company_client_deliver   = $this->input->post('company_client_deliver');
@@ -130,8 +133,15 @@ class Form extends CI_Controller
             $dimension        = $this->input->post('dimension');
             $dimension_cost   = $this->input->post('dimension_cost');
 
+            $vehicle_cost   = $this->input->post('vehicle_cost');
+            $trip_cost   = $this->input->post('trip_cost');
+            $item_type_cost   = $this->input->post('item_type_cost');
+            $item_type_id = $this->input->post('item_type_id');
+
+
+
             if ($this->input->post('submit_update')) {
-                $this->job_delivery_model->update_job_request($full_name, $company_client, $tel_no, $email, $address, $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $job_request_id);
+                $this->job_delivery_model->update_job_request($full_name, $company_client, $tel_no, $email, $address_pickup, $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $vehicle_cost,$trip_cost,$item_type_cost,$job_request_id,$item_type_id);
             }
             if ($this->input->post('submit_approved')) {
 
