@@ -140,8 +140,8 @@
                   </div>
                    <div class="col-md-10">
                          <select class="form-control  lg" name="vehicle" id="destination" required>
-                         <option value="" selected>-</option>
-                         <option value="">Van</option>
+                         <option value="-" selected>-</option>
+                         <option value="Van">Van</option>
                          <option value="10 ft Lorry">10 ft Lorry</option>
                          <option value="14 ft Lorry">14 ft Lorry</option>
                          <option value="20 ft Lorry">20 ft Lorry</option>

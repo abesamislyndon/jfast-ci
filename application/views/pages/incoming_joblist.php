@@ -63,7 +63,7 @@
                                          <td class = "remarks"><br>
                                            <?php
                                              if($value->status == 1) {
-                                               echo 'pending job bank for approval';
+                                               echo 'pending job bank for update price';
                                              }elseif($value->status == 2){
                                                echo 'pending job bank for allocate' ;
                                              }elseif ($value->status == 3) {

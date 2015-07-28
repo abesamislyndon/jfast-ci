@@ -206,6 +206,28 @@ class Joblist_bank extends CI_Controller {
 		$this->load->view('scaffolds/form_footer');
    }
 
+
+    public function individual_approved_reject(){
+
+        $id = $this->uri->segment(3);
+        $data['individual'] = $this->job_delivery_model->show_individual($id);
+        $data['individual_item_type'] = $this->job_delivery_model->show_individual_item_type($id);
+        $data['count_jobbank'] = $this->job_delivery_model->count_incoming_jobbank();
+        $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
+        $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+
+        $data['from'] = $this->job_delivery_model->destination();
+        $data['weight'] = $this->job_delivery_model->weight();
+        $data['dimension'] = $this->job_delivery_model->dimension();
+        $data['labor'] = $this->job_delivery_model->labor();
+
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar', $data);
+        $this->load->view('pages/individual_Approved_Reject', $data);
+        $this->load->view('scaffolds/form_footer');
+   }
+
     public function individual_search(){
 
         $id = $this->uri->segment(3);

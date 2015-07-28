@@ -131,7 +131,7 @@
             <hr>
                 <table class = "table">
     
-                      <tr>
+                       <tr>
                         <td><label>Vehicle</label></td>
                         <td>
                           <select class="form-control" name="vehicle" id="destination" >
@@ -152,9 +152,9 @@
                         <td><label>Destination</label></td>
                         <td>
                            <select class="form-control" name="destination" id="destination" >
-                              <option value = "" selected="selected"><?php echo $value->destination ?></option>
+                              <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->destination ?></option>
                               <?php foreach ($from as $value1) { ?>
-                                 <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from_destination ?>&nbsp;-&nbsp;<?php echo $value1->to_destination ?></option>
+                                 <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from ?>&nbsp;-&nbsp;<?php echo $value1->to ?></option>
                                  <?php  } ?>    
                             </select>
                         </td>
@@ -164,8 +164,8 @@
                       <tr>
                         <td><label>No. of trips:</label></td>
                         <td>
-                          <select class="form-control" name="no_trips" id="destination" >
-                              <option value = "<?php echo $value->no_trips ?>" selected="selected"><?php echo $value->no_trips ?></option>
+                          <select class="form-control" name="destination" id="destination" >
+                              <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->no_trips ?></option>
                                  <option value="1">1</option>
                                  <option value="2">2</option>
                                  <option value="3">3</option>
@@ -246,7 +246,7 @@
          </div>  
  
          <div class="col-md-12 wrapper1">
-               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update Price"></p>
+               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "submit"></p>
          </div>
       </div>
    </div>

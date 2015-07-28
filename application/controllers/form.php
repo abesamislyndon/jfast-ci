@@ -133,15 +133,17 @@ class Form extends CI_Controller
             $dimension        = $this->input->post('dimension');
             $dimension_cost   = $this->input->post('dimension_cost');
 
-            $vehicle_cost   = $this->input->post('vehicle_cost');
             $trip_cost   = $this->input->post('trip_cost');
+          //  $no_trips   = $this->input->post('no_trips');
+            
             $item_type_cost   = $this->input->post('item_type_cost');
             $item_type_id = $this->input->post('item_type_id');
-
-
-
+            
+            $vehicle = $this->input->post('vehicle');
+            $vehicle_cost   = $this->input->post('vehicle_cost');
+            
             if ($this->input->post('submit_update')) {
-                $this->job_delivery_model->update_job_request($full_name, $company_client, $tel_no, $email, $address_pickup, $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $vehicle_cost,$trip_cost,$item_type_cost,$job_request_id,$item_type_id);
+                $this->job_delivery_model->update_job_request($full_name, $company_client, $tel_no, $email, $address_pickup, $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $vehicle_cost,$trip_cost,$item_type_cost, $job_request_id, $item_type_id, $vehicle);
             }
             if ($this->input->post('submit_approved')) {
 

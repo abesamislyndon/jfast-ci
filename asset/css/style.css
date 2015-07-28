@@ -48,15 +48,19 @@
 td {
     text-align: center;
 }
-.confirm-div p {
-    font-size: 13px !important;
-    color: red !important;
+.confirm-div  {
+    color:#fff !important;
     font-weight: bold !important;
-    height: 20px;
-    background: #eee;
-    text-align: center;
-    padding: 12px 0;
-    height: 40px;
+    padding: 12px 20px;
+    display: none;
+    position:absolute; 
+    z-index:1; 
+    background:#3bd27a; 
+}
+.confirm-div p{
+    text-align: center !important;
+    font-size:19px; 
+    margin-left: 250px;
 }
 .success-style p {
     text-align: center;

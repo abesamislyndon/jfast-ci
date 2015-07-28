@@ -131,7 +131,7 @@
             <hr>
                 <table class = "table">
     
-                      <tr>
+                     <tr>
                         <td><label>Vehicle</label></td>
                         <td>
                           <select class="form-control" name="vehicle" id="destination" >
@@ -152,10 +152,10 @@
                         <td><label>Destination</label></td>
                         <td>
                            <select class="form-control" name="destination" id="destination" >
-                              <option value = "" selected="selected"><?php echo $value->destination ?></option>
+                              <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->destination ?></option>
                               <?php foreach ($from as $value1) { ?>
-                                 <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from_destination ?>&nbsp;-&nbsp;<?php echo $value1->to_destination ?></option>
-                                 <?php  } ?>    
+                              <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from_destination ?>&nbsp;-&nbsp;<?php echo $value1->to_destination ?></option>
+                              <?php  } ?>    
                             </select>
                         </td>
                         <td><input type="text" name = "destination_cost" value = "<?php echo $value->destination_cost ?>"></td>
@@ -164,18 +164,15 @@
                       <tr>
                         <td><label>No. of trips:</label></td>
                         <td>
-                          <select class="form-control" name="no_trips" id="destination" >
+                            <select class="form-control" name="no_trips" id="destination" >
                               <option value = "<?php echo $value->no_trips ?>" selected="selected"><?php echo $value->no_trips ?></option>
-                                 <option value="1">1</option>
-                                 <option value="2">2</option>
-                                 <option value="3">3</option>
-                                 <option value="4">4</option>
-                                 <option value="5">5</option>
-                                 <option value="6">6</option>
-                                 <option value="7">7</option>
-                                 <option value="8">8</option>
-                                 <option value="9">9</option>
-                                 <option value="10">10</option>
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">4</option>
+                               <option value="5">5</option>
+                               <option value="6">6</option>
+                               <option value="7">7</option>   
                            </select>
                         </td>
                         <td><input type="text" name = "trip_cost" value = "<?php echo $value->trip_cost ?>"></td>
@@ -190,9 +187,9 @@
                                <option  value = "<?php echo $value1->id ?>">&nbsp;&nbsp;<?php echo $value1->weight ?></option>
                                <?php  } ?>    
                             </select>
-                        </td>
-                        <td><input type="text" name = "weight_cost" value = "<?php echo $value->weight_cost ?>"></td>
-                      </tr>
+                         </td>
+                         <td><input type="text" name = "weight_cost" value = "<?php echo $value->weight_cost ?>"></td>
+                       </tr>
 
                        <tr>
                         <td><label>No. of Labor</label></td>
@@ -246,11 +243,35 @@
          </div>  
  
          <div class="col-md-12 wrapper1">
-               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update Price"></p>
+               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update price">
+                 &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "Approve">
+                 &nbsp;&nbsp;   <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Approved and Allocate&nbsp;<i class="fa fa-truck"></i></a>
+                 &nbsp;&nbsp;<input type = "submit" name = "submit_reject" class="btn btn-danger btn-lg" value = "reject">
+               </p>
          </div>
       </div>
    </div>
 
+        <?php echo form_open_multipart('joblist_bank/add_allocate','id="form1"' );?>  
+                  <!--modal-->
+                  <div id="spec" class="modal modal2"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header header-spec">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title"><i class="fa fa-truck"></i>&nbsp;Allocate</h4>
+                               <input type="hidden" name = "job_bank_id" class="form-control"  value = "<?php echo $value->job_request_id ?>"/>
+                           </div>
+                           <div class="modal-body">                      
+                           </div>
+                           <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary" name = "approvedAllocate"><i class="fa fa-check"></i>&nbsp;&nbsp;allocate</button>
+                              <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>   
 
 
 
