@@ -1,3 +1,4 @@
+<div class = "col-md-12 confirm-div"></div>
 <div class="content-wrapper">
    <div id="loading">
     <div id="loadingcontent">
@@ -209,7 +210,7 @@
                       <select class="form-control  required" name="destination" id="destination" required>
                         <option value="">-</option>
                         <?php foreach ($from as $value) { ?>
-                        <option  value = "<?php echo $value->id ?>"><?php echo $value->from ?>&nbsp;-&nbsp;<?php echo $value->to ?></option>
+                        <option  value = "<?php echo $value->id ?>"><?php echo $value->from_destination ?>&nbsp;-&nbsp;<?php echo $value->to_destination ?></option>
                         <?php  } ?>    
                      </select>      
                   </div>

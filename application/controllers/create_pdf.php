@@ -33,7 +33,7 @@ public function print_invoice()
 public function print_invoice_regular()
 {
     if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '2')
-       {
+    {
          $id = $this->uri->segment(3);
         
          $data['individual'] = $this->job_delivery_model->show_individual_report($id);
@@ -42,9 +42,9 @@ public function print_invoice_regular()
          $this->load->view('pages/invoice_pdf', $data);
         }
    else 
-        {
-           redirect('login', 'refresh');
-        }
+   {
+    redirect('login', 'refresh');
+   }
 }
 
 public function search_report_quotation(){

@@ -1,14 +1,5 @@
-
-
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-    
-          <!-- search form -->
-        
-          <!-- /.search form -->
-          <!-- sidebar menu: : style can be found in sidebar.less -->
+    <aside class="main-sidebar">
+        <section class="sidebar">    
           <ul class="sidebar-menu">
             <li class="header">MAIN </li>
             <li class="active treeview">
@@ -21,6 +12,13 @@
                   <i class="fa fa-pencil-square-o"></i><span>Incoming Job Bank</span> <?php foreach($count_jobbank as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li> 
+
+            <li>
+              <a href="<?php echo base_url(); ?>joblist_bank/job_approval">
+                  <i class="fa fa-pencil-square-o"></i><span>Job Approval</span> <?php foreach($count_approval as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+              </a>
+            </li> 
+        
         
             <li>
               <a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist">

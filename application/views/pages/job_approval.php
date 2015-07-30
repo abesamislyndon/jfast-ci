@@ -89,7 +89,7 @@
                                              }
                                            ?>
                                      </td>
-                                     <td><a href="<?php echo base_url();?>joblist_bank/individual/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
+                                     <td><a href="<?php echo base_url();?>joblist_bank/individual_approved_reject/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                                   </tr>
                              <?php  endforeach; 
                                }else{?>

@@ -15,14 +15,11 @@ class Costing_attributes extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
+            $data['count_approval'] = $this->job_delivery_model->count_approval();
             $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
             $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
             $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
             $data['location_details']  = $this->costing_model->location_details();
-            
-            
-       
-
        
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $data);
@@ -38,27 +35,24 @@ class Costing_attributes extends CI_Controller
     public function json_sample(){
         $id = 1;
             $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
+            $data['count_approval'] = $this->job_delivery_model->count_approval();
             $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
             $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
             $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
             $data['location_details']  = $this->costing_model->location_details();
 
-
             $output = array(); // it will wrap all of your value
-             foreach($data['location_details'] as $row){
-                     unset($temp); // Release the contained value of the variable from the last loop
-                     $temp = array();
+            foreach($data['location_details'] as $row){
+            unset($temp); // Release the contained value of the variable from the last loop
+            $temp = array();
 
-                     $temp['firstname'] = $row->id;
-                     $temp['lastname'] = $row->from;
-
-                     array_push($output,$temp);
+            $temp['firstname'] = $row->id;
+            $temp['lastname'] = $row->from;
+            array_push($output,$temp);
       }
-                    header('Access-Control-Allow-Origin: *');
-                    header("Content-Type: application/json");
-                    echo json_encode($output[0]);
-                        
-
+            header('Access-Control-Allow-Origin: *');
+            header("Content-Type: application/json");
+            echo json_encode($output[0]);
     }
 
     public function add_location()
@@ -67,11 +61,10 @@ class Costing_attributes extends CI_Controller
 
             if ($this->input->post('submit')) {
 
-                $from = $this->input->post('from');
-                $to   = $this->input->post('to');
-                $cost = $this->input->post('estimated_cost');
-
-                $this->costing_model->do_add_location($from, $to, $cost);
+                $from = $this->input->post('from_destination');
+                $to   = $this->input->post('to_destination');
+                //$cost = $this->input->post('estimated_cost');
+                $this->costing_model->do_add_location($from, $to);
             }
 
         } else {
@@ -98,11 +91,10 @@ class Costing_attributes extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
 
             $id   = $this->input->post('id');
-            $from = $this->input->post('from');
-            $to   = $this->input->post('to');
-            $cost = $this->input->post('estimated_cost');
-
-            $data['location_details'] = $this->costing_model->do_update_location($from, $to, $cost, $id);
+            $from = $this->input->post('from_destination');
+            $to   = $this->input->post('to_destination');
+         
+            $data['location_details'] = $this->costing_model->do_update_location($from, $to,$id);
 
             $this->load->view('modal_form/location', $data);
 
@@ -133,6 +125,7 @@ class Costing_attributes extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
+            $data['count_approval'] = $this->job_delivery_model->count_approval();
             $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
             $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
             $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
@@ -220,6 +213,7 @@ class Costing_attributes extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
+            $data['count_approval'] = $this->job_delivery_model->count_approval();
             $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
             $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
             $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
@@ -307,6 +301,7 @@ class Costing_attributes extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
+            $data['count_approval'] = $this->job_delivery_model->count_approval();
             $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
             $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
             $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();

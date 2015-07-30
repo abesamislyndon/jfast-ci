@@ -4,11 +4,18 @@ class Dashboard extends CI_Controller {
 
  function __construct()
  {
-   parent::__construct();
-   $this->load->model('Job_delivery_model');
-   $this->load->model('Date_model');
+    parent::__construct();
+    $this->load->model('Job_delivery_model');
+    $this->load->model('Date_model');
+    $this->data['count_approval'] = $this->Job_delivery_model->count_approval();
+    $this->data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
+    $this->data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
+    $this->data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+    $this->data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
+    $data['total_invoice_job'] = $this->Job_delivery_model->count_invoice_total();
 
- }
+
+}
 
 	public function index()
 	{	
@@ -16,12 +23,6 @@ class Dashboard extends CI_Controller {
      {
 
         $date =  date("Y"); 
-        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
-        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
-        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-        $data['total_invoice_job'] = $this->Job_delivery_model->count_invoice_total();
-
         $data['jan_reject']     = $this->Date_model->reject_jan($date);
         $data['feb_reject']     = $this->Date_model->reject_feb($date);
         $data['march_reject']   = $this->Date_model->reject_march($date);
@@ -49,7 +50,7 @@ class Dashboard extends CI_Controller {
         $data['dec_aprov']      = $this->Date_model->aprov_dec($date);
    
  	    $this->load->view('scaffolds/header');
-	    $this->load->view('scaffolds/sidebar', $data);
+	    $this->load->view('scaffolds/sidebar', $this->data);
 		$this->load->view('pages/dashboard');
 		$this->load->view('scaffolds/footer');
         

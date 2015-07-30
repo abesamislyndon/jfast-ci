@@ -31,12 +31,12 @@ class  Costing_model extends CI_Model
         return $result = $query->result();
     }
 
-    function do_add_location($from, $to, $cost){
+    function do_add_location($from, $to){
 
        $row = array(
-          'from'=>$from,
-          'to'=>$to,
-          'estimated_cost'=>$cost,
+          'from_destination'=>$from,
+          'to_destination'=>$to,
+//          'estimated_cost'=>$cost,
           );
    
           $this->db->insert('destination', $row);
@@ -45,12 +45,12 @@ class  Costing_model extends CI_Model
   
     }
 
-   function do_update_location($from, $to, $cost, $id){
+   function do_update_location($from, $to, $id){
 
      $row = array(
-          'from'=>$from,
-          'to'=>$to,
-          'estimated_cost'=>$cost,
+          'from_destination'=>$from,
+          'to_destination'=>$to,
+        //  'estimated_cost'=>$cost,
           );
           $this->db->where('id',$id);
           $this->db->update('destination', $row);

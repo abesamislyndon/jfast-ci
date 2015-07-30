@@ -32,11 +32,14 @@
    border:1px solid #ccc;
    border-radius: 0;
    height: 34px;
-   -webkit-appearance: none;
+   -webkit-appearance: none !important;
    text-align: center;
    }
 #show, #show1, #show2, #show3, #show4, #show5 {
     display: none;
+}
+select{
+       -webkit-appearance: none !important;
 }
 
 .table input{

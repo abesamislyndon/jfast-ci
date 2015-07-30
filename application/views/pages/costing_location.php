@@ -16,16 +16,13 @@
                   <input type="hidden" name = "status" class="form-control" value = "1" />       
                   <div class="form-group">
                      <label>From</label>
-                     <input type="text" name = "from" class="form-control" placeholder="Enter ..." required/>
+                     <input type="text" name = "from_destination" class="form-control" placeholder="Enter ..." required/>
                   </div>
                   <div class="form-group">
                      <label>To</label>
-                     <input type="text" name = "to" class="form-control" placeholder="Enter ..." required/>
+                     <input type="text" name = "to_destination" class="form-control" placeholder="Enter ..." required/>
                   </div>
-                  <div class="form-group">
-                     <label>Cost</label>
-                     <input type="text" name = "estimated_cost" class="form-control" placeholder="Enter ..." required/>
-                  </div>
+               
                   <input type = "submit" name = "submit" class="btn  btn-success btn-lg" value = "submit">
                   </form> 
                </div>
@@ -68,15 +65,13 @@
                      <tr>
                         <th>From</th>
                         <th>To</th>
-                        <th>Cost</th>
                         <th>Update</th>
                         <th>Delete</th>
                      </tr>
                      <?php foreach($location_details as $value): ?>
                      <tr>
-                        <td><?php echo $value->from; ?></td>
-                        <td><?php echo $value->to; ?></td>
-                        <td><?php echo $value->estimated_cost; ?></td>
+                        <td><?php echo $value->from_destination; ?></td>
+                        <td><?php echo $value->to_destination; ?></td>
                         <td><a href="#spec" role="button"  class="badge bg-blue custom" data-toggle="modal" data-load-remote="<?php echo base_url();?>costing_attributes/modal_location/<?php echo $value->id; ?>" data-remote-target="#spec .modal-body"> <i class="fa fa-pencil-square-o"></i></a>
                         </td>
                         <td><a href="<?php echo base_url();?>costing_attributes/delete_location/<?php echo $value->id ?>" onclick="return confirm('Are you sure you want to Delete?');"><span class="badge bg-red custom"><i class="fa fa-trash-o"></i></span></a></td>

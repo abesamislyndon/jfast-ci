@@ -1,4 +1,4 @@
-  <div class = "col-md-12 confirm-div"></div>
+<div class = "col-md-12 confirm-div"></div>
 <div class="content-wrapper">
    <div id="loading">
     <div id="loadingcontent">
@@ -8,6 +8,7 @@
     </div>
   </div>
 
+
  <?php foreach ($individual as  $value): ?>
    <?php echo form_open_multipart('form/process_job_request');?>  
     <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
@@ -15,15 +16,14 @@
     <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
     <input type="hidden" name = "status" class="form-control" value = "2" /> 
 
-
  <div class="container">
    <div class="row">
       <div class="col-md-6 wrapper1">
             <h4>Pickup Details</h4>
             <hr>
               <div class="form-group">
-                  <div class="col-md-4">
-                    <label>Contact Person:</label> &nbsp; &nbsp;     
+              <div class="col-md-4">
+              <label>Contact Person:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
                         <input type="text" name = "full_name" class="form-control lg " value = "<?php echo $value->full_name ?>"/>
@@ -45,7 +45,7 @@
                     <label>Tel no:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                          <input type="text" name = "tel_no" class="form-control lg" value = "<?php echo $value->tel_no ?>"/>
+                       <input type="text" name = "tel_no" class="form-control lg" value = "<?php echo $value->tel_no ?>"/>
                   </div>
                </div>
 
@@ -150,12 +150,12 @@
                       
                       <tr>
                         <td><label>Destination</label></td>
-                        <td>
-                           <select class="form-control" name="destination" id="destination" >
-                              <option value = "" selected="selected"><?php echo $value->destination ?></option>
+                           <td>
+                           <select class="form-control" name="destination_get" id="destination" >
+                              <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->destination ?></option>
                               <?php foreach ($from as $value1) { ?>
-                                 <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from_destination ?>&nbsp;-&nbsp;<?php echo $value1->to_destination ?></option>
-                                 <?php  } ?>    
+                              <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from_destination ?>&nbsp;-&nbsp;<?php echo $value1->to_destination ?></option>
+                              <?php  } ?>    
                             </select>
                         </td>
                         <td><input type="text" name = "destination_cost" value = "<?php echo $value->destination_cost ?>"></td>
@@ -197,8 +197,8 @@
                        <tr>
                         <td><label>No. of Labor</label></td>
                         <td>
-                          <select class="form-control" name="destination" id="destination" >
-                              <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->labor ?></option>
+                          <select class="form-control" name="labor" id="labor" >
+                              <option value = "<?php echo $value->labor ?>" selected="selected"><?php echo $value->labor ?></option>
                                  <option value="1">1</option>
                                  <option value="2">2</option>
                                  <option value="3">3</option>
@@ -221,7 +221,7 @@
   
 <?php endforeach; ?>
 
-<div class="container">
+ <div class="container">
    <div class="row">
       <div class="col-md-12 wrapper1">
             <h4>Item List</h4>
@@ -250,10 +250,6 @@
          </div>
       </div>
    </div>
-
-
-
-
 </form>
 
 

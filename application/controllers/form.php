@@ -7,16 +7,17 @@ class Form extends CI_Controller
     {
         parent::__construct();
         $this->load->model('job_delivery_model');
+        $this->data['count_approval']     =  $this->job_delivery_model->count_approval();
+        $this->data['count_jobbank']      =  $this->job_delivery_model->count_incoming_jobbank();
+        $this->data['count_allocate']     =  $this->job_delivery_model->count_allocate_jobbank();
+        $this->data['count_ongoing_job']  =  $this->job_delivery_model->count_ongoing_jobbank();
+        $this->data['count_invoice_job']  =  $this->job_delivery_model->count_invoice_jobbank();
+        $data['total_invoice_job']        =  $this->job_delivery_model->count_invoice_total();
     }
     
     public function index()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
-            
-            $data['count_jobbank']  = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate'] = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
             
             $data['from']           = $this->job_delivery_model->destination();
             $data['weight']         = $this->job_delivery_model->weight();
@@ -24,7 +25,7 @@ class Form extends CI_Controller
             $data['labor']          = $this->job_delivery_model->labor();
             
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
+            $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/form', $data);
             $this->load->view('scaffolds/form_footer');
             
@@ -124,7 +125,7 @@ class Form extends CI_Controller
             $id               = $this->input->post('id');
             $price            = $this->input->post('price');
             $status           = $this->input->post('status');
-            $destination      = $this->input->post('destination');
+            $destination      = $this->input->post('destination_get');
             $destination_cost = $this->input->post('destination_cost');
             $weight           = $this->input->post('weight');
             $weight_cost      = $this->input->post('weight_cost');
@@ -134,7 +135,7 @@ class Form extends CI_Controller
             $dimension_cost   = $this->input->post('dimension_cost');
 
             $trip_cost   = $this->input->post('trip_cost');
-          //  $no_trips   = $this->input->post('no_trips');
+            $no_trips   = $this->input->post('no_trips');
             
             $item_type_cost   = $this->input->post('item_type_cost');
             $item_type_id = $this->input->post('item_type_id');
@@ -143,8 +144,9 @@ class Form extends CI_Controller
             $vehicle_cost   = $this->input->post('vehicle_cost');
             
             if ($this->input->post('submit_update')) {
-                $this->job_delivery_model->update_job_request($full_name, $company_client, $tel_no, $email, $address_pickup, $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $vehicle_cost,$trip_cost,$item_type_cost, $job_request_id, $item_type_id, $vehicle);
+                $this->job_delivery_model->update_job_request($full_name, $company_client, $tel_no, $email, $address_pickup, $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost, $vehicle_cost,$trip_cost,$item_type_cost, $job_request_id, $item_type_id, $vehicle, $no_trips);
             }
+            
             if ($this->input->post('submit_approved')) {
 
                 $this->job_delivery_model->approved_job_request($job_request_id);

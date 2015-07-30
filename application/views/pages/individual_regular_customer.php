@@ -8,12 +8,14 @@
     </div>
   </div>
 
+
  <?php foreach ($individual as  $value): ?>
- <?php echo form_open_multipart('form/process_job_request');?>  
- <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
- <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
- <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
- <input type="hidden" name = "status" class="form-control" value = "2" /> 
+   <?php echo form_open_multipart('form/process_job_request');?>  
+    <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
+    <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
+    <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
+    <input type="hidden" name = "status" class="form-control" value = "2" /> 
+
 
  <div class="container">
    <div class="row">
@@ -27,7 +29,7 @@
                    <div class="col-md-8">
                         <input type="text" name = "full_name" class="form-control lg " value = "<?php echo $value->full_name ?>"/>
                   </div>
-                </div>
+               </div>
 
                 <div class="form-group">
                   <div class="col-md-4">
@@ -36,7 +38,7 @@
                    <div class="col-md-8">
                        <input type="text" name = "company_client" class="form-control lg" value = "<?php echo $value->company_client ?>"/>
                   </div>
-                </div>
+               </div>
 
 
               <div class="form-group">
@@ -44,7 +46,7 @@
                     <label>Tel no:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                          <input type="text" name = "tel_no" class="form-control lg" value = "<?php echo $value->tel_no ?>"/>
+                       <input type="text" name = "tel_no" class="form-control lg" value = "<?php echo $value->tel_no ?>"/>
                   </div>
                </div>
 
@@ -121,13 +123,16 @@
       </div>
    </div>
 
-  <div class="container">
+
+
+<div class="container">
    <div class="row">
       <div class="col-md-12 wrapper1">
             <h4>DELIVERY INFORMATION AND ITEM DESCRIPTION</h4>
             <hr>
                 <table class = "table">
-                     <tr>
+    
+                      <tr>
                         <td><label>Vehicle</label></td>
                         <td>
                           <select class="form-control" name="vehicle" id="destination" >
@@ -146,7 +151,7 @@
                       
                       <tr>
                         <td><label>Destination</label></td>
-                        <td>
+                           <td>
                            <select class="form-control" name="destination_get" id="destination" >
                               <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->destination ?></option>
                               <?php foreach ($from as $value1) { ?>
@@ -160,15 +165,18 @@
                       <tr>
                         <td><label>No. of trips:</label></td>
                         <td>
-                            <select class="form-control" name="no_trips" id="destination" >
+                          <select class="form-control" name="no_trips" id="destination" >
                               <option value = "<?php echo $value->no_trips ?>" selected="selected"><?php echo $value->no_trips ?></option>
-                               <option value="1">1</option>
-                               <option value="2">2</option>
-                               <option value="3">3</option>
-                               <option value="4">4</option>
-                               <option value="5">5</option>
-                               <option value="6">6</option>
-                               <option value="7">7</option>   
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
                            </select>
                         </td>
                         <td><input type="text" name = "trip_cost" value = "<?php echo $value->trip_cost ?>"></td>
@@ -176,7 +184,7 @@
 
                        <tr>
                         <td><label>Weight</label></td>
-                     <td>
+                        <td>
                             <select class="form-control" name="weight" id="weight">
                                <option value = "<?php echo $value->weight_id ?>" selected="selected"><?php echo $value->weight ?></option>
                                <?php foreach ($weight as $value1) { ?>
@@ -184,8 +192,8 @@
                                <?php  } ?>    
                             </select>
                         </td>
-                         <td><input type="text" name = "weight_cost" value = "<?php echo $value->weight_cost ?>"></td>
-                       </tr>
+                        <td><input type="text" name = "weight_cost" value = "<?php echo $value->weight_cost ?>"></td>
+                      </tr>
 
                        <tr>
                         <td><label>No. of Labor</label></td>
@@ -202,7 +210,7 @@
                                  <option value="8">8</option>
                                  <option value="9">9</option>
                                  <option value="10">10</option>
-                           </select>            
+                           </select>           
                         </td>
                         <td><input type="text" name = "labor_cost" value = "<?php echo $value->labor_cost ?>"></td>
                       </tr>
@@ -211,9 +219,10 @@
          </div>  
       </div>
    </div>
+  
 <?php endforeach; ?>
 
-<div class="container">
+ <div class="container">
    <div class="row">
       <div class="col-md-12 wrapper1">
             <h4>Item List</h4>
@@ -238,38 +247,11 @@
          </div>  
  
          <div class="col-md-12 wrapper1">
-               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update price">
-                 &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "Approve">
-                 &nbsp;&nbsp;   <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Approved and Allocate&nbsp;<i class="fa fa-truck"></i></a>
-                 &nbsp;&nbsp;<input type = "submit" name = "submit_reject" class="btn btn-danger btn-lg" value = "reject">
-               </p>
+               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update Price"></p>
          </div>
       </div>
    </div>
 </form>
-
-      <?php echo form_open_multipart('joblist_bank/add_allocate','id="form1"' );?>  
-                  <!--modal-->
-                  <div id="spec" class="modal modal2"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-                     <div class="modal-dialog">
-                        <div class="modal-content">
-                           <div class="modal-header header-spec">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title"><i class="fa fa-truck"></i>&nbsp;Allocate</h4>
-                               <input type="hidden" name = "job_bank_id" class="form-control"  value = "<?php echo $value->job_request_id ?>"/>
-                           </div>
-                           <div class="modal-body">
-                         
-                           </div>
-                           <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary" name = "submit"><i class="fa fa-check"></i>&nbsp;&nbsp;allocate</button>
-                              <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </form>     
-
 
 
 

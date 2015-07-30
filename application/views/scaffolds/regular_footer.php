@@ -115,7 +115,67 @@
   $('#agenda-example').stackcolumns({myClass:'stacktable small-only' });
 </script>
     
+<script>
+  $(function(){
+      $('.ck , ck1').click(function(){
+          if($('.ck:checked').length > 0){
+               $('#show').show();
+          }else{
+               $('#show').hide(); 
+          }
+      });
+      
+      $('.ck1').click(function(){
+           if($('.ck1:checked').length > 0){
+               $('#show1').show();
+            }else{
+               $('#show1').hide(); 
+          }
+      });
 
- 
-  </body>
+      $('.ck2').click(function(){
+           if($('.ck2:checked').length > 0){
+               $('#show2').show();
+            }else{
+               $('#show2').hide(); 
+          }
+      });
+
+      $('.ck3').click(function(){
+           if($('.ck3:checked').length > 0){
+               $('#show3').show();
+            }else{
+               $('#show3').hide(); 
+          }
+      });
+
+      $('.ck4').click(function(){
+           if($('.ck4:checked').length > 0){
+               $('#show4').show();
+            }else{
+               $('#show4').hide(); 
+          }
+      });
+
+      $('.ck5').click(function(){
+           if($('.ck5:checked').length > 0){
+               $('#show5').show();
+            }else{
+               $('#show5').hide(); 
+          }
+      });
+
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $('.confirm-div').hide();
+    <?php if($this->session->flashdata('msg')){ ?>
+    $('.confirm-div').html('<p><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<?php echo $this->session->flashdata('msg'); ?></p>').show().delay(500).fadeIn('normal', function() {
+      $(this).delay(2500).fadeOut();
+   });
+  });
+<?php } ?>
+</script>
+</body>
 </html>

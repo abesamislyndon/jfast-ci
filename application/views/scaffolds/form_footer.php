@@ -290,8 +290,6 @@ function goBack() {
 
   });
 </script>
-
-
 <script>
   $(document).ready(function() {
     $('.confirm-div').hide();

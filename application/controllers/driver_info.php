@@ -8,7 +8,13 @@ class Driver_info extends CI_Controller
         parent::__construct();
         $this->load->model('Job_delivery_model');
         $this->load->model('Driver_info_model');
-        
+        $this->data['count_approval']     =  $this->Job_delivery_model->count_approval();
+        $this->data['count_jobbank']      =  $this->Job_delivery_model->count_incoming_jobbank();
+        $this->data['count_allocate']     =  $this->Job_delivery_model->count_allocate_jobbank();
+        $this->data['count_ongoing_job']  =  $this->Job_delivery_model->count_ongoing_jobbank();
+        $this->data['count_invoice_job']  =  $this->Job_delivery_model->count_invoice_jobbank();
+        $data['total_invoice_job']        =  $this->Job_delivery_model->count_invoice_total();
+            
     }
     
     public function index()
@@ -91,15 +97,12 @@ class Driver_info extends CI_Controller
     {
         
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
-            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
+           
             $data['list']              = $this->Driver_info_model->get_driver_info();
             
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
-            $this->load->view('pages/driver_list');
+            $this->load->view('scaffolds/sidebar', $this->data);
+            $this->load->view('pages/driver_list', $data);
             $this->load->view('scaffolds/footer');
         } else {
             redirect('login', 'refresh');
@@ -199,14 +202,10 @@ class Driver_info extends CI_Controller
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data['ongoing'] = $this->Job_delivery_model->show_driver_job($config["per_page"], $driver, $page);
         $data["links"] = $this->pagination->create_links();
-        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
-        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
-        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
         
    
         $this->load->view('scaffolds/header');
-        $this->load->view('scaffolds/sidebar_driver', $data, $driver);
+        $this->load->view('scaffolds/sidebar_driver', $this->data, $driver);
         $this->load->view('pages/driver_job_list', $data);
         $this->load->view('scaffolds/footer'); 
      }
@@ -280,14 +279,9 @@ class Driver_info extends CI_Controller
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data['ongoing'] = $this->Driver_info_model->show_driver_history($config["per_page"], $driver, $page);
         $data["links"] = $this->pagination->create_links();
-        $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
-        $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
-        $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-        $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
         
-   
         $this->load->view('scaffolds/header');
-        $this->load->view('scaffolds/sidebar_driver', $data, $driver);
+        $this->load->view('scaffolds/sidebar_driver', $this->data, $driver);
         $this->load->view('pages/driver_history', $data);
         $this->load->view('scaffolds/footer'); 
      }

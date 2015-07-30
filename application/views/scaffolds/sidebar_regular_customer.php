@@ -7,6 +7,11 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN </li>
+            <li>
+              <a href="<?php echo base_url(); ?>regular_customer/view_job_request_price">
+                  <i class="fa fa-pencil-square-o"></i><span>Pending Request</span> <?php foreach($count_jobbank as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+              </a>
+            </li>
            
             <li class="treeview">
               <a href="#">

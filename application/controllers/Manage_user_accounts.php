@@ -8,6 +8,11 @@ class Manage_user_accounts extends CI_Controller
         parent::__construct();
         $this->load->model('job_delivery_model');
         $this->load->model('user');
+        $this->data['count_approval'] = $this->job_delivery_model->count_approval();
+        $this->data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
+        $this->data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
+        $this->data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
+        $this->data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
 
     }
 
@@ -17,13 +22,8 @@ class Manage_user_accounts extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
 
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
-
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
+            $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/add_new_user');
             $this->load->view('scaffolds/footer');
         } else {
@@ -55,15 +55,12 @@ class Manage_user_accounts extends CI_Controller
     public function account_list()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
-            $data['list']              = $this->user->user_all_list();
+         
+            $data['list'] = $this->user->user_all_list();
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
-            $this->load->view('pages/user_list');
+            $this->load->view('scaffolds/sidebar', $this->data);
+            $this->load->view('pages/user_list', $data);
             $this->load->view('scaffolds/footer');
         } else {
             redirect('login', 'refresh');
@@ -76,14 +73,10 @@ class Manage_user_accounts extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             $id = $this->uri->segment(3);
 
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
-            $data['individual']        = $this->user->user_update_individual($id);
+            $data['individual']   = $this->user->user_update_individual($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
+            $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/update_user', $data);
             $this->load->view('scaffolds/footer');
 
@@ -110,14 +103,10 @@ class Manage_user_accounts extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
             $id                        = $this->uri->segment(3);
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
             $data['individual']        = $this->user->user_update_individual($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
+            $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/update_password', $data);
             $this->load->view('scaffolds/footer');
         } else {
@@ -166,15 +155,12 @@ class Manage_user_accounts extends CI_Controller
     public function account_list_driver()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+           
             $id = $this->session->userdata["logged_in"]["id"];
             $data['list']              = $this->user->user_all_list_driver($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_driver', $data);
+            $this->load->view('scaffolds/sidebar_driver', $this->data);
             $this->load->view('pages/user_list_driver');
             $this->load->view('scaffolds/footer_driver');
         } else {
@@ -188,14 +174,10 @@ class Manage_user_accounts extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
             $id = $this->session->userdata["logged_in"]["id"];
 
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
             $data['individual']        = $this->user->user_update_individual($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_driver', $data);
+            $this->load->view('scaffolds/sidebar_driver', $this->data);
             $this->load->view('pages/update_user_driver', $data);
             $this->load->view('scaffolds/footer_driver');
 
@@ -222,14 +204,10 @@ class Manage_user_accounts extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
             $id = $this->session->userdata["logged_in"]["id"];
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
             $data['individual']        = $this->user->user_update_individual($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_driver', $data);
+            $this->load->view('scaffolds/sidebar_driver', $this->data);
             $this->load->view('pages/update_password_driver', $data);
             $this->load->view('scaffolds/footer_driver');
         } else {
@@ -261,16 +239,13 @@ class Manage_user_accounts extends CI_Controller
     public function account_list_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+        
             $id = $this->session->userdata["logged_in"]["id"];
-            $data['list']              = $this->user->user_all_list_driver($id);
+            $data['list']   = $this->user->user_all_list_driver($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_regular_customer', $data);
-            $this->load->view('pages/user_list_regular');
+            $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
+            $this->load->view('pages/user_list_regular', $data);
             $this->load->view('scaffolds/form_footer');
         } else {
             redirect('login', 'refresh');
@@ -281,16 +256,12 @@ class Manage_user_accounts extends CI_Controller
     public function update_user_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
-            $id = $this->session->userdata["logged_in"]["id"];
 
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
+            $id = $this->session->userdata["logged_in"]["id"];
             $data['individual']        = $this->user->user_update_individual($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_regular_customer', $data);
+            $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
             $this->load->view('pages/update_user_regular', $data);
             $this->load->view('scaffolds/form_footer');
 
@@ -316,15 +287,12 @@ class Manage_user_accounts extends CI_Controller
     public function update_user_pwd_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
+        
             $id = $this->session->userdata["logged_in"]["id"];
-            $data['count_jobbank']     = $this->job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
             $data['individual']        = $this->user->user_update_individual($id);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_regular_customer', $data);
+            $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
             $this->load->view('pages/update_password_regular', $data);
             $this->load->view('scaffolds/form_footer');
         } else {

@@ -6,7 +6,6 @@ class Job_delivery_model extends CI_Model
         $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, 
         $labor, $labor_cost, $dimension, $dimension_cost, $address_pickup, $company_client,
         $full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver,  $item_type, $qty_check, $dimension_check,$no_trips, $vehicle)
-        
         {
         
         $this->db->select('*');
@@ -33,8 +32,8 @@ class Job_delivery_model extends CI_Model
         $query = $this->db->get();
         $di    = $query->result();
         
-        $destination_from  = $s[0]->from;
-        $destination_to    = $s[0]->to;
+        $destination_from  = $s[0]->from_destination;
+        $destination_to    = $s[0]->to_destination;
         $destination_final = $destination_from . '-' . $destination_to;
         
         $destination1      = $destination_final;
@@ -46,9 +45,8 @@ class Job_delivery_model extends CI_Model
         $labor1     = $l[0]->labor;
         $labor_cost = $l[0]->cost;
         
-     //   $dimension1     = $di[0]->dimension;
-      //  $dimension_cost = $di[0]->cost;
-        
+        //$dimension1     = $di[0]->dimension;
+        //$dimension_cost = $di[0]->cost;
         
         $cal_date   = $date_request;
         $format     = strtotime($cal_date);
@@ -62,7 +60,7 @@ class Job_delivery_model extends CI_Model
             'company_client' => $company_client,
 
             'full_name_deliver' => $full_name_deliver,
-            'tel_no_deliver' => $tel_no_deliver,
+            'tel_no_deliver' => $tel_no_deliver, 
             'email_deliver' => $email_deliver,
              'address_deliver' => $address_deliver,
             'company_client_deliver' => $company_client_deliver,
@@ -70,64 +68,97 @@ class Job_delivery_model extends CI_Model
             'no_trips'=>$no_trips,
             'vehicle'=>$vehicle,
 
-
             'date_request' => $mysql_date,
             'time' => $time,
             'job_details' => $job_details,
             'sender' => $sender,
             'sender_id' => $id,
             'status' => $status,
-           
-            
+                       
             'destination' => $destination1,
             'destination_id' => $destination,
-           // 'destination_cost' => $destination_cost1,
+            //'destination_cost' => $destination_cost1,
             
             'weight' => $weight1,
             'weight_id' => $weight,
-           // 'weight_cost' => $weight_cost,
+             //'weight_cost' => $weight_cost,
             
             'labor' => $labor1,
             'labor_id' => $labor,
-           // 'labor_cost' => $labor_cost,
+            //'labor_cost' => $labor_cost,
             
-          //  'dimension' => $dimension1,
-          //  'dimension_id' => $dimension,
-          //  'dimension_cost' => $dimension_cost
+            //'dimension' => $dimension1,
+            //'dimension_id' => $dimension,
+            //'dimension_cost' => $dimension_cost
         );
         
         $this->db->insert('job_delivery', $row);
         $job_request_id1   = $this->db->insert_id();
         $row_count = count($item_type);
-            for ($i = 0; $i < $row_count; $i++)
-                {
-                $rows1[] = array(
-                    'job_request_id'=>$job_request_id1,
-                     'item_type' => $item_type[$i],
-                     'qty_check' => $qty_check[$i],
-                     'dimension_check' => $dimension_check[$i],
-                );
-                }
+        for ($i = 0; $i < $row_count; $i++)
+         {
+            $rows1[] = array(
+              'job_request_id'=>$job_request_id1,
+              'item_type' => $item_type[$i],
+              'qty_check' => $qty_check[$i],
+              'dimension_check' => $dimension_check[$i]);
+        }
 
-
-         $this->db->insert_batch('item_type', $rows1);
-
-        $this->session->set_flashdata('msg', 'description succesfully added');
+        $this->db->insert_batch('item_type', $rows1);
+        $this->session->set_flashdata('msg', 'Job Work Succesfully Send');
         
         if ($id == 1) {
             redirect('form');
         } else {
             redirect('regular_customer/success');
         }
-        
     }
     
-    
     function show_job_incoming_list($limit, $start)
+    {   
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->where('status', 1)->group_by('item_type.job_request_id');
+        $this->db->from('job_delivery');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+  function show_job_approval($limit, $start)
+    {   
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->where('status', 6)->group_by('item_type.job_request_id');
+        $this->db->from('job_delivery');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+  
+  // Regualr customer check his own job request price
+
+  function my_job_request_price($limit, $start, $sender)
     {
         
+       $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->where('status', 6)->group_by('item_type.job_request_id');
         $this->db->from('job_delivery');
-        $this->db->where('status', 1);
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         
@@ -160,7 +191,6 @@ class Job_delivery_model extends CI_Model
     
     function show_ongoing_job($limit, $start)
     {
-        
         $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
         $this->db->group_by('job_delivery.job_request_id');
@@ -177,7 +207,7 @@ class Job_delivery_model extends CI_Model
         return false;
     }
 
-     function show_driver_job($limit, $start, $driver)
+    function show_driver_job($limit, $start, $driver)
     {
         
         $this->db->from('job_delivery');
@@ -236,7 +266,7 @@ class Job_delivery_model extends CI_Model
     }
 
 
- function show_individual_item_type($id)
+   function show_individual_item_type($id)
     {
         
         $this->db->select('*');
@@ -248,8 +278,6 @@ class Job_delivery_model extends CI_Model
         return $query->result();
     }
    
-
-
     function show_individual_report($id)
     {
         
@@ -298,7 +326,7 @@ class Job_delivery_model extends CI_Model
     }
     
     
-    function update_job_request($full_name, $company_client,  $tel_no, $email, $address_pickup,$full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost,$vehicle_cost,$trip_cost,$item_type_cost, $job_request_id,$item_type_id, $vehicle)
+    function update_job_request($full_name, $company_client,  $tel_no, $email, $address_pickup,$full_name_deliver, $company_client_deliver, $tel_no_deliver, $email_deliver, $address_deliver, $date_request, $time, $job_details, $sender, $id, $price, $status, $destination, $destination_cost, $weight, $weight_cost, $labor, $labor_cost, $dimension, $dimension_cost,$vehicle_cost,$trip_cost,$item_type_cost, $job_request_id,$item_type_id,$vehicle, $no_trips)
     {
         
         $this->db->select('*');
@@ -332,7 +360,7 @@ class Job_delivery_model extends CI_Model
         $destination1      = $destination_final;
         //$destination_cost1 = $s[0]->estimated_cost;
         
-        //$weight1     = $d[0]->weight;
+        $weight1     = $d[0]->weight;
         //$weight_cost = $d[0]->cost;
         
        //$labor1     = $l[0]->labor;
@@ -362,28 +390,27 @@ class Job_delivery_model extends CI_Model
            
             'time' => $time,
             'date_request' =>  $mysql_date,
-             //'job_details' => $job_details,
-            'sender' => $sender,
-            'sender_id' => $id,
-            'status' => 1,
+            //'job_details' => $job_details,
+            //'sender' => $sender,
+            //'sender_id' => $id,
+            'status' => 6,
            
             'destination' => $destination1,
             'destination_id' => $destination,
             'destination_cost' => $destination_cost,
             
-            //'weight' => $weight1,
+            'weight' => $weight1,
             //'weight_id' => $weight,
             'weight_cost' => $weight_cost,
             
-            //'labor' => $labor1,
-            'labor_id' => $labor,
+            'labor' => $labor,
+            //'labor_id' => $labor,
             'labor_cost' => $labor_cost,
-            
             //'dimension' => $dimension1,
             //'dimension_id' => $dimension,
             'dimension_cost' => $dimension_cost,
 
-           // 'no_trips' => $no_trips,
+            'no_trips' => $no_trips,
             'trip_cost' => $trip_cost,
             'vehicle_cost' => $vehicle_cost,
             'vehicle' => $vehicle
@@ -426,8 +453,7 @@ class Job_delivery_model extends CI_Model
         redirect('success/job_bank_success');
         
     }
-    
-    
+
     function reject_job_request($job_request_id)
     {
         
@@ -448,17 +474,14 @@ class Job_delivery_model extends CI_Model
             'job_bank_id' => $job_request_id
         );
         
-        $this->db->insert('job_allocate_info', $row);
-        
-        
+        $this->db->insert('job_allocate_info', $row);   
         $this->session->set_flashdata('msg', 'INFORMATION UPDATED');
         redirect('success/job_bank_reject');
         
     }
     
     function count_incoming_jobbank()
-    {
-        
+    {   
         $this->db->select('status, COUNT(status) as total');
         $this->db->where('status', 1);
         $this->db->from('job_delivery');
@@ -467,6 +490,17 @@ class Job_delivery_model extends CI_Model
         return $result = $query->result();
     }
     
+    function count_approval()
+    {
+        
+        $this->db->select('status, COUNT(status) as total');
+        $this->db->where('status', 6);
+        $this->db->from('job_delivery');
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
     function count_allocate_jobbank()
     {
         
@@ -507,6 +541,22 @@ class Job_delivery_model extends CI_Model
         
         $this->db->select('status, COUNT(status) as total');
         $this->db->where('status', 5);
+        $this->db->from('job_delivery');
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
+
+    // count for regualr customer 
+
+
+  function regualar_view_updated_price($sender)
+    {
+        
+        $this->db->select('status, COUNT(status) as total');
+        $this->db->where('status', 1);
+        $this->db->where('sender', $sender);
         $this->db->from('job_delivery');
         $this->db->order_by('total', 'desc');
         $query = $this->db->get();
@@ -603,7 +653,6 @@ class Job_delivery_model extends CI_Model
         return $query->result();
         
     }
-    
     
     function sender_info()
     {

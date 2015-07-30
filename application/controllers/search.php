@@ -4,24 +4,27 @@ class Search extends CI_Controller
 {
     function __construct()
     {
+      
         parent::__construct();
+    
         $this->load->model('Job_delivery_model');
         $this->load->model('Search_model');
+        $this->data['count_approval'] = $this->Job_delivery_model->count_approval();
+        $this->data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
+        $this->data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
+        $this->data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
+        $this->data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
 
+    
     }
 
     public function jobBank()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
-
-            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-
+   
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
-            $this->load->view('pages/search_by_jobbank', $data);
+            $this->load->view('scaffolds/sidebar', $this->data);
+            $this->load->view('pages/search_by_jobbank', $this->data);
             $this->load->view('scaffolds/footer');
 
         } else {
@@ -33,15 +36,9 @@ class Search extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
 
-
-            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_regular_customer', $data);
-            $this->load->view('pages/search_by_jobbank_regular', $data);
+            $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
+            $this->load->view('pages/search_by_jobbank_regular', $this->data);
             $this->load->view('scaffolds/regular_footer');
         } else {
             redirect('login', 'refresh');
@@ -83,14 +80,10 @@ class Search extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '1') {
 
-            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $data);
-            $this->load->view('pages/search_by_invoice', $data);
+            $this->load->view('scaffolds/sidebar', $this->data);
+            $this->load->view('pages/search_by_invoice', $this->data);
             $this->load->view('scaffolds/footer');
         } else {
             redirect('login', 'refresh');
@@ -115,14 +108,9 @@ class Search extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
 
-            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_regular_customer', $data);
-            $this->load->view('pages/search_by_invoice_regular', $data);
+            $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
+            $this->load->view('pages/search_by_invoice_regular', $this->data);
             $this->load->view('scaffolds/regular_footer');
         } else {
             redirect('login', 'refresh');
@@ -151,16 +139,12 @@ class Search extends CI_Controller
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
 
-            $data['count_jobbank']     = $this->Job_delivery_model->count_incoming_jobbank();
-            $data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
-            $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
-            $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-
+        
             $driver = $this->uri->segment(4);
 
             $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar_driver', $data, $driver);
-            $this->load->view('pages/search_by_jobbank_driver', $data);
+            $this->load->view('scaffolds/sidebar_driver', $this->data, $driver);
+            $this->load->view('pages/search_by_jobbank_driver', $this->data);
             $this->load->view('scaffolds/footer_driver'); 
 
         } else {
