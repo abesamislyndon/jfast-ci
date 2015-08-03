@@ -7,6 +7,7 @@ class Regular_customer extends CI_Controller {
    parent::__construct();
    $this->load->model('Job_delivery_model');
    $this->load->model('Search_model');
+
  }
 
 	public function index()
@@ -48,6 +49,7 @@ class Regular_customer extends CI_Controller {
         $data['labor']          = $this->Job_delivery_model->labor();
         $sender = $this->session->userdata["logged_in"]["full_name"];
         $data['count_jobbank'] = $this->Job_delivery_model->regualar_view_updated_price($sender);
+           $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
       
    
  	    $this->load->view('scaffolds/header');
@@ -128,6 +130,8 @@ class Regular_customer extends CI_Controller {
         $data['labor']          = $this->Job_delivery_model->labor();
         $sender = $this->session->userdata["logged_in"]["full_name"];
         $data['count_jobbank'] = $this->Job_delivery_model->regualar_view_updated_price($sender);
+       $sender = $this->session->userdata["logged_in"]["full_name"];   
+       $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
    
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -176,6 +180,7 @@ class Regular_customer extends CI_Controller {
         $data['dimension']      = $this->Job_delivery_model->dimension();
         $data['labor']          = $this->Job_delivery_model->labor();
         $data['count_jobbank']  = $this->Job_delivery_model->regualar_view_updated_price($sender);
+         $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
         
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -191,12 +196,15 @@ class Regular_customer extends CI_Controller {
     public function view_job_request(){
 
         $id = $this->uri->segment(3);
+        $sender = $this->session->userdata["logged_in"]["full_name"]; 
+      
         $data['individual'] = $this->Job_delivery_model->show_individual($id);
         $data['individual_item_type'] = $this->Job_delivery_model->show_individual_item_type($id);
         $data['count_jobbank'] = $this->Job_delivery_model->count_incoming_jobbank();
         $data['count_allocate'] = $this->Job_delivery_model->count_allocate_jobbank();
         $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
         $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
+        $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
 
         $data['from'] = $this->Job_delivery_model->destination();
         $data['weight'] = $this->Job_delivery_model->weight();

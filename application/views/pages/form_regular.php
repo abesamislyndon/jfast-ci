@@ -22,7 +22,7 @@
                   <div class="col-md-2">
                     <label>Contact Person:</label> &nbsp; &nbsp;     
                   </div>
-                  
+
                    <div class="col-md-10">
                       <input type="text" name = "full_name" class="form-control lg required" placeholder="Enter ..." required/>
                   </div>
@@ -56,7 +56,6 @@
                         <input type="text" name = "email" class="form-control lg required" id="exampleInputEmail1" placeholder="Enter email" required/>
                   </div>
                </div>
-
 
               <div class="form-group">
                   <div class="col-md-2">

@@ -6,7 +6,7 @@ class Search extends CI_Controller
     {
       
         parent::__construct();
-    
+         
         $this->load->model('Job_delivery_model');
         $this->load->model('Search_model');
         $this->data['count_approval'] = $this->Job_delivery_model->count_approval();
@@ -14,6 +14,9 @@ class Search extends CI_Controller
         $this->data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
         $this->data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
         $this->data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
+        $sender = $this->session->userdata["logged_in"]["full_name"];   
+        $this->data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
+  
 
     
     }
@@ -35,7 +38,7 @@ class Search extends CI_Controller
    public function jobBank_regular()
     {
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '2') {
-
+        
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
             $this->load->view('pages/search_by_jobbank_regular', $this->data);

@@ -43,7 +43,7 @@
               <div class="info-box">
                 <a href="<?php echo base_url(); ?>joblist_bank/ongoing_job_list"><span class="info-box-icon bg-aqua"><i class="fa fa-cloud-download"></i></span> </a>
                 <div class="info-box-content">
-                 <span class="info-box-text">Ongoing Job Bank</span>
+                 <span class="info-box-text">Ongoing Pickup Job</span>
                  <span class="info-box-number"><?php foreach($count_ongoing_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-left custom_count_dashboard"><?php echo $value->total; } }?></small></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->

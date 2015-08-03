@@ -1,12 +1,12 @@
 <div class="content-wrapper">
-   <section class="content">
-      <div class="row">
+<div class="container">
+   <div class="row">
+<div class="col-md-12 wrapper1">
   <?php foreach ($individual as  $value): ?>
-                  <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
-                  <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
-                  <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
-                  <input type="hidden" name = "status" class="form-control" value = "2" /> 
-
+        <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
+        <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
+        <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />              
+        <input type="hidden" name = "status" class="form-control" value = "2" /> 
 
          <div class="col-md-12">
             <div class="box box-info">
@@ -56,29 +56,39 @@
                      </tr>
                   </table>
                   <hr>
+               
+               </div>
+            </div>
+         </div>
+
+
+   <div class="col-md-12">
+            <div class="box box-info">
+               <div class="box-body">
                <table class="table table-bordered table-custom">
                      <div class="box-header">
                       <h3 class="box-title">Description Details</h3>
                     </div>
+                     
                      <tr>
                         <th>Destination</th>
-                        <th>Weight</th>
-                        <th>Tel no.</th>
-                        <th>Labor</th>
-                        <th>Cost&nbsp;&nbsp;&nbsp;&nbsp;<p style = "color:red;">GST&nbsp;&nbsp;<?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; echo $gst = (7 * $sub) / 100; ?>&nbsp;sgd</p></th>
+                        <th>Destination</th>
                      </tr>
+                     
                      <tr>
+                        <td>DATE:</td>
                         <td><?php echo $value->destination ?></td>
-                        <td><?php echo $value->weight ?></td>
-                        <td><?php echo $value->dimension ?></td>
-                        <td><?php echo $value->labor ?></td>
-                        <td class = "cost"><?php $sub =  $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>
                      </tr>
-                  </table>       
-             
-               </div>
-            </div>
-         </div>
+                      
+                      <tr>
+                        <td>TIME</td>
+                        <td><?php echo $value->weight ?></td>
+                      </tr>                        
+                      </table>       
+              </div>
+        </div>
+ </div>      
+
          <!--end of column 5-->
          <div class="col-md-12">
             <div class="box box-info">
@@ -131,7 +141,6 @@
          </div>
          <!--end of col-sm-7-->
       </div>
-      <!--end of row upper part-->
-   </section>
+
 </div>
 <!--end of content wrapper-->

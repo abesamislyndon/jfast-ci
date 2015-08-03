@@ -13,7 +13,8 @@ class Manage_user_accounts extends CI_Controller
         $this->data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
         $this->data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
         $this->data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
-
+        $sender = $this->session->userdata["logged_in"]["full_name"];   
+        $this->data['count_updated_job'] = $this->job_delivery_model->count_update_job($sender);
     }
 
     /* *************************** Notification Controller ************************* */

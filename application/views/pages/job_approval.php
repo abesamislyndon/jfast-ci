@@ -7,7 +7,7 @@
           
         <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">INCOMING JOB BANK</h3>
+                  <h3 class="box-title">JOB APPROVAL</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
 
@@ -84,8 +84,8 @@
                                               echo 'ongoing job'; 
                                              }elseif ($value->status == 4) {
                                               echo 'pending for checkout for invoice'; 
-                                             }else{
-                                              echo 'job finished'; 
+                                             }elseif($value->status == 6){
+                                              echo 'Job status'; 
                                              }
                                            ?>
                                      </td>

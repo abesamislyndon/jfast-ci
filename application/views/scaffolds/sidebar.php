@@ -22,13 +22,13 @@
         
             <li>
               <a href="<?php echo base_url(); ?>joblist_bank/allocate_joblist">
-                 <i class="fa fa-truck"></i><span>Allocate Job Bank</span>  <?php foreach($count_allocate as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+                 <i class="fa fa-truck"></i><span>Allocate Driver</span>  <?php foreach($count_allocate as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li> 
         
             <li>
             <a href="<?php echo base_url(); ?>joblist_bank/ongoing_job_list">
-              <i class="fa fa-files-o"></i><span>Ongoing Job Bank</span><?php foreach($count_ongoing_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+              <i class="fa fa-files-o"></i><span>Ongoing Pickup Job</span><?php foreach($count_ongoing_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li>
             <li>

@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller {
     $this->data['count_allocate']    = $this->Job_delivery_model->count_allocate_jobbank();
     $this->data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
     $this->data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
-    $data['total_invoice_job'] = $this->Job_delivery_model->count_invoice_total();
+    $this->data['total_invoice_job'] = $this->Job_delivery_model->count_invoice_total();
 
 
 }
@@ -51,7 +51,7 @@ class Dashboard extends CI_Controller {
    
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar', $this->data);
-		$this->load->view('pages/dashboard');
+		$this->load->view('pages/dashboard', $data);
 		$this->load->view('scaffolds/footer');
         
      }else

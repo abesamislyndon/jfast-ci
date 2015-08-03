@@ -65,7 +65,19 @@
                                </ul>
                             </td> 
                              <td><?php echo $value->sender?></td>
-                             <td class = "cost"><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
+                             <td class = "cost">
+                               <?php 
+                                      $sub  = 
+                                      $value->destination_cost + 
+                                      $value->weight_cost +  
+                                      $value->labor_cost + 
+                                      $value->sumt + 
+                                      $value->vehicle_cost + 
+                                      $value->trip_cost;  
+
+                                      echo number_format($sub,2); 
+                                 ?>
+                             </td>
                                  <td class = "remarks"><br>
                                    <?php
                                      if($value->status == 1) {

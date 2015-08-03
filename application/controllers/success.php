@@ -14,6 +14,7 @@ class Success extends CI_Controller
     $this->data['count_invoice_job']  =  $this->job_delivery_model->count_invoice_jobbank();
     $data['total_invoice_job']        =  $this->job_delivery_model->count_invoice_total();
 
+
  }
 
 	function job_bank_success()
