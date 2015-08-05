@@ -1,7 +1,6 @@
 <div class="content-wrapper">
        <section class="content">
           <div class="row">
-
             <div class="col-md-12">
               <div class = "confirm-div"></div>
           
@@ -12,18 +11,18 @@
                 <div class="box-body">
                   <table class="table table-bordered table-custom" id = "card-table">
                     <thead>
-                   <tr>
-                      <th style="width:40px">id</th>
-                      <th>Date Request</th>
-                      <th>Destination</th>
-                      <th style="width:290px">Pickup Details </th>
-                      <th style="width:290px">Delivery Details</th>
-                      <th>Job Description</th>
-                      <th>Requested by</th>
-                      <th style="width:90px">Cost</th>
-                      <th style="width:90px">Remarks</th>
-                      <th>Action</th>
-                   </tr>
+                    <tr>
+                        <th style="width:40px">id</th>
+                        <th>Date Request</th>
+                        <th>Destination</th>
+                        <th style="width:290px">Pickup Details </th>
+                        <th style="width:290px">Delivery Details</th>
+                        <th>Job Description</th>
+                        <th>Requested by</th>
+                        <th style="width:90px">Cost</th>
+                        <th style="width:90px">Remarks</th>
+                        <th>Action</th>
+                    </tr>
                   </thead> 
                    <?php if($allocate == true){ ?>   
                    <?php foreach ($allocate as $value):?>
@@ -32,7 +31,7 @@
                          <td><?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?></td>
                          <td>&nbsp;&nbsp;<?php echo $value->destination?></td>
                          <td>
-                              <ul class = "details">
+                               <ul class = "details">
                                <li><b>Contact Person:</b>&nbsp;&nbsp;<?php echo $value->full_name?></li>
                                <li><b>Company:</b>&nbsp;&nbsp;<?php echo $value->company_client?></li>
                                <li><b>Tel. No.:</b>&nbsp;&nbsp;<?php echo $value->tel_no?></li>
@@ -69,7 +68,7 @@
                             ?>
                          </td>
 
-                             <td class = "remarks"><br>
+                         <td class = "remarks"><br>
                                <?php
                                  if($value->status == 1) {
                                    echo 'pending job bank for approval';
@@ -100,8 +99,8 @@
                 </div>
               </div><!-- /.box -->
 
-           </div>
+             </div>
            </div><!--/.col (right) -->
-        </section><!-- /.content -->
+         </section><!-- /.content -->
       </div>
       

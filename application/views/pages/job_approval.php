@@ -12,7 +12,7 @@
                 <div class="box-body">
 
 
-                  <table class="table table-bordered table-custom" id = "card-table">
+                  <table class="table table-bordered table-custom" id = "card-table" ng-controller = "forController">
                  <thead>
                            <tr>
                               <th style="width:40px">id</th>
@@ -28,6 +28,7 @@
                            </tr>
                         </thead>
                         <tbody>
+                            
                            <?php if($job_list_incoming == true){ ?>
                               <?php foreach($job_list_incoming as $value): ?>
                                   <tr>
@@ -71,23 +72,21 @@
 
                                             echo number_format($sub,2); 
                                         ?>
-
-
                                       </td>
-                                         <td class = "remarks"><br>
-                                           <?php
-                                             if($value->status == 1) {
-                                               echo 'pending job bank for update price';
-                                             }elseif($value->status == 2){
-                                               echo 'pending job bank for allocate' ;
-                                             }elseif ($value->status == 3) {
-                                              echo 'ongoing job'; 
-                                             }elseif ($value->status == 4) {
-                                              echo 'pending for checkout for invoice'; 
-                                             }elseif($value->status == 6){
-                                              echo 'Job status'; 
-                                             }
-                                           ?>
+                                      <td class = "remarks"><br>
+                                         <?php
+                                           if($value->status == 1) {
+                                             echo 'pending job bank for update price';
+                                           }elseif($value->status == 2){
+                                             echo 'pending job bank for allocate' ;
+                                           }elseif ($value->status == 3) {
+                                            echo 'ongoing job'; 
+                                           }elseif ($value->status == 4) {
+                                            echo 'pending for checkout for invoice'; 
+                                           }elseif($value->status == 6){
+                                            echo 'Pending for Approval'; 
+                                           }
+                                         ?>
                                      </td>
                                      <td><a href="<?php echo base_url();?>joblist_bank/individual_approved_reject/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                                   </tr>

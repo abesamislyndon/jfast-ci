@@ -222,9 +222,11 @@ class Job_delivery_model extends CI_Model
         
         $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+     
        // $this->db->group_by('job_delivery.job_request_id');
         $this->db->where('status', 3);
-        $this->db->where('job_allocate_info.driver_id', $driver);
+        $this->db->where('job_allocate_info.driver_id', $driver)->group_by('item_type.job_request_id');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         
@@ -237,6 +239,9 @@ class Job_delivery_model extends CI_Model
         return false;
     }
     
+
+
+
     function show_invoice_job($limit, $start)
     {
         $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');

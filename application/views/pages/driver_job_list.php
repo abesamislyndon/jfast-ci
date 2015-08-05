@@ -48,10 +48,14 @@
                                 <ul class = "details">
                                    <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>
                                    <li><b>Weight:</b>&nbsp;<?php echo $value->weight?></li>
-                                   <li><b>Dimension:</b>&nbsp;<?php echo $value->dimension?></li>
                                    <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
                                 </ul>
+                                <ul class = "details">
+                                   <li><b>Vehicle:</b>&nbsp;<?php echo $value->vehicle?></li>
+                                   <li><b>No. trips</b>&nbsp;<?php echo $value->no_trips?></li>
+                                </ul>         
                              </td>
+                     
                             <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>
                              <td><a href="<?php echo base_url();?>driver_info/job_process/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                           </tr>

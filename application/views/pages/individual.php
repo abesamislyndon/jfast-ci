@@ -119,6 +119,38 @@
                   </div>
                </div>
          </div> 
+
+  <div class="col-md-12 wrapper1">
+            <hr>
+              <div class="form-group">
+                  <div class="col-md-1">
+                    <label>DATE:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-11">
+                <div class="input-group">
+                        <div class="input-group-addon">
+                           <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" name = "date_request" class="form-control pull-right  required lg" id="datepicker" value = "<?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?>"/>
+                     </div>
+                  </div>
+               </div>
+
+                <div class="form-group">
+                 <div class="col-md-1">
+                    <label>TIME:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-11">
+                       <div class="input-group">
+                          <div class="input-group-addon">
+                           <i class="fa fa-clock-o"></i>
+                           </div>
+                           <input type="text" name = "time" class="form-control timepicker  required lg" value = "<?php echo $value->time ?>"/>   
+                        </div>
+                  </div>
+               </div>
+         </div>
+
       </div>
    </div>
 

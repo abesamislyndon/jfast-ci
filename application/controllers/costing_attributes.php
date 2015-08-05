@@ -24,7 +24,7 @@ class Costing_attributes extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $data);
             $this->load->view('pages/costing_location');
-            $this->load->view('scaffolds/footer');
+             $this->load->view('scaffolds/footer_normal');
 
         } else {
             redirect('login', 'refresh');

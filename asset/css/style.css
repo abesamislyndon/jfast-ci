@@ -41,7 +41,13 @@
 select{
        -webkit-appearance: none !important;
 }
-
+.price_total{
+    float:right;
+    padding:10px;
+    background:red;
+    font-weight: bold;
+    color:#fff;   
+}
 .table input{
     padding:2px 10px; 
 }

@@ -20,6 +20,7 @@
     <link href="<?php echo base_url();?>asset/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/stacktable.css">
     <script src="<?php echo base_url();?>asset/tiny_mce/tiny_mce.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -45,7 +46,7 @@
     });
   </script>
   </head>
-   <body class="skin-blue sidebar-mini">
+   <body class="skin-blue sidebar-mini" data-ng-app = "jfastApp">
      <?php
             if (!$sock = @fsockopen('www.google.com', 80, $num, $error,5)) {
             echo '<p class = "notice"><i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;you are offline kindly check your connection</p>';
@@ -54,7 +55,7 @@
           echo '';
         }
       ?>
-      <div class="wrapper">
+      <div class="wrapper" >
         <header class="main-header">
         <a href="<?php echo base_url(); ?>dashboard" class="logo">
           <span class="logo-mini"><b>J</b></span>

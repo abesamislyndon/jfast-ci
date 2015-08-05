@@ -18,6 +18,7 @@
     <script src="<?php echo base_url();?>asset/dist/js/demo.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>asset/js/stacktable.js"></script>
+
  
 
     <script type="text/javascript"> 

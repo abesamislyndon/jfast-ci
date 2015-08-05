@@ -118,6 +118,39 @@
                   </div>
                </div>
          </div> 
+
+       <div class="col-md-12 wrapper1">
+            <hr>
+              <div class="form-group">
+                  <div class="col-md-1">
+                    <label>DATE:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-11">
+                <div class="input-group">
+                        <div class="input-group-addon">
+                           <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" name = "date_request" class="form-control pull-right  required lg" id="datepicker" value = "<?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?>"/>
+                     </div>
+                  </div>
+               </div>
+
+                <div class="form-group">
+                 <div class="col-md-1">
+                    <label>TIME:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-11">
+                       <div class="input-group">
+                          <div class="input-group-addon">
+                           <i class="fa fa-clock-o"></i>
+                           </div>
+                           <input type="text" name = "time" class="form-control timepicker  required lg" value = "<?php echo $value->time ?>"/>   
+                        </div>
+                  </div>
+               </div>
+         </div>
+
+
       </div>
    </div>
 
@@ -238,11 +271,22 @@
          </div>  
  
          <div class="col-md-12 wrapper1">
-               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update price">
-                 &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "Approve">
+               <input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update price">                   &nbsp;&nbsp;<input type = "submit" name = "submit_approved" class="btn btn-success btn-lg" value = "Approve">
                  &nbsp;&nbsp;   <a href="#spec" role="button"  class = "btn btn-success btn-lg" data-toggle="modal" data-load-remote="<?php echo base_url();?>driver_info/" data-remote-target="#spec .modal-body">Approved and Allocate&nbsp;<i class="fa fa-truck"></i></a>
                  &nbsp;&nbsp;<input type = "submit" name = "submit_reject" class="btn btn-danger btn-lg" value = "reject">
-               </p>
+              <?php foreach ($individual as  $value): ?>
+                       <span class="price_total">TOTAL:&nbsp;&nbsp;&nbsp;<?php 
+                              $sub  = 
+                              $value->destination_cost + 
+                              $value->weight_cost +  
+                              $value->labor_cost + 
+                              $value->sumt + 
+                              $value->vehicle_cost + 
+                              $value->trip_cost;  
+
+                              echo number_format($sub,2); 
+                          ?></span>
+             <?php endforeach; ?>  
          </div>
       </div>
    </div>
@@ -266,6 +310,9 @@
                               <button type="button" class="btn btn-primary1" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;&nbsp;Cancel</button>
                            </div>
                         </div>
+
+
+
                      </div>
                   </div>
                </form>     

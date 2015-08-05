@@ -66,25 +66,52 @@
             <div class="box box-info">
                <div class="box-body">
                <table class="table table-bordered table-custom">
-                     <div class="box-header">
+                    <div class="box-header">
                       <h3 class="box-title">Description Details</h3>
                     </div>
                      
                      <tr>
                         <th>Destination</th>
-                        <th>Destination</th>
+                        <th>Destination</th>    
                      </tr>
                      
-                     <tr>
+                      <tr>
                         <td>DATE:</td>
-                        <td><?php echo $value->destination ?></td>
-                     </tr>
+                        <td><?php echo $value->time ?></td>
+                      </tr>
                       
                       <tr>
                         <td>TIME</td>
                         <td><?php echo $value->weight ?></td>
-                      </tr>                        
-                      </table>       
+                      </tr>
+                      
+                      <tr>
+                        <td>DESTINATION</td>
+                        <td><?php echo $value->dimension ?></td>
+                       </tr>
+                       <tr>
+                        
+                        <td>NO. OF TRIPS</td>
+                        <td><?php echo $value->labor ?></td>
+                        </tr>
+
+                        <tr>
+                        <td>WEIGHT</td>
+                        <td class="cost">
+                          <?php 
+                              $sub  = 
+                              $value->destination_cost + 
+                              $value->weight_cost +  
+                              $value->labor_cost + 
+                              $value->sumt + 
+                              $value->vehicle_cost + 
+                              $value->trip_cost;  
+
+                              echo number_format($sub,2); 
+                          ?>
+                        </td>
+                     </tr>
+                  </table>       
               </div>
         </div>
  </div>      

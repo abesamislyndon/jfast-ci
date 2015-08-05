@@ -16,9 +16,7 @@ class Search extends CI_Controller
         $this->data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
         $sender = $this->session->userdata["logged_in"]["full_name"];   
         $this->data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
-  
 
-    
     }
 
     public function jobBank()
