@@ -49,8 +49,9 @@ class Regular_customer extends CI_Controller {
         $data['labor']          = $this->Job_delivery_model->labor();
         $sender = $this->session->userdata["logged_in"]["full_name"];
         $data['count_jobbank'] = $this->Job_delivery_model->regualar_view_updated_price($sender);
-           $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
-      
+        $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
+        $data['count_for_jobcomplete'] = $this->Job_delivery_model->count_for_job_complete($sender);
+        
    
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -130,9 +131,11 @@ class Regular_customer extends CI_Controller {
         $data['labor']          = $this->Job_delivery_model->labor();
         $sender = $this->session->userdata["logged_in"]["full_name"];
         $data['count_jobbank'] = $this->Job_delivery_model->regualar_view_updated_price($sender);
-       $sender = $this->session->userdata["logged_in"]["full_name"];   
-       $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
-   
+        $sender = $this->session->userdata["logged_in"]["full_name"];   
+        $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
+        $data['count_for_jobcomplete'] = $this->Job_delivery_model->count_for_job_complete($sender);
+        
+
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_regular_customer', $data);
 		$this->load->view('pages/success');
@@ -180,7 +183,9 @@ class Regular_customer extends CI_Controller {
         $data['dimension']      = $this->Job_delivery_model->dimension();
         $data['labor']          = $this->Job_delivery_model->labor();
         $data['count_jobbank']  = $this->Job_delivery_model->regualar_view_updated_price($sender);
-         $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
+        $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
+        $data['count_for_jobcomplete'] = $this->Job_delivery_model->count_for_job_complete($sender);
+    
         
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar_regular_customer', $data);
@@ -205,6 +210,8 @@ class Regular_customer extends CI_Controller {
         $data['count_ongoing_job'] = $this->Job_delivery_model->count_ongoing_jobbank();
         $data['count_invoice_job'] = $this->Job_delivery_model->count_invoice_jobbank();
         $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
+        $data['count_for_jobcomplete'] = $this->Job_delivery_model->count_for_job_complete($sender);
+        
 
         $data['from'] = $this->Job_delivery_model->destination();
         $data['weight'] = $this->Job_delivery_model->weight();
@@ -215,6 +222,57 @@ class Regular_customer extends CI_Controller {
         $this->load->view('scaffolds/sidebar_regular_customer', $data);
         $this->load->view('pages/individual_regular_customer', $data);
         $this->load->view('scaffolds/form_footer');
+   }
+
+
+     public function view_ongoing_status()
+    {   
+     if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '2')
+     {
+
+        $config                     = array();
+        $config["base_url"]         = base_url().'joblist_bank/incoming_joblist';
+        $config["total_rows"]       = $this->Job_delivery_model->record_count();
+        $config["per_page"]         = 8;
+        $config["uri_segment"]      = 3;
+        $config['full_tag_open']    = "<ul class='pagination pagination-sm no-margin pull-right'>";
+        $config['full_tag_close']   = "</ul>";
+        $config['num_tag_open']     = '<li>';
+        $config['num_tag_close']    = '</li>';
+        $config['cur_tag_open']     = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close']    = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open']    = "<li>";
+        $config['next_tagl_close']  = "</li>";
+        $config['prev_tag_open']    = "<li>";
+        $config['prev_tagl_close']  = "</li>";
+        $config['first_tag_open']   = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open']    = "<li>";
+        $config['last_tagl_close']  = "</li>";
+
+        $this->pagination->initialize($config);
+        $sender                 = $this->session->userdata["logged_in"]["full_name"];
+        $page                   = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['request_job']    = $this->Job_delivery_model->my_ongoing_job($config["per_page"], $page, $sender);
+        $data["links"]          = $this->pagination->create_links();
+        $data['from']           = $this->Job_delivery_model->destination();
+        $data['weight']         = $this->Job_delivery_model->weight();
+        $data['dimension']      = $this->Job_delivery_model->dimension();
+        $data['labor']          = $this->Job_delivery_model->labor();
+        $data['count_jobbank']  = $this->Job_delivery_model->regualar_view_updated_price($sender);
+        $data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
+        $data['count_for_jobcomplete'] = $this->Job_delivery_model->count_for_job_complete($sender);
+        
+
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar_regular_customer', $data);
+        $this->load->view('pages/job_ongoing_regular_list', $data);
+        $this->load->view('scaffolds/form_footer');
+        
+     }
+     else{
+            redirect('login', 'refresh');
+        }   
    }
 
 

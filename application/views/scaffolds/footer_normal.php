@@ -15,8 +15,7 @@
     <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
     <script src="<?php echo base_url();?>asset/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url();?>asset/dist/js/pages/dashboard2.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="<?php echo base_url();?>asset/js/app.js"></script>
+
     
     <script type="text/javascript">
       $(function () {
@@ -79,11 +78,6 @@
                 });
             }
     </script>
-
-
-
-
-
 <script>
 function goBack() {
     window.history.back();
@@ -93,5 +87,7 @@ function goBack() {
 <script>
   $('#card-table').cardtable({myClass:'stacktable small-only' });
 </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="<?php echo base_url();?>asset/js/app.js"></script>
   </body>
 </html>

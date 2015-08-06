@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url']	= 'http://localhost:8888/jfast-ci/';
+$config['base_url']	= 'http://192.168.1.3:8888/jfast-ci/';
 
 /*
 |--------------------------------------------------------------------------

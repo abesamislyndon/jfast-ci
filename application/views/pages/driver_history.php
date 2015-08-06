@@ -19,7 +19,6 @@
                               <th style="width:290px">Pickup Details </th>
                               <th style="width:290px">Delivery Details</th>
                               <th>Job Description</th>
-                              <th style="width:90px">Cost in SGD</th>
                               <th>Remarks</th>
                      </tr>
                    </thead>
@@ -55,7 +54,6 @@
                                    <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
                                 </ul>
                              </td>
-                             <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>
                               <td class = "remarks"><br>
                                      <?php
                                        if($value->status == 1) {

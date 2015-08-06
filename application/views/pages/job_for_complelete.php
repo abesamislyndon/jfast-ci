@@ -94,7 +94,7 @@
                   </div>
                   <?php endforeach; ?>
                   <div class="col-sm-7">
-                     <input type = "submit" name = "job_pickup"  class = "btn btn-success btn-lg" value = "Job Pickup">
+                     <input type = "submit" name = "submit"  class = "btn btn-success btn-lg" value = "Job Complete">
                   </div>
                </form>   
                  <!--end of modal-->

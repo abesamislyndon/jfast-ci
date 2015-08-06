@@ -13,6 +13,12 @@ class Success extends CI_Controller
     $this->data['count_ongoing_job']  =  $this->job_delivery_model->count_ongoing_jobbank();
     $this->data['count_invoice_job']  =  $this->job_delivery_model->count_invoice_jobbank();
     $data['total_invoice_job']        =  $this->job_delivery_model->count_invoice_total();
+    $sender = $this->session->userdata["logged_in"]["full_name"]; 
+    $this->data['count'] = $this->job_delivery_model->count_job_list_driver($sender);
+    $this->data['count_for_job_complete'] = $this->job_delivery_model->count_for_jobcomplete_driver($sender);
+    $this->data['count_job_complete_driver'] = $this->job_delivery_model->count_jobcomplete_driver($sender);
+      
+           
 
 
  }
@@ -70,9 +76,6 @@ class Success extends CI_Controller
 	 
    }
 
-
-   
-
  function job_invoice_success()
 	{	
 	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '1')
@@ -122,6 +125,23 @@ class Success extends CI_Controller
  	    $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar_driver', $this->data);
 		$this->load->view('pages/job_complete_success_driver');
+		$this->load->view('scaffolds/footer');
+        
+     }else
+		{
+			redirect('login', 'refresh');
+		}	
+	 
+       }
+
+        function job_driver_pickup()
+	{	
+	 if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '3')
+     {
+    
+ 	    $this->load->view('scaffolds/header');
+	    $this->load->view('scaffolds/sidebar_driver', $this->data);
+		$this->load->view('pages/job_pickup_driver');
 		$this->load->view('scaffolds/footer');
         
      }else

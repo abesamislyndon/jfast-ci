@@ -15,6 +15,12 @@ class Manage_user_accounts extends CI_Controller
         $this->data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
         $sender = $this->session->userdata["logged_in"]["full_name"];   
         $this->data['count_updated_job'] = $this->job_delivery_model->count_update_job($sender);
+        $this->data['count_for_jobcomplete'] = $this->job_delivery_model->count_for_job_complete($sender);
+        $this->data['count'] = $this->job_delivery_model->count_job_list_driver($sender);
+        $this->data['count_for_job_complete'] = $this->job_delivery_model->count_for_jobcomplete_driver($sender);
+      
+            
+        
     }
 
     /* *************************** Notification Controller ************************* */
@@ -158,7 +164,7 @@ class Manage_user_accounts extends CI_Controller
         if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
            
             $id = $this->session->userdata["logged_in"]["id"];
-            $data['list']              = $this->user->user_all_list_driver($id);
+            $this->data['list'] = $this->user->user_all_list_driver($id);
 
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar_driver', $this->data);

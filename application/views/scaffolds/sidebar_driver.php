@@ -6,12 +6,19 @@
       <ul class="sidebar-menu">
         <li>
           <a href="<?php echo base_url(); ?>driver_info/job_list/<?php $driver = $this->session->userdata["logged_in"]["id"]; echo $driver; ?>">
-            <i class="fa fa-money"></i><span>Active</span>
+          <i class="fa fa-pencil-square-o"></i><span>Active</span> <?php foreach($count as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+
+          </a>
+          </li>
+          <li>
+          <a href="<?php echo base_url(); ?>driver_info/for_job_complete/<?php $driver = $this->session->userdata["logged_in"]["id"]; echo $driver; ?>">
+          <i class="fa fa-pencil-square-o"></i><span>For Job Complete</span> <?php foreach($count_for_job_complete as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+
           </a>
           </li>
           <li>
             <a href="<?php echo base_url(); ?>driver_info/driver_history/<?php $driver = $this->session->userdata["logged_in"]["id"]; echo $driver; ?>">
-            <i class="fa fa-money"></i><span>Completed</span>
+               <i class="fa fa-pencil-square-o"></i><span>Delivery Complete</span> <?php foreach($count_job_complete_driver as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
           </a>
         </li>
        <li class="treeview">

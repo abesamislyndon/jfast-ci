@@ -14,6 +14,11 @@ class Driver_info extends CI_Controller
         $this->data['count_ongoing_job']  =  $this->Job_delivery_model->count_ongoing_jobbank();
         $this->data['count_invoice_job']  =  $this->Job_delivery_model->count_invoice_jobbank();
         $data['total_invoice_job']        =  $this->Job_delivery_model->count_invoice_total();
+        $sender = $this->session->userdata["logged_in"]["full_name"]; 
+        $this->data['count'] = $this->Job_delivery_model->count_job_list_driver($sender);
+        $this->data['count_for_job_complete'] = $this->Job_delivery_model->count_for_jobcomplete_driver($sender);
+        $this->data['count_job_complete_driver'] = $this->Job_delivery_model->count_jobcomplete_driver($sender);
+      
             
     }
     
@@ -215,6 +220,52 @@ class Driver_info extends CI_Controller
 
    }
 
+
+       //******************************************** for job complete **********************************************************//
+
+
+   public function for_job_complete(){
+
+    if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '3')
+     {
+        $config = array();
+        $config["base_url"] = base_url().'Driver_info/ongoing_job_list';
+        $config["total_rows"] = $this->Job_delivery_model->record_count();
+        $config["per_page"] = 8;
+        $config["uri_segment"] = 3;
+        $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";
+
+        $this->pagination->initialize($config);
+        $driver = $this->uri->segment(4);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['ongoing'] = $this->Job_delivery_model->show_driver_job_complete_pending($config["per_page"], $driver, $page);
+        $data["links"] = $this->pagination->create_links();
+        
+   
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar_driver', $this->data, $driver);
+        $this->load->view('pages/driver_for_job_complete', $data);
+        $this->load->view('scaffolds/footer'); 
+     }
+     else{
+        redirect('login', 'refresh');
+    } 
+
+   }
+
   //*********************************************** DRIUVER PROCESS ************************************************ //
 
   public function job_process(){
@@ -228,10 +279,32 @@ class Driver_info extends CI_Controller
         $data['weight'] = $this->Job_delivery_model->weight();
         $data['dimension'] = $this->Job_delivery_model->dimension();
         $data['labor'] = $this->Job_delivery_model->labor();
-   
+      
         $this->load->view('scaffolds/header');
-        $this->load->view('scaffolds/sidebar_driver', $data);
+        $this->load->view('scaffolds/sidebar_driver', $this->data);
         $this->load->view('pages/job_process_driver', $data);
+        $this->load->view('scaffolds/footer');
+
+          } else {
+            redirect('login', 'refresh');
+        }
+   }
+
+   public function job_for_completion(){
+    
+     if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
+           
+        $id = $this->uri->segment(3);
+        $data['individual'] = $this->Job_delivery_model->show_individual($id);
+     
+        $data['from'] = $this->Job_delivery_model->destination();
+        $data['weight'] = $this->Job_delivery_model->weight();
+        $data['dimension'] = $this->Job_delivery_model->dimension();
+        $data['labor'] = $this->Job_delivery_model->labor();
+      
+        $this->load->view('scaffolds/header');
+        $this->load->view('scaffolds/sidebar_driver', $this->data);
+        $this->load->view('pages/job_for_complelete', $data);
         $this->load->view('scaffolds/footer');
 
           } else {
@@ -241,9 +314,14 @@ class Driver_info extends CI_Controller
 
   public function job_complete(){
            if ($this->session->userdata('logged_in') && $this->session->userdata['logged_in']['role_code'] == '3') {
-            
-                $id = $this->input->post('job_request_id');
-                $this->Driver_info_model->do_job_complete_driver($id);  
+                
+                if ($this->input->post('job_pickup')) {
+                      $id = $this->input->post('job_request_id');
+                      $this->Driver_info_model->do_job_pickup($id);  
+                }elseif($this->input->post('submit')){
+                      $id = $this->input->post('job_request_id');
+                      $this->Driver_info_model->do_job_complete_driver($id);  
+                }
 
         } else {
             redirect('login', 'refresh');

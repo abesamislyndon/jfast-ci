@@ -12,6 +12,11 @@
                   <i class="fa fa-pencil-square-o"></i><span>Pending Request</span> <?php foreach($count_updated_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li>
+             <li>
+              <a href="<?php echo base_url(); ?>regular_customer/view_ongoing_status">
+                  <i class="fa fa-pencil-square-o"></i><span>On Going Delivery</span> <?php foreach($count_for_jobcomplete as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+              </a>
+            </li>
            
             <li class="treeview">
               <a href="#">

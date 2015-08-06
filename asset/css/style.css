@@ -41,6 +41,13 @@
 select{
        -webkit-appearance: none !important;
 }
+input[type=text][disabled], input[type=email][disabled]{
+  background:#fff; 
+  border:none;
+}
+.price{
+    text-align: center;
+}
 .price_total{
     float:right;
     padding:10px;

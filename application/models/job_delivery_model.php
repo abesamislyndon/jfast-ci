@@ -172,6 +172,28 @@ class Job_delivery_model extends CI_Model
         }
         return false;
     }
+
+      function my_ongoing_job($limit, $start, $sender)
+    {
+        
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->where('sender', $sender);
+        $where = '(status="7")';
+        $this->db->where($where)->group_by('item_type.job_request_id');
+        $this->db->from('job_delivery');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+    
     
     
     function show_allocate_job_list($limit, $start)
@@ -200,10 +222,11 @@ class Job_delivery_model extends CI_Model
 
         $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
         $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
-        $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->from('job_delivery');
         $this->db->group_by('job_delivery.job_request_id');
-        $this->db->where('status', 3);
+        $where = '(status="3" or status = "7")';
+        $this->db->where($where);
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         
@@ -238,9 +261,29 @@ class Job_delivery_model extends CI_Model
         }
         return false;
     }
+
+   function show_driver_job_complete_pending($limit, $start, $driver)
+    {
+        
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+     
+       // $this->db->group_by('job_delivery.job_request_id');
+        $this->db->where('status', 7);
+        $this->db->where('job_allocate_info.driver_id', $driver)->group_by('item_type.job_request_id');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
     
-
-
 
     function show_invoice_job($limit, $start)
     {
@@ -531,7 +574,8 @@ class Job_delivery_model extends CI_Model
     {
         
         $this->db->select('status, COUNT(status) as total');
-        $this->db->where('status', 3);
+        $where = '(status="3" or status="7")';
+        $this->db->where($where);
         $this->db->from('job_delivery');
         $this->db->order_by('total', 'desc');
         $query = $this->db->get();
@@ -555,6 +599,19 @@ class Job_delivery_model extends CI_Model
         $this->db->select('status, COUNT(status) as total');
         $this->db->where('sender', $sender);
         $where = '(status="1" or status = "6")';
+        $this->db->where($where);
+        $this->db->from('job_delivery');
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
+   function count_for_job_complete($sender)
+    {
+        
+        $this->db->select('status, COUNT(status) as total');
+        $this->db->where('sender', $sender);
+        $where = '(status="7")';
         $this->db->where($where);
         $this->db->from('job_delivery');
         $this->db->order_by('total', 'desc');
@@ -688,6 +745,51 @@ class Job_delivery_model extends CI_Model
         $this->db->where('role_code', 2);
         $query = $this->db->get();
         return $query->result();
+    }
+
+    function count_job_list_driver($sender)
+    {
+        $this->db->select('* , status, COUNT(status) as total');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->from('job_delivery');
+        
+        $this->db->where('job_allocate_info.full_name', $sender);
+        $where = '(status="3")';
+        $this->db->where($where);
+   
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+
+    function count_for_jobcomplete_driver($sender){
+
+        $this->db->select('* , status, COUNT(status) as total');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->from('job_delivery');
+        
+        $this->db->where('job_allocate_info.full_name', $sender);
+        $where = '(status="7")';
+        $this->db->where($where);
+   
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
+    }
+ 
+        function   count_jobcomplete_driver($sender){
+
+        $this->db->select('* , status, COUNT(status) as total');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->from('job_delivery');
+        
+        $this->db->where('job_allocate_info.full_name', $sender);
+        $where = '(status="4")';
+        $this->db->where($where);
+   
+        $this->db->order_by('total', 'desc');
+        $query = $this->db->get();
+        return $result = $query->result();
     }
     
 }

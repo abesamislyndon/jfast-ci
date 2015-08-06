@@ -27,7 +27,7 @@
                     <label>Contact Person:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                        <input type="text" name = "full_name" class="form-control lg " value = "<?php echo $value->full_name ?>"/>
+                        <input type="text" name = "full_name" class="form-control lg " value = "<?php echo $value->full_name ?>" disabled/>
                   </div>
                </div>
 
@@ -36,7 +36,7 @@
                     <label>Company:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                       <input type="text" name = "company_client" class="form-control lg" value = "<?php echo $value->company_client ?>"/>
+                       <input type="text" name = "company_client" class="form-control lg" value = "<?php echo $value->company_client ?>" disabled/>
                   </div>
                </div>
 
@@ -46,7 +46,7 @@
                     <label>Tel no:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                       <input type="text" name = "tel_no" class="form-control lg" value = "<?php echo $value->tel_no ?>"/>
+                       <input type="text" name = "tel_no" class="form-control lg" value = "<?php echo $value->tel_no ?>" disabled/>
                   </div>
                </div>
 
@@ -55,7 +55,7 @@
                     <label>Email:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                      <input type="email" name = "email" class="form-control lg" id="exampleInputEmail1" value = "<?php echo $value->email ?>">
+                      <input type="email" name = "email" class="form-control lg" id="exampleInputEmail1" value = "<?php echo $value->email ?>" disabled/>
                   </div>
                </div>
 
@@ -65,7 +65,7 @@
                     <label>Pickup Address:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                    <input type="text" name = "address_pickup" class="form-control lg" value = "<?php echo $value->address_pickup ?>"/>
+                    <input type="text" name = "address_pickup" class="form-control lg" value = "<?php echo $value->address_pickup ?>" disabled/>
                   </div>
                </div>
          </div> 
@@ -78,7 +78,7 @@
                     <label>Contact Person:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                        <input type="text" name = "full_name_deliver" class="form-control lg" value = "<?php echo $value->full_name_deliver ?>"/>
+                        <input type="text" name = "full_name_deliver" class="form-control lg" value = "<?php echo $value->full_name_deliver ?>" disabled/>
                   </div>
                </div>
 
@@ -87,7 +87,7 @@
                     <label>Company:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                      <input type="text" name = "company_client_deliver" class="form-control lg" value = "<?php echo $value->company_client_deliver ?>"/>
+                      <input type="text" name = "company_client_deliver" class="form-control lg" value = "<?php echo $value->company_client_deliver ?>" disabled/>
                   </div>
                </div>
 
@@ -96,7 +96,7 @@
                     <label>Tel no:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                         <input type="text" name = "tel_no_deliver" class="form-control lg" value = "<?php echo $value->tel_no_deliver ?>"/>
+                         <input type="text" name = "tel_no_deliver" class="form-control lg" value = "<?php echo $value->tel_no_deliver ?>" disabled/>
                   </div>
                </div>
 
@@ -106,7 +106,7 @@
                     <label>Email:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                     <input type="email" name = "email_deliver" class="form-control lg" id="exampleInputEmail1" value = "<?php echo $value->email_deliver ?>">
+                     <input type="email" name = "email_deliver" class="form-control lg" id="exampleInputEmail1" value = "<?php echo $value->email_deliver ?>" disabled/>
                   </div>
                </div>
 
@@ -116,7 +116,7 @@
                     <label>Pickup Address:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-8">
-                     <input type="text" name = "address_deliver" class="form-control lg" value = "<?php echo $value->address_deliver ?>"/>
+                     <input type="text" name = "address_deliver" class="form-control lg" value = "<?php echo $value->address_deliver ?>" disabled/>
                   </div>
                </div>
          </div> 
@@ -135,7 +135,7 @@
                       <tr>
                         <td><label>Vehicle</label></td>
                         <td>
-                          <select class="form-control" name="vehicle" id="destination" >
+                          <select class="form-control" name="vehicle" id="destination" disabled>
                               <option value = "<?php echo $value->vehicle ?>" selected="selected"><?php echo $value->vehicle ?></option>
                                <option value="Van">Van</option>
                                <option value="10 ft Lorry">10 ft Lorry</option>
@@ -146,26 +146,26 @@
                                <option value="Mini Bus">Mini Bus</option>   
                            </select>
                          </td>
-                        <td><input type="text" name = "vehicle_cost" value = "<?php echo $value->vehicle_cost ?>"></td>
+                        <td><input type="text" name = "vehicle_cost" value = "<?php echo $value->vehicle_cost ?>" class = "price" disabled/></td>
                       </tr>
                       
                       <tr>
                         <td><label>Destination</label></td>
                            <td>
-                           <select class="form-control" name="destination_get" id="destination" >
+                           <select class="form-control" name="destination_get" id="destination" disabled>
                               <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->destination ?></option>
                               <?php foreach ($from as $value1) { ?>
                               <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from_destination ?>&nbsp;-&nbsp;<?php echo $value1->to_destination ?></option>
                               <?php  } ?>    
                             </select>
                         </td>
-                        <td><input type="text" name = "destination_cost" value = "<?php echo $value->destination_cost ?>"></td>
+                        <td><input type="text" name = "destination_cost" value = "<?php echo $value->destination_cost ?>" class = "price" disabled/></td>
                       </tr>
                      
                       <tr>
                         <td><label>No. of trips:</label></td>
                         <td>
-                          <select class="form-control" name="no_trips" id="destination" >
+                          <select class="form-control" name="no_trips" id="destination" disabled>
                               <option value = "<?php echo $value->no_trips ?>" selected="selected"><?php echo $value->no_trips ?></option>
                                  <option value="1">1</option>
                                  <option value="2">2</option>
@@ -179,26 +179,26 @@
                                  <option value="10">10</option>
                            </select>
                         </td>
-                        <td><input type="text" name = "trip_cost" value = "<?php echo $value->trip_cost ?>"></td>
+                        <td><input type="text" name = "trip_cost" value = "<?php echo $value->trip_cost ?>" class = "price" disabled/></td>
                       </tr>
 
                        <tr>
                         <td><label>Weight</label></td>
                         <td>
-                            <select class="form-control" name="weight" id="weight">
+                            <select class="form-control" name="weight" id="weight" disabled>
                                <option value = "<?php echo $value->weight_id ?>" selected="selected"><?php echo $value->weight ?></option>
                                <?php foreach ($weight as $value1) { ?>
                                <option  value = "<?php echo $value1->id ?>">&nbsp;&nbsp;<?php echo $value1->weight ?></option>
                                <?php  } ?>    
                             </select>
                         </td>
-                        <td><input type="text" name = "weight_cost" value = "<?php echo $value->weight_cost ?>"></td>
+                        <td><input type="text" name = "weight_cost" value = "<?php echo $value->weight_cost ?>" class = "price" disabled/></td>
                       </tr>
 
                        <tr>
                         <td><label>No. of Labor</label></td>
                         <td>
-                          <select class="form-control" name="labor" id="labor" >
+                          <select class="form-control" name="labor" id="labor" disabled>
                               <option value = "<?php echo $value->labor ?>" selected="selected"><?php echo $value->labor ?></option>
                                  <option value="1">1</option>
                                  <option value="2">2</option>
@@ -212,7 +212,7 @@
                                  <option value="10">10</option>
                            </select>           
                         </td>
-                        <td><input type="text" name = "labor_cost" value = "<?php echo $value->labor_cost ?>"></td>
+                        <td><input type="text" name = "labor_cost" value = "<?php echo $value->labor_cost ?>" class = "price" disabled/></td>
                       </tr>
 
                 </table>               
@@ -239,16 +239,13 @@
                         <td><?php echo $value->item_type ?></td>
                         <td><?php echo $value->qty_check ?></td>
                         <td><?php echo $value->dimension_check ?></td>
-                        <td><input type="text" name = "item_type_cost[]" value = "<?php echo $value->item_type_cost ?>"></td>
+                        <td><input type="text" name = "item_type_cost[]" value = "<?php echo $value->item_type_cost ?>" class = "price" disabled/></td>
                         <td><input type="hidden" name = "item_type_id[]" value = "<?php echo $value->item_type_id ?>"></td>
                       </tr> 
                    <?php endforeach; ?>          
                 </table>      
          </div>  
- 
-         <div class="col-md-12 wrapper1">
-               <p><input type = "submit" name = "submit_update" class="btn btn-primary btn-lg" value = "Update Price"></p>
-         </div>
+
       </div>
    </div>
 </form>

@@ -53,7 +53,7 @@
                                 </ul>         
                              </td>
                      
-                             <td><a href="<?php echo base_url();?>driver_info/job_process/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
+                             <td><a href="<?php echo base_url();?>driver_info/job_for_completion/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
                           </tr>
                      <?php  endforeach; 
                        }else{?>

@@ -12,7 +12,7 @@
                 <div class="box-body">
 
 
-                  <table class="table table-bordered table-custom" id = "card-table" ng-controller = "forController">
+                  <table class="table table-bordered table-custom" id = "card-table">
                  <thead>
                            <tr>
                               <th style="width:40px">id</th>

@@ -30,6 +30,7 @@
 
                    <div class="form-group">
                   <div class="col-md-2">
+
                     <label>Company:</label> &nbsp; &nbsp;     
                   </div>
                    <div class="col-md-10">
