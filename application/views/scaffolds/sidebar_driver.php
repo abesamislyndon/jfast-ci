@@ -18,12 +18,12 @@
           </li>
           <li>
             <a href="<?php echo base_url(); ?>driver_info/driver_history/<?php $driver = $this->session->userdata["logged_in"]["id"]; echo $driver; ?>">
-               <i class="fa fa-pencil-square-o"></i><span>Delivery Complete</span> <?php foreach($count_job_complete_driver as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+              <i class="fa fa-check-square-o"></i><span>Completed Delivery</span> <?php foreach($count_job_complete_driver as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
           </a>
         </li>
        <li class="treeview">
           <a href="#">
-            <i class="fa fa-search"></i></i> <span>Manage Account</span>
+            <i class="fa fa-user"></i><span>Manage Account</span>
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">

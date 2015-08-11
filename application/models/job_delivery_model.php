@@ -179,7 +179,7 @@ class Job_delivery_model extends CI_Model
         $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
         $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
         $this->db->where('sender', $sender);
-        $where = '(status="7")';
+        $where = '(status="7" or status = "2")';
         $this->db->where($where)->group_by('item_type.job_request_id');
         $this->db->from('job_delivery');
         $this->db->limit($limit, $start);
@@ -611,7 +611,7 @@ class Job_delivery_model extends CI_Model
         
         $this->db->select('status, COUNT(status) as total');
         $this->db->where('sender', $sender);
-        $where = '(status="7")';
+        $where = '(status="7" or status ="2")';
         $this->db->where($where);
         $this->db->from('job_delivery');
         $this->db->order_by('total', 'desc');
@@ -784,7 +784,7 @@ class Job_delivery_model extends CI_Model
         $this->db->from('job_delivery');
         
         $this->db->where('job_allocate_info.full_name', $sender);
-        $where = '(status="4")';
+        $where = '(status="5" or status = "4")';
         $this->db->where($where);
    
         $this->db->order_by('total', 'desc');

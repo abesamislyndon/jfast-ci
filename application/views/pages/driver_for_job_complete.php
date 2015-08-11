@@ -5,7 +5,7 @@
             <div class = "confirm-div"></div>
             <div class="box">
                <div class="box-header">
-                  <h3 class="box-title">ACTIVE JOB LIST</h3>
+                  <h3 class="box-title">FOR JOB COMPLETE LIST</h3>
                </div>
                <!-- /.box-header -->
                <div class="box-body">

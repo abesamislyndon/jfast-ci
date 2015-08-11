@@ -279,6 +279,8 @@ class Driver_info extends CI_Controller
         $data['weight'] = $this->Job_delivery_model->weight();
         $data['dimension'] = $this->Job_delivery_model->dimension();
         $data['labor'] = $this->Job_delivery_model->labor();
+        $data['individual_item_type'] = $this->Job_delivery_model->show_individual_item_type($id);
+     
       
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar_driver', $this->data);
@@ -301,6 +303,8 @@ class Driver_info extends CI_Controller
         $data['weight'] = $this->Job_delivery_model->weight();
         $data['dimension'] = $this->Job_delivery_model->dimension();
         $data['labor'] = $this->Job_delivery_model->labor();
+        $data['individual_item_type'] = $this->Job_delivery_model->show_individual_item_type($id);
+     
       
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar_driver', $this->data);

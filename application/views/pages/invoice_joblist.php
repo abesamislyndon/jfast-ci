@@ -98,7 +98,7 @@
                      <?php  endforeach; 
                        }else{?>
                    <tr>
-                     <td colspan = "9" class = "no-result">NO RESULT</td>
+                     <td colspan = "12" class = "no-result">NO RESULT</td>
                     
                    </tr>
                 <?php }?>

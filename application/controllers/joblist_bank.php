@@ -11,7 +11,11 @@ class Joblist_bank extends CI_Controller {
     $this->data['count_allocate']     =  $this->job_delivery_model->count_allocate_jobbank();
     $this->data['count_ongoing_job']  =  $this->job_delivery_model->count_ongoing_jobbank();
     $this->data['count_invoice_job']  =  $this->job_delivery_model->count_invoice_jobbank();
-    $data['total_invoice_job']        =  $this->job_delivery_model->count_invoice_total();
+    $this->data['total_invoice_job']        =  $this->job_delivery_model->count_invoice_total();
+    $sender = $this->session->userdata["logged_in"]["full_name"];  
+    $this->data['count_jobbank']  = $this->job_delivery_model->regualar_view_updated_price($sender);
+    $this->data['count_updated_job'] = $this->job_delivery_model->count_update_job($sender);
+    $this->data['count_for_jobcomplete'] = $this->job_delivery_model->count_for_job_complete($sender);
  }
 
 	public function incoming_joblist()
@@ -201,6 +205,7 @@ class Joblist_bank extends CI_Controller {
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data['ongoing'] = $this->job_delivery_model->show_ongoing_job($config["per_page"], $page);
+
         $data["links"] = $this->pagination->create_links();
    
         $this->load->view('scaffolds/header');
@@ -309,14 +314,16 @@ class Joblist_bank extends CI_Controller {
 
         $id = $this->uri->segment(3);
         $data['individual'] = $this->job_delivery_model->show_individual($id);
+
         
         $data['from'] = $this->job_delivery_model->destination();
         $data['weight'] = $this->job_delivery_model->weight();
         $data['dimension'] = $this->job_delivery_model->dimension();
         $data['labor'] = $this->job_delivery_model->labor();
 
+    
         $this->load->view('scaffolds/header');
-        $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
+    //    $this->load->view('scaffolds/sidebar_regular_customer', $this->data);
         $this->load->view('pages/individual_search_regular', $data);
         $this->load->view('scaffolds/form_footer');
    }
@@ -330,6 +337,8 @@ class Joblist_bank extends CI_Controller {
         $data['weight'] = $this->job_delivery_model->weight();
         $data['dimension'] = $this->job_delivery_model->dimension();
         $data['labor'] = $this->job_delivery_model->labor();
+        $data['individual_item_type'] = $this->job_delivery_model->show_individual_item_type($id);
+     
    
         $this->load->view('scaffolds/header');
 	    $this->load->view('scaffolds/sidebar', $this->data);
@@ -375,6 +384,8 @@ class Joblist_bank extends CI_Controller {
         $data['weight'] = $this->job_delivery_model->weight();
         $data['dimension'] = $this->job_delivery_model->dimension();
         $data['labor'] = $this->job_delivery_model->labor();
+        $data['individual_item_type'] = $this->job_delivery_model->show_individual_item_type($id);
+     
    
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $this->data);
@@ -397,6 +408,8 @@ class Joblist_bank extends CI_Controller {
         $data['weight'] = $this->job_delivery_model->weight();
         $data['dimension'] = $this->job_delivery_model->dimension();
         $data['labor'] = $this->job_delivery_model->labor();
+        $data['individual_item_type'] = $this->job_delivery_model->show_individual_item_type($id);
+     
    
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $this->data);
@@ -429,6 +442,8 @@ class Joblist_bank extends CI_Controller {
         $data['weight'] = $this->job_delivery_model->weight();
         $data['dimension'] = $this->job_delivery_model->dimension();
         $data['labor'] = $this->job_delivery_model->labor();
+          $data['individual_item_type'] = $this->job_delivery_model->show_individual_item_type($id);
+     
    
         $this->load->view('scaffolds/header');
         $this->load->view('scaffolds/sidebar', $this->data);

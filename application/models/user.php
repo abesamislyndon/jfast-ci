@@ -84,7 +84,7 @@ Class User extends CI_Model
         $this->db->update('users', $data);
 
 
-      $data = array(
+        $data = array(
             'sender' => $full_name,
         );
         

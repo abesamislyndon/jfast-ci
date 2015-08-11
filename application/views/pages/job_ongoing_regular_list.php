@@ -5,7 +5,7 @@
     <div class = "confirm-div"></div>
           
     <div class="box">
-    <div class="box-header"><h3 class="box-title">PENDING FOR PRICE </h3></div><!-- /.box-header -->
+    <div class="box-header"><h3 class="box-title">ON GOING PROJECT DELIVERY </h3></div><!-- /.box-header -->
     <div class="box-body">
        <table class="table table-bordered table-custom" id = "card-table">
              <thead>
@@ -44,13 +44,14 @@
                            </ul>
                            </td>
                            <td>
-                              <ul class = "details">
-                                 <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>
-                                 <li><b>Weight:</b>&nbsp;<?php echo $value->weight?></li>
-                                 <li><b>Dimension:</b>&nbsp;<?php echo $value->dimension?></li>
-                                 <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
-                              </ul>
-                           </td>
+                                 <ul class = "details">
+                                   <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>
+                                   <li><b>Destination:</b>&nbsp;<?php echo $value->destination?></li>
+                                   <li><b>No. Trips:</b>&nbsp;<?php echo $value->no_trips?></li>
+                                   <li><b>Weight:</b>&nbsp;<?php echo $value->weight?></li>
+                                   <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
+                                </ul>
+                             </td>
                            <td class = "cost">
                                  <?php 
                                             $sub  = 
@@ -65,7 +66,7 @@
                                         ?>
 
                            </td>
-                          <td><a href="<?php echo base_url();?>regular_customer/view_job_request/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
+                          <td><a href="<?php echo base_url();?>regular_customer/view_job_request/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;View Details</span></a></td>
                         </tr>
                     <?php  endforeach; 
                      }else{?>

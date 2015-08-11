@@ -17,8 +17,6 @@ class Generate_history extends CI_Controller
         $sender = $this->session->userdata["logged_in"]["full_name"];   
         $this->data['count_updated_job'] = $this->Job_delivery_model->count_update_job($sender);
         $this->data['count_for_jobcomplete'] = $this->Job_delivery_model->count_for_job_complete($sender);
-        
-            
     }
     
     public function jobBank()
@@ -213,8 +211,7 @@ class Generate_history extends CI_Controller
            $sender = $this->input->post('sender');
            $data['sender_list'] = $this->Job_delivery_model->sender_info();
 
-
-            $this->session->set_userdata('sender', $sender);
+           $this->session->set_userdata('sender', $sender);
            $sender1= $this->session->userdata('sender');
            $data['sender'] = $sender1;
  
@@ -228,13 +225,11 @@ class Generate_history extends CI_Controller
 
            $data['result'] = $this->Search_model->do_generate_invoice_sender($from, $to, $sender);
            $data['sample'] = $this->Job_delivery_model->sample($sender); 
-
-                   
-            
-            $this->load->view('scaffolds/header');
-            $this->load->view('scaffolds/sidebar', $this->data);
-            $this->load->view('pages/generate_invoice_result_sender', $data);
-            $this->load->view('scaffolds/form_footer');
+ 
+           $this->load->view('scaffolds/header');
+           $this->load->view('scaffolds/sidebar', $this->data);
+           $this->load->view('pages/generate_invoice_result_sender', $data);
+           $this->load->view('scaffolds/form_footer');
         } else {
             redirect('login', 'refresh');
         }

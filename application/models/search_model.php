@@ -21,8 +21,10 @@ class  Search_model extends CI_Model
 
         function fetch_search_jobBank_regular($jobBank_id, $sender){
         
-        $this->db->select('*');
-        $this->db->from('job_delivery');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
+       
         $this->db->where('job_delivery.job_request_id', $jobBank_id);
         $this->db->where('job_delivery.sender_id', $sender);
      
@@ -41,8 +43,10 @@ class  Search_model extends CI_Model
 
    function fetch_search_jobBank_driver($jobBank_id, $sender){
         
-        $this->db->select('*');
-        $this->db->from('job_delivery');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
+       
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
        // $this->db->where('job_delivery.job_request_id', $jobBank_id);
         $this->db->where('job_allocate_info.driver_id', $sender);
@@ -59,8 +63,10 @@ class  Search_model extends CI_Model
 
         function fetch_search_invoice($invoice_id){
         
-        $this->db->select('*');
-        $this->db->from('job_delivery');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
+    
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
         $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
         $this->db->where('invoice.id', $invoice_id);
@@ -77,8 +83,10 @@ class  Search_model extends CI_Model
         
      function fetch_search_invoice_regular($invoice_id, $sender){
         
-        $this->db->select('*');
-        $this->db->from('job_delivery');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
+       
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
         $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
         $this->db->where('invoice.id', $invoice_id);
@@ -104,9 +112,10 @@ class  Search_model extends CI_Model
         $format     = strtotime($cal_date);
         $mysql_to = date('Y-m-d', $format);
        
-       $this->db->select('*');
-       $this->db->from('job_delivery');
-       $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
        //$this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
        //$this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
       
@@ -131,11 +140,12 @@ class  Search_model extends CI_Model
         $format     = strtotime($cal_date);
         $mysql_to = date('Y-m-d', $format);
        
-       $this->db->select('*');
-       $this->db->from('job_delivery');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
    
-       $this->db->where('job_delivery.date_request >=',  $mysql_from);
-       $this->db->where('job_delivery.date_request <=',  $mysql_to);
+        $this->db->where('job_delivery.date_request >=',  $mysql_from);
+        $this->db->where('job_delivery.date_request <=',  $mysql_to);
         $this->db->where('job_delivery.sender_id', $sender);
 
        $this->db->order_by('job_delivery.date_request','ASC');
@@ -154,22 +164,22 @@ class  Search_model extends CI_Model
         $format     = strtotime($cal_date);
         $mysql_to = date('Y-m-d', $format);
        
-       $this->db->select('*');
-       $this->db->from('job_delivery');
-       $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
-       $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+       
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
       
-       $this->db->where('invoice.date_invoice >=',  $mysql_from);
-       $this->db->where('invoice.date_invoice <=',  $mysql_to);
-       $this->db->where('job_delivery.remarks', 'approved');
-    //   $this->db->group_by('job_delivery.job_request_id');
-       $this->db->order_by('invoice.date_invoice','ASC');
-       $query = $this->db->get();
-       return $query->result();
+        $this->db->where('invoice.date_invoice >=',  $mysql_from);
+        $this->db->where('invoice.date_invoice <=',  $mysql_to);
+        $this->db->where('job_delivery.remarks', 'approved');
+        //$this->db->group_by('job_delivery.job_request_id');
+        $this->db->order_by('invoice.date_invoice','ASC');
+        $query = $this->db->get();
+        return $query->result();
 
-    } 
-
-
+      } 
 
         function do_generate_invoice_regular($from, $to, $sender){      
 
@@ -181,22 +191,21 @@ class  Search_model extends CI_Model
         $format     = strtotime($cal_date);
         $mysql_to = date('Y-m-d', $format);
        
-       $this->db->select('*');
-       $this->db->from('job_delivery');
-       $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
-       $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
       
-       //$this->db->where('job_delivery.status', '5');
-       $this->db->where('invoice.date_invoice >=',  $mysql_from);
-       $this->db->where('invoice.date_invoice <=',  $mysql_to);
-       $this->db->where('job_delivery.sender_id', $sender);
-       $this->db->order_by('invoice.date_invoice','ASC');
-       $query = $this->db->get();
-       return $query->result();
+        //$this->db->where('job_delivery.status', '5');
+        $this->db->where('invoice.date_invoice >=',  $mysql_from);
+        $this->db->where('invoice.date_invoice <=',  $mysql_to);
+        $this->db->where('job_delivery.sender_id', $sender);
+        $this->db->order_by('invoice.date_invoice','ASC');
+        $query = $this->db->get();
+        return $query->result();
 
     } 
-
-
 
        function do_generate_invoice_sender($from, $to, $sender){      
   
@@ -208,16 +217,19 @@ class  Search_model extends CI_Model
         $format     = strtotime($cal_date);
         $mysql_to = date('Y-m-d', $format);
        
-       $this->db->select('*');
-       $this->db->from('job_delivery');
-       $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
-       $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
-       $this->db->where('job_delivery.sender_id', $sender);
-       //$this->db->where('job_delivery.status', '5');
-       $this->db->where('invoice.date_invoice >=',  $mysql_from);
-       $this->db->where('invoice.date_invoice <=',  $mysql_to);
+        $this->db->select('*');
+        $this->db->select('sum(item_type_cost) as sumt');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        $this->db->from('job_delivery')->group_by('job_delivery.job_request_id');
        
-     //  $this->db->order_by('invoice.date_invoice','ASC');
+        $this->db->where('job_delivery.sender_id', $sender);
+       //$this->db->where('job_delivery.status', '5');
+        $this->db->where('invoice.date_invoice >=',  $mysql_from);
+        $this->db->where('invoice.date_invoice <=',  $mysql_to);
+       
+       //$this->db->order_by('invoice.date_invoice','ASC');
        $query = $this->db->get();
        return $query->result();
 

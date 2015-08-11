@@ -131,7 +131,9 @@ class Driver_info_model extends CI_Model
         $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
        // $this->db->group_by('job_delivery.job_request_id');
-        $this->db->where('status', 4);
+        $where = '(status="5" or status = "4")';
+        $this->db->where($where);
+      
         $this->db->where('job_allocate_info.driver_id', $driver);
         $this->db->limit($limit, $start);
         $query = $this->db->get();

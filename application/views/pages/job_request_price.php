@@ -52,20 +52,19 @@
                               </ul>
                            </td>
                            <td class = "cost">
-                                 <?php 
-                                            $sub  = 
-                                            $value->destination_cost + 
-                                            $value->weight_cost +  
-                                            $value->labor_cost + 
-                                            $value->sumt + 
-                                            $value->vehicle_cost + 
-                                            $value->trip_cost;  
+                               <?php 
+                                  $sub  = 
+                                  $value->destination_cost + 
+                                  $value->weight_cost +  
+                                  $value->labor_cost + 
+                                  $value->sumt + 
+                                  $value->vehicle_cost + 
+                                  $value->trip_cost;  
 
-                                            echo number_format($sub,2); 
-                                        ?>
-
+                                  echo number_format($sub,2); 
+                              ?>
                            </td>
-                          <td><a href="<?php echo base_url();?>regular_customer/view_job_request/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;process</span></a></td>
+                          <td><a href="<?php echo base_url();?>regular_customer/view_job_request/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;view details</span></a></td>
                         </tr>
                     <?php  endforeach; 
                      }else{?>

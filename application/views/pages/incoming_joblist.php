@@ -53,14 +53,15 @@
                                      <td>
                                         <ul class = "details">
                                            <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>
+                                           <li><b>Destination:</b>&nbsp;<?php echo $value->destination?></li>
+                                           <li><b>No. Trips:</b>&nbsp;<?php echo $value->no_trips?></li>
                                            <li><b>Weight:</b>&nbsp;<?php echo $value->weight?></li>
-                                           <li><b>Dimension:</b>&nbsp;<?php echo $value->dimension?></li>
                                            <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
                                         </ul>
                                      </td>
                                      <td><?php echo $value->sender?></td>
                                      <td class = "cost">
-                                     <?php 
+                                      <?php 
                                             $sub  = 
                                             $value->destination_cost + 
                                             $value->weight_cost +  
@@ -70,9 +71,7 @@
                                             $value->trip_cost;  
 
                                             echo number_format($sub,2); 
-                                        ?>
-
-
+                                      ?>
                                       </td>
                                          <td class = "remarks"><br>
                                            <?php
@@ -94,7 +93,7 @@
                              <?php  endforeach; 
                                }else{?>
                            <tr>
-                             <td colspan = "9" class = "no-result">NO RESULT</td>
+                             <td colspan = "10" class = "no-result">NO RESULT</td>
                             
                            </tr>
                         <?php }?>

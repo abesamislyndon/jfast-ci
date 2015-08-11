@@ -305,7 +305,7 @@
                   <select name="dimension_check[]" id="">
                       <option value="none" selected>-</option>
                       <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
-                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>
@@ -332,7 +332,7 @@
                   <select name="dimension_check[]" id="">
                       <option value="none" selected>-</option>
                       <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
-                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>
@@ -358,7 +358,7 @@
                     <select name="dimension_check[]" id="">
                       <option value="none" selected>-</option>
                       <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
-                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>
@@ -384,7 +384,7 @@
                    <select name="dimension_check[]" id="">
                       <option value="none" selected>-</option>
                       <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
-                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>
@@ -410,7 +410,7 @@
                   <select name="dimension_check[]" id="">
                       <option value="none" selected>-</option>
                       <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
-                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than  50 x 50 x 50</option>
                   </select>
                </div>
         </div>
@@ -436,7 +436,7 @@
                   <select name="dimension_check[]" id="">
                       <option value="none" selected>-</option>
                       <option value="less than 50 x 50 x 50">less than 50 x 50 x 50</option>
-                      <option value="more than than 50 x 50 x 50">more than than 50 x 50 x 50</option>
+                      <option value="more than than 50 x 50 x 50">more than 50 x 50 x 50</option>
                   </select>
                </div>
         </div>

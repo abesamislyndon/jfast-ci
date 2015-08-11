@@ -27,8 +27,19 @@
         </td>
        
         <td><?php echo $value->sender?></td>
-        <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>                   
-                 
+           <td class = "cost">
+             <?php 
+                    $sub  = 
+                    $value->destination_cost + 
+                    $value->weight_cost +  
+                    $value->labor_cost + 
+                    $value->sumt + 
+                    $value->vehicle_cost + 
+                    $value->trip_cost;  
+
+                    echo number_format($sub,2); 
+               ?>
+           </td>         
           <td class = "remarks"><br>
                  <?php
                    if($value->status == 1) {

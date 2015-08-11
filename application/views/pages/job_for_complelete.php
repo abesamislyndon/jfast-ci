@@ -6,93 +6,235 @@
                   <input type="hidden" name = "sender" class="form-control" value = "<?php echo $_SESSION['logged_in']['full_name']; ?>" />   
                   <input type="hidden" name = "id" class="form-control" value = "<?php echo $_SESSION['logged_in']['id']; ?>" />              
                   <input type="hidden" name = "job_request_id" class="form-control" value = "<?php echo $value->job_request_id ?>" />           
+ <div class="container">
+   <div class="row">
+      <div class="col-md-6 wrapper1">
+            <h4>Pickup Details</h4>
+            <hr>
+              <div class="form-group">
+              <div class="col-md-4">
+              <label>Contact Person:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                        <input type="text" name = "full_name" class="form-control lg " value = "<?php echo $value->full_name ?>"/>
+                  </div>
+               </div>
 
-         <!--end of column 5-->
-         <div class="col-md-12">
-            <div class="box box-info">
-                   <div class="box-header">
-                        <h3 class="box-title1">Job Bank #: <?php echo $value->job_request_id; ?></h3>
-                 </div>
-               <div class="box-body">
-               <table class="table table-bordered table-custom">
-                       <div class="box-header">
-                          <h3 class="box-title">Pickup Details</h3>
-                       </div>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Company:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                       <input type="text" name = "company_client" class="form-control lg" value = "<?php echo $value->company_client ?>"/>
+                  </div>
+               </div>
 
-                     <tr>
-                        <th>Contact Person</th>
-                        <th>Company</th>
-                        <th>Tel no.</th>
-                        <th>Email</th>
-                        <th style="width:390px">Pickup Address</th>
-                     </tr>
-                     <tr>
-                        <td><?php echo $value->full_name ?></td>
-                        <td><?php echo $value->company_client ?></td>
-                        <td><?php echo $value->tel_no ?></td>
-                        <td><?php echo $value->email ?></td>
-                        <td><?php echo $value->address_pickup ?></td>
-                     </tr>
-                  </table>
-                   <hr>
-               <table class="table table-bordered table-custom">
-                      <div class="box-header">
-                       <h3 class="box-title">Delivery Details Details</h3>
-                     </div>
 
-                     <tr>
-                        <th>Contact Person</th>
-                        <th>Company</th>
-                        <th>Tel no.</th>
-                        <th>Email</th>
-                        <th style="width:390px">Pickup Address</th>
-                     </tr>
-                     <tr>
-                        <td><?php echo $value->full_name_deliver ?></td>
-                        <td><?php echo $value->company_client_deliver ?></td>
-                        <td><?php echo $value->tel_no_deliver ?></td>
-                        <td><?php echo $value->email_deliver ?></td>
-                        <td><?php echo $value->address_deliver ?></td>
-                     </tr>
-                  </table>
-                  <hr>
-               <table class="table table-bordered table-custom">
-                     <div class="box-header">
-                      <h3 class="box-title">Description Details</h3>
-                    </div>
+              <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Tel no:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                       <input type="text" name = "tel_no" class="form-control lg" value = "<?php echo $value->tel_no ?>"/>
+                  </div>
+               </div>
 
-                     <tr>
-                        <th>Destination</th>
-                        <th>Weight</th>
-                        <th>Tel no.</th>
-                        <th>Labor</th>
-                        <th>Cost&nbsp;&nbsp;&nbsp;&nbsp;<p style = "color:red;">GST&nbsp;&nbsp;<?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; echo $gst = (7 * $sub) / 100; ?>&nbsp;sgd</p></th>
-                     </tr>
-                     <tr>
-                        <td><?php echo $value->destination ?></td>
-                        <td><?php echo $value->weight ?></td>
-                        <td><?php echo $value->dimension ?></td>
-                        <td><?php echo $value->labor ?></td>
-                        <td class = "cost"><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
-                     </tr>
-                  </table>
-            
-                  <hr>
-            
-                  <hr>
-                  <div class='box'>
-                     <div class='box-header'>
-                        <label>Complete Job Details</label>
-                        <div class="pull-right box-tools">
-                           <button class="btn btn-default btn-sm" data-widget='collapse' data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                           <button class="btn btn-default btn-sm" data-widget='remove' data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+              <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Email:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                      <input type="email" name = "email" class="form-control lg" id="exampleInputEmail1" value = "<?php echo $value->email ?>">
+                  </div>
+               </div>
+
+
+              <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Pickup Address:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                    <input type="text" name = "address_pickup" class="form-control lg" value = "<?php echo $value->address_pickup ?>"/>
+                  </div>
+               </div>
+         </div> 
+
+       <div class="col-md-6 wrapper1">
+            <h4>Delivery Details</h4>
+            <hr>
+              <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Contact Person:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                        <input type="text" name = "full_name_deliver" class="form-control lg" value = "<?php echo $value->full_name_deliver ?>"/>
+                  </div>
+               </div>
+
+                <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Company:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                      <input type="text" name = "company_client_deliver" class="form-control lg" value = "<?php echo $value->company_client_deliver ?>"/>
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Tel no:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                         <input type="text" name = "tel_no_deliver" class="form-control lg" value = "<?php echo $value->tel_no_deliver ?>"/>
+                  </div>
+               </div>
+
+
+              <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Email:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                     <input type="email" name = "email_deliver" class="form-control lg" id="exampleInputEmail1" value = "<?php echo $value->email_deliver ?>">
+                  </div>
+               </div>
+
+
+              <div class="form-group">
+                  <div class="col-md-4">
+                    <label>Pickup Address:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-8">
+                     <input type="text" name = "address_deliver" class="form-control lg" value = "<?php echo $value->address_deliver ?>"/>
+                  </div>
+               </div>
+         </div> 
+
+  <div class="col-md-12 wrapper1">
+            <hr>
+              <div class="form-group">
+                  <div class="col-md-1">
+                    <label>DATE:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-11">
+                <div class="input-group">
+                        <div class="input-group-addon">
+                           <i class="fa fa-calendar"></i>
                         </div>
-                     </div>
-                     <div class='box-body pad'>
-                       <textarea class="form-control details2" name = "job_details" rows="3" disabled><?php echo strip_tags($value->job_details);?></textarea>
+                        <input type="text" name = "date_request" class="form-control pull-right  required lg" id="datepicker" value = "<?php $day = date('l', strtotime($value->date_request));$month = date(' F j, Y',strtotime($value->date_request)); echo $month; ?>"/>
                      </div>
                   </div>
-                  <?php endforeach; ?>
+               </div>
+
+                <div class="form-group">
+                 <div class="col-md-1">
+                    <label>TIME:</label> &nbsp; &nbsp;     
+                  </div>
+                   <div class="col-md-11">
+                       <div class="input-group">
+                          <div class="input-group-addon">
+                           <i class="fa fa-clock-o"></i>
+                           </div>
+                           <input type="text" name = "time" class="form-control timepicker  required lg" value = "<?php echo $value->time ?>"/>   
+                        </div>
+                  </div>
+               </div>
+         </div>
+
+      </div>
+   </div>
+
+
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-12 wrapper1">
+            <h4>DELIVERY INFORMATION AND ITEM DESCRIPTION</h4>
+            <hr>
+                <table class = "table">
+    
+                      <tr>
+                        <td><label>Vehicle</label></td>
+                        <td>
+                          <select class="form-control" name="vehicle" id="destination" >
+                              <option value = "<?php echo $value->vehicle ?>" selected="selected"><?php echo $value->vehicle ?></option>
+                           </select>
+                         </td>
+                      </tr>
+                      
+                      <tr>
+                        <td><label>Destination</label></td>
+                           <td>
+                           <select class="form-control" name="destination_get" id="destination" >
+                              <option value = "<?php echo $value->destination_id ?>" selected="selected"><?php echo $value->destination ?></option>
+                              <?php foreach ($from as $value1) { ?>
+                              <option  value = "<?php echo $value1->id ?>"><?php echo $value1->from_destination ?>&nbsp;-&nbsp;<?php echo $value1->to_destination ?></option>
+                              <?php  } ?>    
+                            </select>
+                        </td>
+                      </tr>
+                     
+                      <tr>
+                        <td><label>No. of trips:</label></td>
+                        <td>
+                          <select class="form-control" name="no_trips" id="destination" >
+                              <option value = "<?php echo $value->no_trips ?>" selected="selected"><?php echo $value->no_trips ?></option>
+                                </select>
+                        </td>
+                      </tr>
+
+                       <tr>
+                        <td><label>Weight</label></td>
+                        <td>
+                            <select class="form-control" name="weight" id="weight">
+                               <option value = "<?php echo $value->weight_id ?>" selected="selected"><?php echo $value->weight ?></option>
+                               <?php foreach ($weight as $value1) { ?>
+                               <option  value = "<?php echo $value1->id ?>">&nbsp;&nbsp;<?php echo $value1->weight ?></option>
+                               <?php  } ?>    
+                            </select>
+                        </td>
+                      </tr>
+
+                       <tr>
+                        <td><label>No. of Labor</label></td>
+                        <td>
+                          <select class="form-control" name="labor" id="labor" >
+                              <option value = "<?php echo $value->labor ?>" selected="selected"><?php echo $value->labor ?></option>
+                           </select>           
+                        </td>
+                      </tr>
+
+                </table>               
+         </div>  
+      </div>
+   </div>
+  
+<?php endforeach; ?>
+
+ <div class="container">
+   <div class="row">
+      <div class="col-md-12 wrapper1">
+            <h4>Item List</h4>
+            <hr>
+                <table class = "table">
+                  <tr>
+                    <th>Item type</th>
+                    <th>Quantity</th>
+                    <th>Dimension</th>
+                  </tr>
+                     <?php foreach ($individual_item_type as  $value): ?>             
+                        <tr>
+                        <td><?php echo $value->item_type ?></td>
+                        <td><?php echo $value->qty_check ?></td>
+                        <td><?php echo $value->dimension_check ?></td>
+                        <td><input type="hidden" name = "item_type_id[]" value = "<?php echo $value->item_type_id ?>"></td>
+                      </tr> 
+                   <?php endforeach; ?>          
+                 </table>      
+                 </div>  
+
+                  <div class="col-sm-7">
+                  <br>
                   <div class="col-sm-7">
                      <input type = "submit" name = "submit"  class = "btn btn-success btn-lg" value = "Job Complete">
                   </div>

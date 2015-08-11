@@ -87,6 +87,17 @@ function goBack() {
 <script>
   $('#card-table').cardtable({myClass:'stacktable small-only' });
 </script>
+<script>
+  $(document).ready(function() {
+    $('.confirm-div').hide();
+    <?php if($this->session->flashdata('msg')){ ?>
+    $('.confirm-div').html('<p><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<?php echo $this->session->flashdata('msg'); ?></p>').show().delay(500).fadeIn('normal', function() {
+      $(this).delay(2500).fadeOut();
+   });
+  });
+<?php } ?>
+</script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="<?php echo base_url();?>asset/js/app.js"></script>
   </body>

@@ -13,11 +13,11 @@ class Manage_user_accounts extends CI_Controller
         $this->data['count_allocate']    = $this->job_delivery_model->count_allocate_jobbank();
         $this->data['count_ongoing_job'] = $this->job_delivery_model->count_ongoing_jobbank();
         $this->data['count_invoice_job'] = $this->job_delivery_model->count_invoice_jobbank();
-        $sender = $this->session->userdata["logged_in"]["full_name"];   
-        $this->data['count_updated_job'] = $this->job_delivery_model->count_update_job($sender);
-        $this->data['count_for_jobcomplete'] = $this->job_delivery_model->count_for_job_complete($sender);
+        $data['total_invoice_job']        =  $this->job_delivery_model->count_invoice_total();
+        $sender = $this->session->userdata["logged_in"]["full_name"]; 
         $this->data['count'] = $this->job_delivery_model->count_job_list_driver($sender);
         $this->data['count_for_job_complete'] = $this->job_delivery_model->count_for_jobcomplete_driver($sender);
+        $this->data['count_job_complete_driver'] = $this->job_delivery_model->count_jobcomplete_driver($sender);
       
             
         
@@ -85,7 +85,7 @@ class Manage_user_accounts extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/update_user', $data);
-            $this->load->view('scaffolds/footer');
+            $this->load->view('scaffolds/footer_normal');
 
         } else {
             redirect('login', 'refresh');
@@ -166,9 +166,10 @@ class Manage_user_accounts extends CI_Controller
             $id = $this->session->userdata["logged_in"]["id"];
             $this->data['list'] = $this->user->user_all_list_driver($id);
 
+
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar_driver', $this->data);
-            $this->load->view('pages/user_list_driver');
+            $this->load->view('pages/user_list_driver', $this->data);
             $this->load->view('scaffolds/footer_driver');
         } else {
             redirect('login', 'refresh');

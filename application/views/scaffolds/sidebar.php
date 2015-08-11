@@ -15,7 +15,7 @@
 
             <li>
               <a href="<?php echo base_url(); ?>joblist_bank/job_approval">
-                  <i class="fa fa-pencil-square-o"></i><span>Job Approval</span> <?php foreach($count_approval as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+                  <i class="fa fa-pencil-square-o"></i><span>For Job Approval</span> <?php foreach($count_approval as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li> 
         
