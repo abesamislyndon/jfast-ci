@@ -25,6 +25,7 @@
         background:#ccc;
         border-collapse: collapse;
         border: none;
+        font-size:11px; 
     }
     hr{
         border:1px solid #000; 
@@ -97,15 +98,15 @@
                         <thead>
                            <tr>
                               <th>Invoice #</th>
-                             <th>Date Request</th>
+                              <th>Date Request</th>
                               <th>Destination</th>
                               <th>Pickup Details </th>
                               <th>Delivery Details</th>
                               <th>Job Description</th>
-                               <th>Driver Details</th>
+                              <th>Driver Details</th>
                               <th >Requested by</th>
                               <th>Remarks</th>
-                               <th>Cost</th>
+                              <th>Cost</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -134,12 +135,13 @@
                              <td>
                                 <ul class = "details">
                                    <li><b>Time:</b>&nbsp;<?php echo $value->time?></li>
+                                   <li><b>Destination:</b>&nbsp;<?php echo $value->destination?></li>
+                                   <li><b>No. Trips:</b>&nbsp;<?php echo $value->no_trips?></li>
                                    <li><b>Weight:</b>&nbsp;<?php echo $value->weight?></li>
-                                   <li><b>Dimension:</b>&nbsp;<?php echo $value->dimension?></li>
                                    <li><b>No. of Labor:</b>&nbsp;<?php echo $value->labor?></li>
                                 </ul>
                              </td>
-                           <td>
+                              <td>
                                <ul class = "details">
                                   <li><b>Driver Name:</b>&nbsp;<?php echo $value->full_name?></li>
                                   <li><b>Company:</b>&nbsp;<?php echo $value->company?></li>

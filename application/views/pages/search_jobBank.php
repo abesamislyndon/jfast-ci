@@ -55,7 +55,6 @@
                    }
                  ?>
            </td>
-        <td><?php echo $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost ?></td>
         <td><a href="<?php echo base_url();?>joblist_bank/individual_search/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom"><i class="fa fa-eye"></i>&nbsp;&nbsp;view</span></a></td>         
      </tr>
       <?php endforeach; ?>

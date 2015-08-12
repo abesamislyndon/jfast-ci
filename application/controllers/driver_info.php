@@ -337,9 +337,9 @@ class Driver_info extends CI_Controller
     if($this->session->userdata('logged_in')&&$this->session->userdata['logged_in']['role_code'] == '3')
      {
         $config = array();
-        $config["base_url"] = base_url().'driver_info/driver_histdry';
+        $config["base_url"] = base_url().'driver_info/driver_history';
         $config["total_rows"] = $this->Job_delivery_model->record_count();
-        $config["per_page"] = 20;
+        $config["per_page"] = 10;
         $config["uri_segment"] = 3;
         $config['full_tag_open'] = "<ul class='pagination pagination-sm no-margin pull-right'>";
         $config['full_tag_close'] ="</ul>";

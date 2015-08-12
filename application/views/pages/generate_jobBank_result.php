@@ -35,7 +35,6 @@
                               <th>Regular Customer Sender</th>
                               <th>Cost</th>
                               <th style="width:90px">Remarks</th>
-                              <th>Cost</th>
                               <th>Action</th>
                            </tr>
                         </thead>
@@ -107,7 +106,6 @@
                                            }
                                          ?>
                                    </td>
-                                      <td class = "cost"><?php $sub = $value->destination_cost + $value->weight_cost +  $value->labor_cost + $value->dimension_cost; $gst = (7 * $sub) / 100; echo number_format($gst + $sub,2); ?></td>                   
                                 <td><a href="<?php echo base_url();?>joblist_bank/individual_search/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;view</span></a></td>
                              </tr>
                               <?php endforeach; ?>

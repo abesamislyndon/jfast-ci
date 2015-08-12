@@ -179,7 +179,7 @@ class Job_delivery_model extends CI_Model
         $this->db->select(' * , item_type.job_request_id, sum(item_type_cost) as sumt');
         $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
         $this->db->where('sender', $sender);
-        $where = '(status="7" or status = "2")';
+        $where = '(status="7" or status = "3")';
         $this->db->where($where)->group_by('item_type.job_request_id');
         $this->db->from('job_delivery');
         $this->db->limit($limit, $start);
@@ -334,6 +334,18 @@ class Job_delivery_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+   function show_individual_item_type1($id)
+    {
+        
+        $this->db->select('*');
+        $this->db->from('job_delivery');
+        $this->db->join('item_type', 'item_type.job_request_id = job_delivery.job_request_id');
+        
+        $this->db->where('job_delivery.job_request_id', $id)->group_by('item_type.job_request_id');
+        $query = $this->db->get();
+        return $query->result();
+    }
    
     function show_individual_report($id)
     {
@@ -341,6 +353,26 @@ class Job_delivery_model extends CI_Model
         $this->db->select('*');
         $this->db->from('job_delivery');
         $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('users', 'users.id = job_delivery.sender_id');
+        $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
+        
+        $this->db->where('job_delivery.job_request_id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+   
+   function show_individual_report1($id)
+    {
+
+
+        $this->db->select(' * ,sum(item_type_cost) as sumt');
+        $this->db->from('job_delivery');
+        $this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
+        $this->db->join('item_type', 'job_delivery.job_request_id = item_type.job_request_id');
+        
+        //$this->db->select('*');
+        //$this->db->from('job_delivery');
+        //$this->db->join('job_allocate_info', 'job_allocate_info.job_bank_id = job_delivery.job_request_id');
         $this->db->join('users', 'users.id = job_delivery.sender_id');
         $this->db->join('invoice', 'invoice.job_bank_id = job_delivery.job_request_id');
         

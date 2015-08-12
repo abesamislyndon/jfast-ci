@@ -29,7 +29,6 @@
                               <th>Regular Customer Sender</th>
                               <th>Cost</th>
                               <th>Remarks</th>
-                              <th>Cost</th>
                               <th>Action</th>
                            </tr>
                         </thead>

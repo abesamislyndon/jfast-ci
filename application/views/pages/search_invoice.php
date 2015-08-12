@@ -27,6 +27,7 @@
               </ul>
           </td>
          <td><?php echo $value->sender?></td>
+         <td class="cost">
             <?php 
                     $sub  = 
                     $value->destination_cost + 
@@ -55,7 +56,7 @@
                }
              ?>
          </td>
-          <td><a href="<?php echo base_url();?>joblist_bank/individual_search_regular/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom"><i class="fa fa-eye"></i>&nbsp;&nbsp;view</span></a></td>       
+          <td><a href="<?php echo base_url();?>create_pdf/print_invoice/<?php echo $value->job_request_id ?>" target = "_blank"><span class="badge bg-blue custom"><i class="fa fa-eye"></i>&nbsp;&nbsp;view</span></a></td>       
       </tr>
       <?php endforeach; ?>
       <?php }?>            
