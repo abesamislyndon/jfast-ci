@@ -28,7 +28,7 @@ class Search extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/search_by_jobbank', $this->data);
-            $this->load->view('scaffolds/footer');
+            $this->load->view('scaffolds/footer_normal');
 
         } else {
             redirect('login', 'refresh');
@@ -87,7 +87,7 @@ class Search extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/search_by_invoice', $this->data);
-            $this->load->view('scaffolds/footer');
+            $this->load->view('scaffolds/footer_normal');
         } else {
             redirect('login', 'refresh');
         }

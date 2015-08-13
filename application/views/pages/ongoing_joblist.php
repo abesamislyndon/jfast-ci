@@ -85,7 +85,7 @@
                                      }elseif($value->status == 2){
                                        echo 'pending job bank for allocate' ;
                                      }elseif ($value->status == 3) {
-                                      echo 'ongoing job'; 
+                                      echo 'not yet pickup'; 
                                      }elseif ($value->status == 4) {
                                       echo 'pending for checkout for invoice'; 
                                     }elseif ($value->status == 7) {

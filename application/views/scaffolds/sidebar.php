@@ -28,7 +28,7 @@
         
             <li>
             <a href="<?php echo base_url(); ?>joblist_bank/ongoing_job_list">
-              <i class="fa fa-files-o"></i><span>Ongoing Pickup Job</span><?php foreach($count_ongoing_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
+              <i class="fa fa-files-o"></i><span>Ongoing / Pickup Job</span><?php foreach($count_ongoing_job as $value){?><?php if( $value->total == 0){?><span class = "notification_no none"></span><?php }else{ ?><small class="label pull-right bg-green custom_count"><?php echo $value->total; } }?></small>
               </a>
             </li>
             <li>
@@ -50,14 +50,12 @@
            <li class="header">Costing Details </li>
             <li class="treeview">
               <a href="#">
-               <i class="fa fa-user"></i><span>Manage Costing</span>
+               <i class="fa fa-user"></i><span>Manage forms</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url();?>costing_attributes/location"><i class="fa fa-circle-o"></i>Location</a></li>
                 <li><a href="<?php echo base_url();?>costing_attributes/weight"><i class="fa fa-circle-o"></i>Weight</a></li>
-                <li><a href="<?php echo base_url();?>costing_attributes/dimension"><i class="fa fa-circle-o"></i>Dimension</a></li>
-                <li><a href="<?php echo base_url();?>costing_attributes/labor"><i class="fa fa-circle-o"></i>Labor</a></li>
               </ul>
             </li> 
 
@@ -81,9 +79,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url();?>generate_history/jobBank"><i class="fa fa-circle-o"></i>Job Bank #</a></li>
-                <li><a href="<?php echo base_url();?>generate_history/invoice"><i class="fa fa-circle-o"></i>Invoice #</a></li>
-                <li><a href="<?php echo base_url();?>generate_history/invoice_with_sender"><i class="fa fa-circle-o"></i>Sender with invoice</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/jobBank"><i class="fa fa-circle-o"></i>All Job Bank</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/invoice"><i class="fa fa-circle-o"></i>All Invoice</a></li>
+                <li><a href="<?php echo base_url();?>generate_history/invoice_with_sender"><i class="fa fa-circle-o"></i>Regular Customer Invoice</a></li>
               </ul>
            </li>
 

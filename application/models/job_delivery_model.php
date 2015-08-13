@@ -643,7 +643,7 @@ class Job_delivery_model extends CI_Model
         
         $this->db->select('status, COUNT(status) as total');
         $this->db->where('sender', $sender);
-        $where = '(status="7" or status ="2")';
+        $where = '(status="7" or status ="2" or status ="3")';
         $this->db->where($where);
         $this->db->from('job_delivery');
         $this->db->order_by('total', 'desc');

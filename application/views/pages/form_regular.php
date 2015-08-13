@@ -207,7 +207,7 @@
                   </div>
                    <div class="col-md-9">
                       <select class="form-control  required" name="destination" id="destination" required>
-                        <option value="">-</option>
+                        <option value="-">-</option>
                         <?php foreach ($from as $value) { ?>
                         <option  value = "<?php echo $value->id ?>"><?php echo $value->from_destination ?>&nbsp;-&nbsp;<?php echo $value->to_destination ?></option>
                         <?php  } ?>    
@@ -223,7 +223,7 @@
                   </div>
                    <div class="col-md-9">
                        <select class="form-control  lg required" name="no_trips" id="destination" required>
-                         <option value="" selected>-</option>
+                         <option value="-" selected>-</option>
                          <option value="1">1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>

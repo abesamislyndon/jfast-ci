@@ -80,6 +80,15 @@ function goBack() {
 <script>
   $('#card-table').cardtable({myClass:'stacktable small-only' });
 </script>
- 
+ <script>
+  $(document).ready(function() {
+    $('.confirm-div').hide();
+    <?php if($this->session->flashdata('msg')){ ?>
+      $('.confirm-div').html('<p><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<?php echo $this->session->flashdata('msg'); ?></p>').show().delay(500).fadeIn('normal', function() {
+      $(this).delay(4000).fadeOut();
+   });
+  });
+<?php } ?>
+</script>
   </body>
 </html>

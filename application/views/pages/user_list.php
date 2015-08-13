@@ -1,9 +1,9 @@
+<div class = "col-md-12 confirm-div"></div>
 <div class="content-wrapper">
        <section class="content">
           <div class="row">
-
             <div class="col-md-12">
-              <div class = "confirm-div"></div>
+  
           
         <div class="box">
                 <div class="box-header">
@@ -20,6 +20,9 @@
                     <th>Company</th>
                     <th>Address</th>
                     <th>Contact Number</th>
+                    <th>Handphone Number</th>
+                    <th>Fax Number</th>
+                    <th>Email</th>
                     <th>Role</th>
                     <th>Actions</th>
                  </tr>
@@ -33,6 +36,9 @@
                             <td ><?php echo $individual->company?></td>
                             <td ><?php echo $individual->address?></td>
                             <td ><?php echo $individual->contact_no?></td>
+                            <td ><?php echo $individual->hp_no?></td>
+                            <td ><?php echo $individual->fax_no?></td>
+                            <td ><?php echo $individual->email?></td>
                             <?php if($individual->role_code == "1"){ ?>
                                 <td>Admin</td>    
                              <?php }elseif($individual->role_code == "2"){ ?>

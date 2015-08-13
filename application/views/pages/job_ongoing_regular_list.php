@@ -17,6 +17,7 @@
                   <th style="width:290px">Delivery Details</th>
                   <th>Job Description</th>
                   <th style="width:90px">Cost</th>
+                  <th style="width:90px">Remarks</th>
                   <th>Action</th>
                </tr>
             </thead>
@@ -65,6 +66,19 @@
                                             echo number_format($sub,2); 
                                         ?>
 
+                           </td>
+                           <td class = "remarks">
+                                <?php
+                                     if($value->status == 1) {
+                                       echo 'pending job bank for approval';
+                                     }elseif ($value->status == 3) {
+                                      echo 'not yet pickup'; 
+                                     }elseif ($value->status == 7) {
+                                     echo 'job Pickup already'; 
+                                     }else{
+                                      echo 'job finished'; 
+                                     }
+                                   ?>
                            </td>
                           <td><a href="<?php echo base_url();?>regular_customer/view_job_request/<?php echo $value->job_request_id ?>"><span class="badge bg-blue custom"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp;View Details</span></a></td>
                         </tr>

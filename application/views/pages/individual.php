@@ -196,7 +196,7 @@
                       <tr>
                         <td><label>No. of trips:</label></td>
                         <td>
-                          <select class="form-control" name="no_trips" id="destination" >
+                          <select class="form-control" name="no_trips" id="no_trips" >
                               <option value = "<?php echo $value->no_trips ?>" selected="selected"><?php echo $value->no_trips ?></option>
                                  <option value="1">1</option>
                                  <option value="2">2</option>

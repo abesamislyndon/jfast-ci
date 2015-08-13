@@ -18,10 +18,6 @@
                      <label>weight</label>
                      <input type="text" name = "weight" class="form-control" placeholder="Enter ..." required/>
                   </div>
-                  <div class="form-group">
-                     <label>Cost</label>
-                     <input type="text" name = "cost" class="form-control" placeholder="Enter ..." required/>
-                  </div>
                   <input type = "submit" name = "submit" class="btn  btn-success btn-lg" value = "submit">
                   </form> 
                </div>
@@ -64,14 +60,12 @@
                      <label>Destination List</label>
                      <tr>
                         <th>Weight</th>
-                        <th>Cost</th>
                         <th>Update</th>
                         <th>Delete</th>
                      </tr>
                      <?php foreach($weight_details as $value): ?>
                      <tr>
                         <td><?php echo $value->weight; ?></td>
-                        <td><?php echo $value->cost; ?></td>
                         <td><a href="#spec" role="button"  class="badge bg-blue custom" data-toggle="modal" data-load-remote="<?php echo base_url();?>costing_attributes/modal_weight/<?php echo $value->id; ?>" data-remote-target="#spec .modal-body"> <i class="fa fa-pencil-square-o"></i></a>
                         </td>
                         <td><a href="<?php echo base_url();?>costing_attributes/delete_weight/<?php echo $value->id ?>" onclick="return confirm('Are you sure you want to Delete?');"><span class="badge bg-red custom"><i class="fa fa-trash-o"></i></span></a></td>

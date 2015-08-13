@@ -38,8 +38,9 @@ public function print_invoice_regular()
     {
          $id = $this->uri->segment(3);
         
-         $data['individual'] = $this->job_delivery_model->show_individual_report($id);
+        $data['individual'] = $this->job_delivery_model->show_individual_report1($id);
          $data['sample'] = $this->job_delivery_model->sample($id);
+         $data['individual_item_type'] = $this->job_delivery_model->show_individual_item_type($id);
          
          $this->load->view('pages/invoice_pdf', $data);
         }

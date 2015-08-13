@@ -66,6 +66,9 @@ Class User extends CI_Model
         $company = $this->input->post('company');
         $address = $this->input->post('address');
         $contact_no = $this->input->post('contact_no');
+        $hp_no = $this->input->post('hp_no');
+        $fax_no = $this->input->post('fax_no');
+        $email = $this->input->post('email');
         $username  = $this->input->post('username');
         $role_code = $this->input->post('role_code');
         //$password  = $this->input->post('password');
@@ -76,6 +79,10 @@ Class User extends CI_Model
             'company' => $company,
             'address' => $address,
             'contact_no' => $contact_no,
+            'hp_no' => $hp_no,
+            'fax_no' => $fax_no,
+            'email' => $email,
+    
        //     'password' => md5($password),
             'role_code' => $role_code
         );
@@ -222,7 +229,7 @@ Class User extends CI_Model
         }
     }
 
-        function do_user_update_pwd_regular($id, $password, $new_password, $confirm_password)
+  function do_user_update_pwd_regular($id, $password, $new_password, $confirm_password)
     {
         
         $query = $this->db->query("select * from users where id=" . $id);
@@ -249,19 +256,18 @@ Class User extends CI_Model
         }
     }
     
-    function do_add_user_model($full_name,$company,$address,$contact_no, $username, $password, $password1, $role_code)
+ function do_add_user_model($full_name,$company,$address,$contact_no, $hp_no, $fax_no, $email, $username, $password, $password1, $role_code)
     {
-        //$full_name = $this->input->post('full_name');
-        //$username  = $this->input->post('username');
-        //$password  = $this->input->post('password');
-        //$password1 = $this->input->post('password1');
-        //$role_code = $this->input->post('role_code');
         
         $data = array(
             'full_name' => $full_name,
             'company' => $company,
             'address' => $address,
             'contact_no' => $contact_no,
+            'hp_no' => $hp_no,
+            'fax_no' => $fax_no,
+            'email' => $email,
+           
             'username' => $username,
             'password' => md5($password),
             'role_code' => $role_code

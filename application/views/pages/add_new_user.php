@@ -26,6 +26,21 @@
                             <label>Contact Number</label>
                             <input type = "text" name = "contact_no"  id = "full_name" class="form-control">
                             </div> 
+
+                             <div class="form-group">
+                            <label>Hand Phone</label>
+                            <input type = "text" name = "hp_no"  id = "full_name" class="form-control">
+                            </div> 
+
+                             <div class="form-group">
+                            <label>Fax Number</label>
+                            <input type = "text" name = "fax_no"  id = "full_name" class="form-control">
+                            </div> 
+
+                             <div class="form-group">
+                            <label>Email</label>
+                            <input type = "text" name = "email"  id = "full_name" class="form-control">
+                            </div> 
                        </div>
 
                            

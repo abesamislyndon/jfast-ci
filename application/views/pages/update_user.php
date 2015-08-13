@@ -34,6 +34,21 @@
                                         <label>Contact Number</label>
                                         <input type = "text" name = "contact_no"  id = "company" class="form-control" value = "<?php echo $value->contact_no ?>">
                                         </div>
+
+                                         <div class="form-group">
+                                        <label>Hand Phone Number</label>
+                                        <input type = "text" name = "hp_no"  id = "company" class="form-control" value = "<?php echo $value->hp_no ?>">
+                                        </div>
+
+                                         <div class="form-group">
+                                        <label>Fax Number</label>
+                                        <input type = "text" name = "fax_no"  id = "company" class="form-control" value = "<?php echo $value->fax_no ?>">
+                                        </div>
+
+                                         <div class="form-group">
+                                        <label>Email</label>
+                                        <input type = "text" name = "email"  id = "company" class="form-control" value = "<?php echo $value->email ?>">
+                                        </div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                                  <div class="col-lg-6">

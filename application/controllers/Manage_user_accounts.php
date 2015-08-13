@@ -19,6 +19,8 @@ class Manage_user_accounts extends CI_Controller
         $this->data['count_for_job_complete'] = $this->job_delivery_model->count_for_jobcomplete_driver($sender);
         $this->data['count_job_complete_driver'] = $this->job_delivery_model->count_jobcomplete_driver($sender);
       
+        $this->data['count_updated_job'] = $this->job_delivery_model->count_update_job($sender);
+        $this->data['count_for_jobcomplete'] = $this->job_delivery_model->count_for_job_complete($sender);
             
         
     }
@@ -32,7 +34,7 @@ class Manage_user_accounts extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/add_new_user');
-            $this->load->view('scaffolds/footer');
+            $this->load->view('scaffolds/form_footer');
         } else {
             redirect('login', 'refresh');
         }
@@ -46,13 +48,17 @@ class Manage_user_accounts extends CI_Controller
             $company = $this->input->post('company');
             $address = $this->input->post('address');
             $contact_no = $this->input->post('contact_no');
+            $hp_no = $this->input->post('hp_no');
+            $fax_no = $this->input->post('fax_no');
+            $email = $this->input->post('contact_no');
+          
             $username  = $this->input->post('username');
             $password  = $this->input->post('password');
             $password1 = $this->input->post('password1');
             $role_code = $this->input->post('role_code');
 
             if ($this->input->post('submit')) {
-                $this->user->do_add_user_model($full_name, $company, $address, $contact_no, $username, $password, $password1, $role_code);
+                $this->user->do_add_user_model($full_name, $company, $address, $contact_no, $hp_no, $fax_no, $email, $username, $password, $password1, $role_code);
             }
         } else {
             redirect('login', 'refresh');
@@ -68,7 +74,7 @@ class Manage_user_accounts extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/user_list', $data);
-            $this->load->view('scaffolds/footer');
+            $this->load->view('scaffolds/form_footer');
         } else {
             redirect('login', 'refresh');
         }
@@ -85,7 +91,7 @@ class Manage_user_accounts extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar', $this->data);
             $this->load->view('pages/update_user', $data);
-            $this->load->view('scaffolds/footer_normal');
+            $this->load->view('scaffolds/form_footer');
 
         } else {
             redirect('login', 'refresh');
@@ -217,7 +223,7 @@ class Manage_user_accounts extends CI_Controller
             $this->load->view('scaffolds/header');
             $this->load->view('scaffolds/sidebar_driver', $this->data);
             $this->load->view('pages/update_password_driver', $data);
-            $this->load->view('scaffolds/footer_driver');
+            $this->load->view('scaffolds/form_footer');
         } else {
             redirect('login', 'refresh');
         }

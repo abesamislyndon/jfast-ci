@@ -1,3 +1,4 @@
+<div class = "col-md-12 confirm-div"></div>
 <div class="content-wrapper">
     <section class="content">
         <div class="panel panel-default">

@@ -93,7 +93,7 @@ class  Costing_model extends CI_Model
 
        $row = array(
           'weight'=>$weight,
-          'cost'=>$cost,
+         // 'cost'=>$cost,
           );
    
           $this->db->insert('weight', $row);
@@ -106,7 +106,7 @@ class  Costing_model extends CI_Model
 
      $row = array(
           'weight'=>$weight,
-          'cost'=>$cost,
+        //  'cost'=>$cost,
           );
           $this->db->where('id',$id);
           $this->db->update('weight', $row);
