@@ -13,7 +13,7 @@ class Joblist_bank extends CI_Controller {
     $this->data['count_invoice_job']  =  $this->job_delivery_model->count_invoice_jobbank();
     $this->data['total_invoice_job']        =  $this->job_delivery_model->count_invoice_total();
     $sender = $this->session->userdata["logged_in"]["full_name"];  
-    $this->data['count_jobbank']  = $this->job_delivery_model->regualar_view_updated_price($sender);
+    $this->data['count_jobbank_regular']  = $this->job_delivery_model->regualar_view_updated_price($sender);
     $this->data['count_updated_job'] = $this->job_delivery_model->count_update_job($sender);
     $this->data['count_for_jobcomplete'] = $this->job_delivery_model->count_for_job_complete($sender);
  }

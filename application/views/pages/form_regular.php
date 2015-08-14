@@ -262,10 +262,18 @@
                   </div>
                    <div class="col-md-9">
                      <select class="form-control lg cost-style  required" name="labor" id="labor" required>
-                          <option value="">-</option>
-                          <?php foreach ($labor as $value) { ?>
-                          <option  value = "<?php echo $value->id ?>">&nbsp;&nbsp;<?php echo $value->labor ?></option>
-                          <?php  } ?>    
+                         <option value="">-</option>
+                         <option value="0">0</option>
+                         <option value="1">1</option>
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                         <option value="4">4</option>
+                         <option value="5">5</option>
+                         <option value="6">6</option>
+                         <option value="7">7</option>
+                         <option value="8">8</option>
+                         <option value="9">9</option>
+                         <option value="10">10</option>
                        </select>    
                   </div>
                </div>
@@ -344,6 +352,7 @@
                <div class="select-box" id = "show2">
                    <select name="qty_check[]" id="">
                         <option value="" selected>-</option>
+                         <option value="0">0</option>
                          <option value="1">1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
@@ -370,6 +379,7 @@
                <div class="select-box" id = "show3">
                    <select name="qty_check[]" id="">
                         <option value="" selected>-</option>
+                         <option value="0">0</option> 
                          <option value="1">1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
@@ -396,6 +406,7 @@
                <div class="select-box" id = "show4">
                     <select name="qty_check[]" id="">
                         <option value="" selected>-</option>
+                        <option value="0">0</option>
                          <option value="1">1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>
@@ -422,6 +433,7 @@
                <div class="select-box" id = "show5">
                    <select name="qty_check[]" id="">
                         <option value="" selected>-</option>
+                        <option value="0">0</option>
                          <option value="1">1</option>
                          <option value="2">2</option>
                          <option value="3">3</option>

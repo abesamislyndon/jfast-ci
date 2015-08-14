@@ -42,8 +42,8 @@ class Job_delivery_model extends CI_Model
         $weight1     = $d[0]->weight;
         $weight_cost = $d[0]->cost;
         
-        $labor1     = $l[0]->labor;
-        $labor_cost = $l[0]->cost;
+       // $labor1     = $l[0]->labor;
+        //$labor_cost = $l[0]->cost;
         
         //$dimension1     = $di[0]->dimension;
         //$dimension_cost = $di[0]->cost;
@@ -83,7 +83,7 @@ class Job_delivery_model extends CI_Model
             'weight_id' => $weight,
              //'weight_cost' => $weight_cost,
             
-            'labor' => $labor1,
+            'labor' => $labor,
             'labor_id' => $labor,
             //'labor_cost' => $labor_cost,
             
